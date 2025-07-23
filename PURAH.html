@@ -1,0 +1,1292 @@
+<!-- Componente PURAH All-in-One Atômico + Prontuário (corrigido 100%) -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  
+  .prontuario-historico {
+    max-width: 720px;
+    margin: auto;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 3px 10px 30px rgba(0,0,0,0.08);
+    border-left: 4px solid #1a8731;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+  }
+
+  .bloco {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ddd;
+  }
+
+  .bloco:last-child {
+    border-bottom: none;
+  }
+
+  .titulo-bloco {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a8731;
+    margin-bottom: 10px;
+    justify-content: :center;
+    text-align:center;
+  }
+
+  .grafico-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    gap: 1px;
+    margin-top: 5px;
+  }   
+
+  .barra-vertical {
+    width: 70px;
+    height: 120px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .barra-preenchimento-positivo {
+    position: absolute;
+    bottom: 0;
+    width: 105%;
+    background: linear-gradient(to top, #6BCB77, #1a8731);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .barra-preenchimento-negativo {
+    position: absolute;
+    top: 0;
+    width: 105%;
+    background: linear-gradient(to bottom, #FF7676, #D32F2F);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .barra-label {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 8px;
+    color: #555;
+    font-weight: 700;
+  }
+
+  .video-loop {
+    width: 100%;
+    max-width: 600px;
+    margin: 25px auto 10px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  }
+
+  .legenda-video {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .certificado-resultado {
+    font-size: 12px;
+    color: #aaa;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .info-paciente strong {
+    color: #444;
+  }
+
+  .resumo-wrapper ul {
+    padding-left: 20px;
+    margin: 5px;
+
+}
+
+  }
+
+  .resumo-wrapper li {
+    margin-bottom: 5px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #2c2c2c;
+  }
+
+.resumo-wrapper li::marker {
+  color: #d32f2f; /* vermelho escuro */
+}
+
+    
+  }
+</style>
+
+<!-- Conteúdo HTML corrigido abaixo -->
+<div id="purah-prontuario">
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+    <div style="width:56px;height:56px;border-radius:50%;overflow:hidden;flex-shrink:0;">
+      <img src="http://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-13.svg" alt="Dra. Heloísa Barreto" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div>
+      <p style="margin:0;font-weight:700;font-size:15px;">Por Dra. Heloísa Barreto</p>
+      <p style="margin:0;color:#5f6368;font-size:11px;">Dermatologista e líder em pesquisas com nanotecnologia sublingual.</p>
+    </div>
+  </div>
+
+  <h1 style="font-size:25px;font-weight:700;line-height:1.3;margin:0 0 12px;">
+    Ela usou uma cápsula sublingual por 94 dias e o tempo voltou 20 anos
+  </h1>
+
+  <p style="font-size:16px;color:#5f6368;margin:0 0 10px;">
+    Conheça a fórmula recém-descoberta e a pesquisa censurada por 'desinteresse comercial.'
+  </p>
+
+  <p style="font-size:13px;color:#5f6368;margin-bottom:10px;">
+    16/07/2025 08h55 · Atualizado há 16 minutos
+  </p>
+
+  <div class="resumo-wrapper" style="border:1px solid #e0e0e0;border-radius:12px;padding:15px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.08);margin-bottom:10px;">
+    <div id="resumoHeader" onclick="this.classList.toggle('active'); const body=this.nextElementSibling; const label=this.querySelector('.resumo-label'); const icon=this.querySelector('.resumo-icon'); const expanded=this.classList.contains('active'); body.style.display = expanded ? 'block' : 'none'; label.textContent = expanded ? 'Resumo' : 'Ver resumo'; icon.textContent = expanded ? '▲' : '▼';" style="cursor:pointer;font-weight:700;font-size:14px;color:#212121;display:flex;justify-content:space-between;align-items:center;">
+      <span class="resumo-label">Ver resumo</span>
+      <span class="resumo-icon">▼</span>
+    </div>
+    <div class="resumo-body" style="display:none;margin-top:16px;">
+      <ul>
+        <li>Uma mulher brasileira de 62 anos usou uma cápsula sublingual proibida nos EUA — e, segundo a própria irmã, parecia que ela “tinha feito plástica ou botox”.</li>
+        <li>Dermatologistas confirmam: é possível rejuvenescer até 20 anos sem cremes, agulhas ou procedimentos invasivos.</li>
+        <li>Mais de 250 mulheres acima dos 40 anos participaram do maior estudo clínico de rejuvenescimento feminino já registrado. Descubra agora se você também é elegível.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+  <!-- Vídeo -->
+  <div class="video-loop">
+    <video autoplay loop muted playsinline width="100%">
+      <source src="http://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4" type="video/mp4">
+    </video>
+  </div>
+  <p class="legenda-video"> Érica Lopillato 'Paciente 033.' — Foto: Reprodução/Prontuário.</p>
+
+  <!-- Texto Clínico -->
+  <div style="font-size:17px;line-height:1.6;padding:5px 10px;margin-top:20px;">
+    <p>Dados oficiais do ClinicalTrials.gov revelam: <strong>mais de 70% dos tratamentos altamente eficazes são descartados por “falta de interesse comercial”.</strong></p>
+    <p><span style="background:#f4d1ce;padding:2px 4px;border-radius:4px;">Sim, você entendeu corretamente: centenas de pesquisas com potencial revolucionário foram abandonadas simplesmente por serem rápidas e eficazes demais para gerar lucro.</span></p>
+    <p>Minha pesquisa esteve à beira desse destino. <strong>O motivo?</strong> Descobrimos um efeito nomeado de <span style="background:#f4d1ce;padding:2px 4px;border-radius:4px;">"Renascimento Estético".</span></p>
+  </div>
+
+  <!-- Citação -->
+  <div style="margin:20px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:22px 15px;text-align:center;position:relative;">
+    <div style="height:4px;width:120px;background:#b71c1c;margin:-22px auto 20px auto;"></div>
+    <p style="font-size:18px;font-weight:700;line-height:1.6;padding:1px 10px;margin:0;">“Você já parou de sorrir por vergonha do seu pescoço? Eu sim, quando minha pele começou a ceder, evitei fotos por anos. O vídeo à esquerda mostra a primeira semana do tratamento com a Dra. Barreto. O da direita mostra a vigésima semana. Uma imagem vale mil palavras, mas meu resultado vale uma vida inteira de felicidade.” — Érica Lopillato, paciente 033</p>
+    <div style="height:4px;width:120px;background:#b71c1c;margin:20px auto -22px auto;"></div>
+  </div>
+
+  <!-- Texto Final -->
+  <div style="font-size:17px;line-height:1.6;font-family:'Roboto',sans-serif;padding:5px 10px;color:#333;">
+    <p><strong>Érica Lopillato, paciente 033</strong>, obteve rejuvenescimento biológico completo em <strong>exatas 20 semanas</strong>. Pensávamos que ela era uma exceção.</p>
+    <p>Até que outra paciente completou sua vigésima semana: <strong>Christie Anne Gonçalves, paciente 244</strong>. O prontuário oficial <a href="https://purah.com.br" style="color:#ff0000 !important;text-decoration:none;font-weight:bold;">PURAH</a> mostrou os seguintes resultados:</p>
+  </div>
+
+<!-- Conteúdo HTML corrigido abaixo -->
+<div id="purah-prontuario">
+  <!-- Bloco do Prontuário -->
+  <div class="prontuario-historico">
+    <div class="bloco info-paciente">
+      <div class="titulo-bloco">Informações da Paciente</div>
+      <div><strong>Paciente:</strong> Christie Anne Gonçalves.</div>
+      <div><strong>Tratamento:</strong> 1 dose sublingual/dia.</div>
+      <div><strong>Idade:</strong> 54 anos.</div>
+    </div>
+
+    <div class="bloco">
+      <div class="titulo-bloco">Aumento na produção</div>
+      <div class="grafico-container">
+        <div>
+          <div class="barra-vertical">
+            <div class="barra-preenchimento-positivo" style="height:78.2%">+78,2%</div>
+          </div>
+          <div class="barra-label"><strong>Á. Hialurônico</strong></div>
+        </div>
+        <div>
+          <div class="barra-vertical">
+            <div class="barra-preenchimento-positivo" style="height:65.7%">+65,7%</div>
+          </div>
+          <div class="barra-label"><strong>Colágeno</strong></div>
+        </div>
+        <div>
+          <div class="barra-vertical">
+            <div class="barra-preenchimento-positivo" style="height:99.5%">+79,5%</div>
+          </div>
+          <div class="barra-label"><strong>Elastina</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloco">
+      <div class="titulo-bloco">Problemas combatidos</div>
+      <div class="grafico-container">
+        <div>
+          <div class="barra-vertical">
+            <div class="barra-preenchimento-negativo" style="height:88.8%">-88,8%</div>
+          </div>
+          <div class="barra-label"><strong>Dermatite</strong></div>
+        </div>
+        <div>
+          <div class="barra-vertical">
+            <div class="barra-preenchimento-negativo" style="height:77.2%">-77,2%</div>
+          </div>
+          <div class="barra-label"><strong>Rosácea</strong></div>
+        </div>
+        <div>
+          <div class="barra-vertical">
+            <div class="barra-preenchimento-negativo" style="height:92.9%">-80,9%</div>
+          </div>
+          <div class="barra-label"><strong>Manchas</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-loop">
+      <video autoplay loop muted playsinline width="100%">
+        <source src="http://purah.com.br/wp-content/uploads/2025/07/DIA-39.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+<div style="max-width:700px;margin:1px auto 20px auto;font-family:'Roboto',Arial,sans-serif;font-size:17px;line-height:1.6;color:#2c2c2c;padding:20px 10px;">
+  <p>Duas voluntárias completamente diferentes, com o mesmo resultado. <strong>Não era uma exceção.</strong><p></p><strong>Então o que era?</strong> Classificamos como coincidência, até que, algo extraordinário aconteceu. <strong>Neuza Rodrigues, aconteceu.</strong>
+</div>
+
+<!-- Bloco Citação Paciente 077 - Neuza -->
+<div style="margin:1px 1px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:20px 5px;text-align:center;position:relative;">
+  <div style="height:4px;width:120px;background:#b71c1c;margin:-22px auto 20px auto;"></div>
+  <p style="font-size:18px;font-weight:700;line-height:1.6;padding:5px 10px;margin:0;">
+    “Confesso que na primeira semana, eu cheguei sem nenhuma esperança. Só que na vigésima semana, o espelho me devolveu 20 anos. Minha pele renasceu completamente. Manchas sumiram, rugas desapareceram e meu pescoço voltou décadas no tempo. Minha irmã, incrédula, perguntou: ‘Neuza, foi Botox ou plástica?’ Eu apenas sorri. Sabia que tinha encontrado algo muito melhor: um renascimento real da minha pele e da minha autoestima.” — Neuza Rodrigues, paciente 077.
+  </p>
+  <div style="height:4px;width:120px;background:#b71c1c;margin:20px auto -22px auto;"></div>
+</div>
+
+<!-- Texto Complementar Pós-Citação Neuza -->
+<div style="max-width:700px;margin:30px auto 0 auto;font-family:'Roboto',Arial,sans-serif;font-size:17px;line-height:1.6;color:#2c2c2c;padding:5px 10px;">
+  <p>Não era exceção, nem coincidência, <strong>era o padrão de resultados da nossa tecnologia.</strong></p>
+  <p><span style="background:#f4d1ce;padding:2px 4px;border-radius:4px;">Foi quando deixamos de estudar o rosto. E passamos a mapear o corpo inteiro.</span></p>
+</div>
+
+<!-- Mapa Interativo Corporal -->
+<style>
+  #mapa-calor {
+    --titulo-font-size: 22px;
+    --subtitulo-font-size: 12px;
+    --spacing-titulo-texto: 12px;
+    --spacing-texto-imagem: 30px;
+    --img-scale-desktop: 1.15;
+    --img-scale-mobile: 1.55;
+    position: relative;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+  }
+  #mapa-calor h2 {
+    font-size: var(--titulo-font-size);
+    text-align: center;
+    margin: 0 0 var(--spacing-titulo-texto);
+  }
+  #mapa-calor p.subtitulo {
+    font-size: var(--subtitulo-font-size);
+    text-align: center;
+    margin: 0 0 var(--spacing-texto-imagem);
+  }
+  #mapa-calor img {
+    display: block;
+    width: 100%;
+    border-radius: 12px;
+    margin: 0 auto var(--spacing-texto-imagem);
+    transform-origin: center;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary { list-style: none; cursor: pointer; }
+  .marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+  .marker {
+    top: var(--marker-top-desktop);
+    left: var(--marker-left-desktop);
+  }
+  @media (max-width:767px) {
+    .marker {
+      top: var(--marker-top-mobile);
+      left: var(--marker-left-mobile);
+    }
+  }
+  details summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: radial-gradient(#8BC34A,#1a8731);
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    border: 2px solid #0c4d11;
+    font-size: 24px;
+    transition: background .3s;
+  }
+  details[open] summary {
+    background: radial-gradient(#FF5252,#D32F2F);
+    border-color: #a00;
+  }
+  details summary::before      { content: "+"; }
+  details[open] summary::before{ content: "–"; }
+  .balao {
+    position: absolute;
+    top: var(--balao-top-desktop,110%);
+    left: var(--balao-left-desktop,50%);
+    transform: translate(-50%,0);
+    width: 180px;
+    background: #fff;
+    border-radius: 9px;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.15);
+    font-size: 13px;
+    padding: 10px;
+    text-align: center
+  }
+  @media(max-width:767px) {
+    .balao {
+      width: 120px;
+      padding: 10px;
+      top: var(--balao-top-mobile,110%);
+      left: var(--balao-left-mobile,50%);
+    }
+  }
+  .titulo-balao { font-weight:700; color:#212121; margin-bottom:1px; }
+  .subtitulo-balao { color:#555; margin-bottom:1px; }
+  .conteudo-extra { color:#444; line-height:1.4; max-height:0; overflow:hidden; transition:max-height .4s ease; }
+  details[open] .conteudo-extra { max-height:90px; }
+  lottie-player {
+    width:100%;
+    display:block;
+    margin-top:33px;
+    margin-left:50px;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 1;
+  }
+</style>
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<div id="mapa-calor">
+  <h2>Como a nanotecnologia transformou Neuza?</h2>
+  <p class="subtitulo">Clique nos ícones abaixo para descobrir</p>
+  <img src="http://purah.com.br/wp-content/uploads/2025/07/Maior-impacto.jpg" alt="Mapa de Calor Corporal"/>
+  
+   <!-- Marcadores -->
+  <details class="marker"
+           ontoggle="this.parentNode.querySelectorAll('details').forEach(d=>{if(d!==this)d.removeAttribute('open')})"
+           style="
+             --marker-top-desktop:20%;   --marker-left-desktop:50%;
+             --marker-top-mobile:30%;    --marker-left-mobile:50%;
+             --balao-top-desktop:15%;    --balao-left-desktop:-350%;
+             --balao-top-mobile:-60%;    --balao-left-mobile:-200%;
+           ">
+    <summary>
+      <div class="balao">
+        <div class="titulo-balao">Rosto/Pescoço</div>
+        <div class="subtitulo-balao"></div>
+        <div class="conteudo-extra"> Firmeza:+85,6%
+          <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Skin-Lifting-3.json"
+                         background="transparent" speed="1" loop autoplay
+                         style="height:120px;"></lottie-player>
+        </div>
+      </div>
+    </summary>
+  </details>
+
+  <details class="marker"
+           ontoggle="this.parentNode.querySelectorAll('details').forEach(d=>{if(d!==this)d.removeAttribute('open')})"
+           style="
+             --marker-top-desktop:35%;   --marker-left-desktop:50%;
+             --marker-top-mobile:50%;    --marker-left-mobile:50%;
+             --balao-top-desktop:-130%;    --balao-left-desktop:450%;
+             --balao-top-mobile:-150%;    --balao-left-mobile:200%;
+           ">
+    <summary>
+      <div class="balao">
+        <div class="titulo-balao">Colo/Toráx</div>
+        <div class="subtitulo-balao"></div>
+        <div class="conteudo-extra">
+          Oxigenação dérmica +83%
+          <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Youthful-Skin-Elasticity-1.json"
+                         background="transparent" speed="1" loop autoplay
+                         style="height:100px;"></lottie-player>
+        </div>
+      </div>
+    </summary>
+  </details>
+
+  <details class="marker"
+           ontoggle="this.parentNode.querySelectorAll('details').forEach(d=>{if(d!==this)d.removeAttribute('open')})"
+           style="
+             --marker-top-desktop:60%; --marker-left-desktop:29%;
+             --marker-top-mobile:72%;    --marker-left-mobile:30%;
+             --balao-top-desktop:150%;   --balao-left-desktop:-100%;
+             --balao-top-mobile:100%;   --balao-left-mobile:0;
+           ">
+    <summary>
+      <div class="balao">
+        <div class="titulo-balao">Braço Esquerdo</div>
+        <div class="subtitulo-balao"></div>
+        <div class="conteudo-extra">
+          -82% fotodano<br>-60% oxidação
+          <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Elastic-Skin.json"
+                         background="transparent" speed="1" loop autoplay
+                         style="height:80px;"></lottie-player>
+        </div>
+      </div>
+    </summary>
+  </details>
+
+  <details class="marker"
+           ontoggle="this.parentNode.querySelectorAll('details').forEach(d=>{if(d!==this)d.removeAttribute('open')})"
+           style="
+             --marker-top-desktop:60%; --marker-left-desktop:72%;
+             --marker-top-mobile:72%;    --marker-left-mobile:74%;
+             --balao-top-desktop:150%;   --balao-left-desktop:150%;
+             --balao-top-mobile:100%;   --balao-left-mobile:50%;
+           ">
+    <summary>
+      <div class="balao">
+        <div class="titulo-balao">Braço Direito</div>
+        <div class="subtitulo-balao"></div>
+        <div class="conteudo-extra">
+          +48% Niacina<br>+42% Retinol
+          <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json"
+                         background="transparent" speed="1" loop autoplay
+                         style="height:90px;"></lottie-player>
+        </div>
+      </div>
+    </summary>
+  </details>
+</div>
+<!-- Texto Complementar Pós-Citação Neuza -->
+<div style="max-width:700px;margin:30px auto 0 auto;font-family:'Roboto',Arial,sans-serif;font-size:17px;line-height:1.6;color:#2c2c2c;padding:5px 10px;">
+  <p>Não era exceção, nem coincidência, <strong>era o padrão de resultados da nossa tecnologia.</strong></p>
+  <p><span style="background:#f4d1ce;padding:2px 4px;border-radius:4px;">Foi quando deixamos de estudar o rosto. E passamos a mapear o corpo inteiro.</span></p>
+</div>
+
+<!-- Vídeo Paciente 077 -->
+<div style="margin:10px 1px 1px;border-radius:15px;overflow:hidden;max-width:100%;box-shadow:1px 1px 1px rgba(0,0,0,0.08);">
+  <video autoplay loop muted playsinline width="100%">
+    <source src="https://purah.com.br/wp-content/uploads/2025/07/DIA-40.mp4" type="video/mp4">
+  </video>
+</div>
+<p style="font-size:11px;color:#5a5a5a;line-height:1.2;margin-top:8px;padding:5px 10px;margin:1px 1px">
+  Neuza Rodrigues 'Paciente 077.' — Foto: Reprodução/PURAH.
+</p>
+
+<!-- Bloco Pós-Prontuário: Introdução Linha do Tempo -->
+<div style="max-width:700px;margin:10px auto 30px auto;font-family:'Roboto',Arial,sans-serif;font-size:17px;line-height:1.6;color:#2c2c2c;padding: 5px 10px;">
+  <p>Os resultados clínicos das 250 <strong>voluntárias</strong> foram tão impressionantes que decidimos criar uma <strong>linha do tempo detalhada</strong>.</p>
+  <p>Documentada rigorosamente <strong>por cientistas de Harvard e USP</strong>, revelando exatamente como a nanotecnologia sublingual atua passo a passo no organismo, transformando a pele feminina em tempo recorde.</p>
+</div>
+<!-- Linha do Tempo Interativa PURAH -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
+<div class="atomic-timeline-section">
+  <div class="timeline-header">
+    <div>
+      <h2 class="atomic-title"></h2>
+      <p class="atomic-subtitle"><span style="background:#f4d1ce;padding:8px 10px;border-radius:4px;"><strong>Linha do Tempo PURAH.</strong></span></p>
+    </div>
+  </div>
+  <div class="timeline-track">
+    <!-- Card 1 -->
+    <div class="timeline-card">
+      <div class="timeline-lottie-date">
+        <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Peptides-1.json" background="transparent" speed="1" loop autoplay style="width:64px; height:64px;"></lottie-player>
+      </div>
+      <div class="timeline-day">Primeira Semana</div>
+      <h3 class="timeline-title">Ativação Sublingual Imediata</h3>
+      <p class="timeline-text">A cápsula começa a agir sob a língua com 98,7% de absorção imediata.</p>
+    </div>
+    <!-- Card 2 -->
+    <div class="timeline-card">
+      <div class="timeline-lottie-date">
+        <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Bubbles.json" background="transparent" speed="1" loop autoplay style="width:94px; height:94px;"></lottie-player>
+      </div>
+      <div class="timeline-day">Décima Semana</div>
+      <h3 class="timeline-title">Pele Firme e Hidratada</h3>
+      <p class="timeline-text">Fibras de colágeno começam a se reorganizar naturalmente.</p>
+    </div>
+    <!-- Card 3 -->
+    <div class="timeline-card">
+      <div class="timeline-lottie-date">
+        <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Wrinkles.json" background="transparent" speed="1" loop autoplay style="width:74px; height:74px;"></lottie-player>
+      </div>
+      <div class="timeline-day">Vigésima Semana</div>
+      <h3 class="timeline-title">20 anos de rejuvenescimento</h3>
+      <p class="timeline-text">Quem convive com você já nota. E comenta. Você não apenas parece jovem — sua pele age como tal.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.atomic-timeline-section {
+  font-family: Arial, sans-serif;
+  background: #FFFFFF;
+  border-radius: 14px;
+  max-width: 700px;
+  margin: auto;
+}
+.timeline-track {
+  position: relative;
+  padding-left: 20px;
+  margin-top: 2px;
+}
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #2e7d32;
+}
+.timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.atomic-title {
+  font-size: 19px;
+  color: #000000;
+  margin: 20px;
+}
+.atomic-subtitle {
+  font-size: 17px;
+  color: #555;
+}
+.timeline-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  box-shadow: 10px 20px 20px rgba(0,0,0,0.08);
+}
+.timeline-lottie-date {
+  position: absolute;
+  left: -50px;
+  top: 10px;
+}
+.timeline-marker { display: none; }
+.timeline-day {
+  font-weight: bold;
+  color: #2e7d32;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.timeline-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #111;
+}
+.timeline-text {
+  font-size: 14px;
+  color: #444;
+  margin-top: 4px;
+}
+</style>
+</div>
+        <style>
+          :host {
+            display: block;
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+          }
+          .box {
+            padding: 16px;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+          }
+          .barra {
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+          }
+          .label {
+            font-weight: bold;
+            font-size: 15px;
+            color: #000;
+            margin-bottom: 8px;
+          }
+          .explicacao {
+            font-size: 13px;
+            color: #444;
+            font-style: italic;
+            margin-top: 6px;
+          }
+          .externa {
+            width: 100%;
+            height: 16px;
+            background: #d7f4dd;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+          }
+          .interna {
+            height: 100%;
+            background: #2e7d32;
+            position: absolute;
+            top: 0; left: 0;
+          }
+          .sede {
+            text-align: center;
+            margin-top: 24px;
+          }
+          .sede img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+          }
+          .legenda {
+            font-size: 11px;
+            color: #5a5a5a;
+            margin: 8px 0 0;
+            line-height: 1.2;
+          }
+        </style>
+
+<!-- Bloco Pós-Prontuário: Introdução Linha do Tempo -->
+<div style="max-width:700px;margin:10px auto 10px auto;font-family:'Roboto',Arial,sans-serif;font-size:17px;line-height:1.6;color:#2c2c2c;padding: 3px 18px;">
+  <p>Após 4 anos de pesquisa e desenvolvimento nosso trabalho estava completo.</p>
+<p data-start="427" data-end="568">Esses foram os <b>resultados </b>conjuntos de 250 participantes da nossa pesquisa com <strong>nanotecnologia recém-descoberta aplicada em cápsulas sublinguais.</strong></p>
+  
+          <div class="barra">
+            <div class="label">Clareamento no rosto:</div>
+            <div class="externa"><div class="interna" style="width:88%;"></div></div>
+            <div class="explicacao">88% observaram clareamento no rosto</div>
+          </div>
+
+          <div class="barra">
+            <div class="label">Redução de rugas profundas:</div>
+            <div class="externa"><div class="interna" style="width:81%;"></div></div>
+            <div class="explicacao">81% de redução nas rugas profundas.</div>
+          </div>
+
+          <div class="barra">
+            <div class="label">Firmeza no pescoço:</div>
+            <div class="externa"><div class="interna" style="width:79%;"></div></div>
+            <div class="explicacao">79% relataram ganho de firmeza no colo.</div>
+          </div>
+
+          <div class="barra">
+            <div class="label">Efeitos colaterais: 0%</div>
+            <div class="externa"><div class="interna" style="width:100%; background:#d7f4dd;"></div></div>
+            <div class="explicacao">0% de efeitos colaterais reportados.</div>
+          </div>
+          </div>
+
+<!-- Bloco Científico Otimizado PURAH com Estilo Pizza e Imagem -->
+<style>
+  /* Reset local para consistência */
+  .purah-tecnologia,
+  .purah-tecnologia *,
+  .purah-tecnologia *::before,
+  .purah-tecnologia *::after {
+    box-sizing: border-box;
+  }
+
+  /* Container principal */
+  .purah-tecnologia {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    font-family: 'Roboto', sans-serif;
+  }
+
+  /* Título centralizado */
+  .purah-tecnologia__titulo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a8731;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  /* Imagem com largura fixa */
+  .purah-tecnologia__imagem img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto 16px;
+  }
+
+  /* Texto descritivo */
+  .purah-tecnologia__descricao {
+    color: #444;
+    font-size: 17px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+   ;
+  }
+
+  /* Grid responsivo */
+  .purah-tecnologia__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+  }
+
+  /* Cards individuais */
+  .purah-tecnologia__card {
+    padding: 16px;
+    background: #fcfcfc;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+  }
+
+  /* Gráficos estilo pizza */
+  .purah-tecnologia__pizza {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: var(--grad);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  /* Nome do componente */
+  .purah-tecnologia__nome {
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #212121;
+    font-size: 15px;
+  }
+
+  /* Descrição dos componentes */
+  .purah-tecnologia__descricao-componente {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 480px) {
+    .purah-tecnologia {
+      padding: 15px;
+    }
+    .purah-tecnologia__titulo {
+      font-size: 20px;
+    }
+  }
+</style>
+
+<div class="purah-tecnologia">
+  <div class="purah-tecnologia__titulo">Por Dentro da Tecnologia Sublingual PURAH</div>
+
+  <div class="purah-tecnologia__imagem">
+    <img src="https://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-34.jpg"
+         alt="Sede oficial da PURAH">
+  </div>
+
+  <div class="purah-tecnologia__descricao">
+    Foram necessários 4 anos, unindo os maiores <strong>especialistas em nanotecnologia e dermatologia</strong> do mundo, com um único objetivo:
+    <strong>desenvolver a fórmula mais avançada.</strong>
+  </div>
+
+  <div class="purah-tecnologia__grid">
+    <div class="purah-tecnologia__card" style="--grad: conic-gradient(#1a8731 0deg 90deg, #e0e0e0 90deg 360deg);">
+      <div class="purah-tecnologia__pizza"></div>
+      <div class="purah-tecnologia__nome">Peptídeos de Cobre</div>
+      <div class="purah-tecnologia__descricao-componente">
+        Estimula colágeno e elastina, regenerando fibras profundas.
+      </div>
+    </div>
+
+    <div class="purah-tecnologia__card" style="--grad: conic-gradient(#1a8731 90deg 180deg, #e0e0e0 180deg 360deg);">
+      <div class="purah-tecnologia__pizza"></div>
+      <div class="purah-tecnologia__nome">Resveratrol Nano</div>
+      <div class="purah-tecnologia__descricao-componente">
+        Antioxidante potente que combate radicais livres.
+      </div>
+    </div>
+
+    <div class="purah-tecnologia__card" style="--grad: conic-gradient(#1a8731 180deg 270deg, #e0e0e0 270deg 360deg);">
+      <div class="purah-tecnologia__pizza"></div>
+      <div class="purah-tecnologia__nome">Ácido Hialurônico</div>
+      <div class="purah-tecnologia__descricao-componente">
+        Hidrata profundamente, restaurando volume e firmeza.
+      </div>
+    </div>
+
+    <div class="purah-tecnologia__card" style="--grad: conic-gradient(#1a8731 270deg 360deg, #e0e0e0 360deg 360deg);">
+      <div class="purah-tecnologia__pizza"></div>
+      <div class="purah-tecnologia__nome">Coenzima Q10 Nano</div>
+      <div class="purah-tecnologia__descricao-componente">
+        Repara danos celulares e acelera regeneração.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bloco "A Censura" PURAH Corrigido e Blindado -->
+<style>
+  .purah-censura *, .purah-censura *::before, .purah-censura *::after { box-sizing: border-box; }
+
+  .purah-censura {
+    font-family: 'Roboto', Arial, sans-serif;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    color: #000;
+  }
+
+  .purah-censura__titulo {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .purah-censura__texto {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .purah-censura__link {
+    color: #ff0000;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .purah-citacao {
+    margin: 30px auto;
+    padding: 30px 20px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    position: relative;
+    font-family: 'Roboto', Arial, sans-serif;
+    max-width: 700px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.03);
+  }
+
+  .purah-citacao__barra {
+    height: 4px;
+    width: 120px;
+    background: #b71c1c;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .purah-citacao__barra--top { top: -2px; }
+  .purah-citacao__barra--bottom { bottom: -2px; }
+
+  .purah-citacao__texto {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.6;
+    margin: 0;
+    color: #222;
+  }
+
+  @media(max-width:480px) {
+    .purah-censura, .purah-citacao { padding: 15px; }
+    .purah-censura__titulo { font-size: 22px; }
+    .purah-censura__texto, .purah-citacao__texto { font-size: 16px; }
+  }
+</style>
+
+<div class="purah-censura">
+  <h2 class="purah-censura__titulo">A Censura</h2>
+  <p class="purah-censura__texto">
+    A Dra. Daphyne Ribas, co-responsável técnica na pesquisa da fórmula de
+    <a href="http://purah.com.br/?utm_source=organic" class="purah-censura__link">PURAH</a>,
+    enviou nosso material ao FDA para autorização de comercialização.
+  </p>
+  <p class="purah-censura__texto">
+    Durante a análise, enfrentamos censura imediata. Pedi à Dra. Ribas que comentasse sobre esse silenciamento forçado.
+  </p>
+</div>
+
+<div class="purah-citacao">
+  <div class="purah-citacao__barra purah-citacao__barra--top"></div>
+  <p class="purah-citacao__texto">“A fórmula que desenvolvemos é a mais eficaz que já testemunhei em toda minha carreira. Na hora de enviar os dados ao FDA, nosso biomédico sussurrou: ‘Doutora, a senhora sabe que eles não vão liberar, né? Não é falta de eficácia, é o medo.’ E foi aí que eu entendi: a indústria não quer que você descubra o que está por trás desse tratamento” – afirmou a Dra. Daphyne Ribas.</p>
+  <div class="purah-citacao__barra purah-citacao__barra--bottom"></div>
+</div>
+
+<div class="purah-censura">
+  <p class="purah-censura__texto">
+    Segundo ela, o principal problema é que a fórmula era eficiente demais para ser liberada.
+  </p>
+  <p class="purah-censura__texto">
+    Por isso, apenas 4.000 frascos de
+    <a href="http://purah.com.br/?utm_source=organic" class="purah-censura__link">PURAH</a>
+    foram produzidos, e a censura chegou:
+  </p>
+</div>
+
+<div class="purah-citacao">
+  <div class="purah-citacao__barra purah-citacao__barra--top"></div>
+  <p class="purah-citacao__texto">“Nosso tratamento foi rejeitado pela FDA não por questões de segurança ou eficácia, mas porque ele era eficiente demais para gerar lucros expressivos. Decidimos imediatamente buscar aprovação no segundo maior mercado de beleza do mundo: O Brasil” – complementou a Dra. Daphyne Ribas.</p>
+  <div class="purah-citacao__barra purah-citacao__barra--bottom"></div>
+</div>
+
+<div class="purah-citacao">
+  <div class="purah-citacao__barra purah-citacao__barra--top"></div>
+  <p class="purah-citacao__texto">“Após rigorosas análises e 140 dias de espera, PURAH foi aprovada. Chegando ao Brasil sem aumento de preço, garantindo acesso exclusivo à fórmula mais eficaz do mundo atualmente.” – afirmou a médica.</p>
+  <div class="purah-citacao__barra purah-citacao__barra--bottom"></div>
+</div>
+
+<!-- Bloco \"O Comparativo\" PURAH corrigido e otimizado -->
+<style>
+  .purah-comparativo *, .purah-comparativo *::before, .purah-comparativo *::after { box-sizing: border-box; }
+
+  .purah-comparativo {
+    font-family: 'Roboto', Arial, sans-serif;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px 10px 30px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    color: #000;
+  }
+
+  .purah-comparativo__titulo {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .purah-comparativo__texto {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .purah-grid {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 14px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  }
+
+  .purah-grid__card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+
+  .purah-grid__titulo {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+  }
+
+  .purah-grid__barra {
+    background: #d7f4dd;
+    border-radius: 8px;
+    height: 12px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .purah-grid__barra-interna {
+    height: 100%;
+    background: #2e7d32;
+  }
+
+  @media(min-width:768px) {
+    .purah-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+
+<div class="purah-comparativo">
+  <h2 class="purah-comparativo__titulo">O Comparativo</h2>
+  <p class="purah-comparativo__texto">
+    A <strong>ANVISA</strong> testou 252 mulheres de 50 a 82 anos com rigor metodológico.
+  </p>
+  <p class="purah-comparativo__texto">
+    Os resultados surpreenderam especialistas e ameaçaram mercados bilionários.
+  </p>
+</div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<div class="purah-grid">
+
+  <div class="purah-grid__card">
+    <div style="width:90px;height:90px;margin:0 auto 8px;">
+      <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Injection.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
+    </div>
+    <div class="purah-grid__titulo">Botox Injetável</div>
+    Rugas
+    <div class="purah-grid__barra"><div class="purah-grid__barra-interna" style="width:70%;"></div></div>
+    Flacidez
+    <div class="purah-grid__barra"><div class="purah-grid__barra-interna" style="width:30%;"></div></div>
+    Preço
+    <div class="purah-grid__barra"><div class="purah-grid__barra-interna" style="width:70%;"></div></div>
+  </div>
+
+  <div class="purah-grid__card">
+    <div style="width:90px;height:90px;margin:0 auto 8px;">
+      <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Led-Light-Therapy.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
+    </div>
+    <div class="purah-grid__titulo">Peeling de Fenol</div>
+    Rugas
+    <div class="purah-grid__barra"><div class="purah-grid__barra-interna" style="width:70%;"></div></div>
+    Flacidez
+    <div class="purah-grid__barra"><div class="purah-grid__barra-interna" style="width:20%;"></div></div>
+    Preço
+    <div class="purah-grid__barra"><div class="purah-grid__barra-interna" style="width:80%;"></div></div>
+  </div>
+
+  <div class="purah-grid__card">
+    <div style="width:90px;height:90px;margin:0 auto 8px;">
+      <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Medcine.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
+    </div>
+    <div class="purah-grid__titulo">Cápsulas Sublinguais PURAH</div>
+    Rugas
+    <div class="purah-grid__barra"><div class="purah-grid__barra-interna" style="width:100%;"></div></div>
+    Flacidez
+    <div class="purah-grid__barra"><div class="purah-grid__barra-interna" style="width:90%;"></div></div>
+    Preço
+    <div class="purah-grid__barra"><div class="purah-grid__barra-interna" style="width:30%;"></div></div>
+  </div>
+
+</div>
+
+<!-- 🔴 Bloco Garantia PURAH -->
+<div style="max-width:700px;margin:30px auto;font-family:'Roboto',Arial,sans-serif;font-size:17px;line-height:1.6;color:#2c2c2c;padding:0 15px;">
+
+  <p style="color:#ff0000;font-weight:700;font-size:14px;margin-bottom:8px;">
+    ATENÇÃO! <span style="color:#ff0000;font-weight:400;">Não compre antes de saber isso:</span>
+  </p>
+
+  <h6 style="text-align:left;font-size:20px;font-weight:900;margin:0 0 20px;">
+    <span style="color:#ff0000;">PURAH</span> OFERECE GARANTIA DE REJUVENESCIMENTO!
+  </h6>
+
+  <p>Dificilmente recomendamos algum produto no nosso site, mas com as evidências da eficácia de 
+    <a href="http://purah.com.br/?utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=" style="color:#ff0000;text-decoration:none;font-weight:700;">PURAH</a>, 
+    sentimos que nossas leitoras iriam gostar da dica.
+  </p>
+
+  <p>Além disso, a empresa responsável pela venda da 
+    <a href="http://purah.com.br/?utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=" style="color:#ff0000;text-decoration:none;font-weight:700;">PURAH</a> 
+    no Brasil confia tanto no seu produto, que oferece uma garantia de 100% de satisfação.
+  </p>
+
+  <p>Basta entrar em contato com a empresa caso não veja resultados com o produto e eles devolvem 100% do seu dinheiro.</p>
+
+</div>
+<!-- 🔒 Bloco de Garantia PURAH com CTA -->
+<div style="max-width:720px;margin:40px auto;text-align:center;font-family:'Roboto',Arial,sans-serif;">
+
+  <!-- CTA clicável com link -->
+  <a href="https://purah.com.br/?utm_source=advertorial&utm_medium=cta-image&utm_campaign=garantia90" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">
+
+    <!-- Imagem do CTA com borda animada e sombra -->
+    <img src="https://purah.com.br/wp-content/uploads/2025/07/Red-White-Mysterious-Crime-Story-YouTube-Thumbnail-2.jpg" 
+         alt="PURAH Garantia 90 Dias" 
+         style="width:100%;max-width:990px;border 1px #b71c1c;border-radius:8px;box-shadow:0px 0px 0px rgba(0,0,0,0.12);transition:transform 0.3s ease, box-shadow 0.3s ease;"
+         onmouseover="this.style.transform='scale(1)';this.style.boxShadow='0px 0px 0px rgba(0,0,0,0.18)'" 
+         onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0px rgba(0,0,0,0.12)'">
+  </a>
+
+  <!-- Texto de reforço abaixo da imagem -->
+  <p style="margin-top:16px;font-size:14px;line-height:1.5;color:#2c2c2c;">
+    <strong>Garantia blindada PURAH por 90 dias:</strong> <br>
+    Se você não notar resultados visíveis na sua pele, <span style="color:#d32f2f;font-weight:700;">devolvemos 100% do seu dinheiro.</span>
+  </p>
+<!-- 🚀 Botão CTA Final Atômico PURAH -->
+<div style="max-width:920px;margin:5px auto;text-align:center;font-family:'Roboto',Arial,sans-serif;">
+
+  <a href="https://purah.com.br/?utm_source=cta-final&utm_medium=botao-urgente&utm_campaign=desconto40" 
+     target="_blank" rel="noopener"
+     style="display:inline-block;text-decoration:none;background:linear-gradient(90deg,#ff9800,#f44336);padding:15px 22px;border-radius:50px;color:#fff;font-size:12px;font-weight:700;box-shadow:0 0px 00px rgba(0,0,0,0.15);position:relative;animation:pulsar 1.8s infinite;transition:transform 0.3s ease;">
+    
+    🔒 GARANTIR MEU TRATAMENTO AGORA
+    
+    <span style="display:block;font-size:10px;font-weight:400;color:#fff;margin-top:4px;">Restam poucas unidades com garantia de 90 dias</span>
+  </a>
+
+</div>
+
+<style>
+@keyframes pulsar {
+  0% {transform:scale(1);}
+  50% {transform:scale(1.03);}
+  100% {transform:scale(1);}
+}
+</style>
+</div>
+
+<!-- 🔴 Bloco de Validade Dinâmica -->
+<div id="validade-dinamica" style="max-width:700px;margin:3px 3px;text-align:center;font-family:'Roboto',Arial,sans-serif;">
+  <span style="color:#b71c1c;font-weight:900;font-size:20px;text-decoration:underline;">
+    VÁLIDO ATÉ: <span id="data-hoje">22/07/2025</span>
+  </span>
+</div>
+
+<script>
+  // Formata a data de hoje como DD/MM/AAAA
+  const hoje = new Date();
+  const dia = String(hoje.getDate()).padStart(2, '0');
+  const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+  const ano = hoje.getFullYear();
+  const dataFormatada = `${dia}/${mes}/${ano}`;
+  document.getElementById("data-hoje").innerText = dataFormatada;
+</script>
+<!-- 🔻 Bloco Final de Conversão PURAH -->
+<div style="max-width:700px;margin:22px auto;font-family:'Roboto',Arial,sans-serif;font-size:17px;line-height:1.6;color:#2c2c2c;padding:0 15px;">
+
+  <p>Assim que a equipe da 
+    <a href="http://purah.com.br/?utm_source=organic&utm_medium=documentario&utm_campaign=lote_exclusivo" 
+       style="color:#ff0000;font-weight:700;text-decoration:none;">
+      PURAH
+    </a> soube que o produto havia sido mencionado neste documentário, 
+    eles insistiram em liberar aos nossos leitores <strong>um lote exclusivo com desconto especial</strong> para experimentar.
+  </p>
+
+  <p>
+    <span style="color:#ff0000;font-weight:700;">A marca decidiu</span> oferecer uma garantia exclusiva de 
+    <strong>reembolso total de 90 dias</strong> para leitoras e leitores do portal que testarem hoje sua fórmula patenteada.
+  </p>
+
+  <p>Você pode garantir seu acesso ao desconto no botão abaixo:</p>
+
+  <div style="margin:24px 0;">
+    <h6 style="background-color:#f4d1ce;padding:10px 14px;border-radius:8px;color:#111;font-size:15px;line-height:1.4;">
+      <strong><i>INFORMAÇÃO IMPORTANTE:</i></strong>
+      <i> Devido à repercussão do estudo censurado, os estoques da <span style="color:#ff0000;font-weight:700;">PURAH</span> no Brasil estão praticamente esgotados.</i>
+    </h6>
+  </div>
+
+  <p>Se quiser aproveitar o valor promocional de 
+    <strong style="color:#2e7d32;">R$89,38 por unidade (com 40% de desconto)</strong> + 
+    <strong style="color:#d32f2f;">garantia de 90 dias</strong>, é melhor agir rápido.
+  </p>
+
+  <p style="margin-top:20px;">
+    <a href="http://purah.com.br/?utm_source=organic&utm_medium=documentario&utm_campaign=garantia90&utm_term=cta-final"
+       style="text-decoration:underline;color:#d32f2f;font-weight:700;font-size:18px;">
+      Clique abaixo para garantir a sua PURAH enquanto ainda restam unidades disponíveis.
+    </a>
+  </p>
+<!-- 🔥 Caixa Final de Conversão Atômica PURAH (com Lottie triplicado) -->
+<div style="text-align:center;max-width:780px;margin:50px auto;padding:20px;border:2px solid #1a8731;border-radius:16px;background:#ffffff;box-shadow:0 0px 0px rgba(0,0,0,0.08);font-family:'Roboto',Arial,sans-serif;">
+
+  <!-- Produto Centralizado -->
+  <div style="text-align:center;margin-bottom:20px;">
+    <img src="https://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-28.jpg" 
+         alt="PURAH Produto" 
+         style="width:100%;max-width:340px;border-radius:12px;box-shadow:0 0px 0px rgba(0,0,0,0.08);">
+  </div>
+
+  <!-- Texto Poderoso -->
+  <div style="text-align:center;padding:0 12px;">
+
+    <h2 style="font-size:18px;color:#1a8731;margin-bottom:10px;font-weight:900;">
+      OFERTA EXCLUSIVA PARA LEITORAS DO DOCUMENTÁRIO
+    </h2>
+
+    <p style="font-size:14px;color:#000;margin-bottom:10px;">
+      💚 <strong style="color:#2e7d32;">-40% de desconto imediato</strong> + 
+      <strong style="color:#d32f2f;">garantia blindada de 90 dias</strong>.
+    </p>
+
+    <p style="font-size:9px;color:#444;margin-bottom:10px; text-align:center;">
+      * Estoque limitado a <u>apenas este lote</u>. A qualquer momento o botão abaixo pode sair do ar.
+    </p>
+
+<!-- Botão CTA com Lottie (triplicado sem afetar layout) -->
+<script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<div style="text-align:center; margin: 10px 10px;">
+  <a href="https://purah.com.br/?utm_source=advertorial&utm_medium=bloco-final&utm_campaign=cta-v3"
+    target="_blank" rel="noopener"
+    style="
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px 22px;
+      background: #ff9800;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      color: #000;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: visible;
+      position: relative;
+    "
+  >
+    <lottie-player
+      src="https://purah.com.br/wp-content/uploads/2025/07/Click-2.json"
+      background="transparent"
+      speed="1"
+      loop
+      autoplay
+      style="
+        width: 50px;
+        height: 50px;
+        transform: scale(2.5);
+        transform-origin: center;
+        position: absolute;
+        left: -20px;
+      "
+    ></lottie-player>
+    <span style="margin-left: 1px;">QUERO MEU PURAH!</span>
+  </a>
+
+  <p style="font-size:9px;color:#555;margin-top:15px;">
+    🔒 Clique seguro — se ainda houver unidades, o desconto será aplicado automaticamente.
+  </p>
+</div>
