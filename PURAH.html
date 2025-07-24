@@ -1,9 +1,11 @@
-<!-- Cabeçalho e estilos globais -->
+<!-- Carregamento de fontes e pré-conexões -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-  :root {
+  /* Definições de variáveis e estilo base do container */
+  #purah-advertorial {
     --verde-claro: #6BCB77;
     --verde-escuro: #1a8731;
     --vermelho-claro: #FF7676;
@@ -12,106 +14,478 @@
     --cinza-texto: #5f6368;
     --azul-claro: #A3C8FF;
     --azul-escuro: #305C8A;
+
+    font-family:'Roboto',sans-serif;
+    color:#333;
+    margin:0;
+    line-height:1.5;
+    background:#fff;
   }
-  body {font-family:'Roboto',sans-serif;color:#333;margin:0;line-height:1.5;background:#fff;}
-  a{color:#ff0000;text-decoration:none;font-weight:bold;} a:hover{text-decoration:underline;}
-  h1{font-size:25px;font-weight:700;line-height:1.3;margin:0 0 12px;color:#000;}
-  p{margin:0 0 10px;line-height:1.6;}
+
+  /* Estilo de links */
+  #purah-advertorial a {
+    color:#ff0000;
+    text-decoration:none;
+    font-weight:bold;
+  }
+  #purah-advertorial a:hover {
+    text-decoration:underline;
+  }
+
+  /* Títulos e parágrafos */
+  #purah-advertorial h1 {
+    font-size:25px;
+    font-weight:700;
+    line-height:1.3;
+    margin:0 0 12px;
+    color:#000;
+  }
+  #purah-advertorial p {
+    margin:0 0 10px;
+    line-height:1.6;
+  }
 
   /* Autor/assinatura */
-  #autor-info{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
-  #autor-info img{width:56px;height:56px;border-radius:50%;object-fit:cover;}
+  #purah-advertorial #autor-info {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:8px;
+  }
+  #purah-advertorial #autor-info img {
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    object-fit:cover;
+  }
 
   /* Resumo */
-  .resumo-wrapper ul{padding-left:20px;margin:5px;}
-  .resumo-wrapper li{margin-bottom:5px;font-size:15px;line-height:1.5;color:#2c2c2c;}
-  .resumo-wrapper li::marker{color:var(--vermelho-escuro);}
+  #purah-advertorial .resumo-wrapper ul {
+    padding-left:20px;
+    margin:5px;
+  }
+  #purah-advertorial .resumo-wrapper li {
+    margin-bottom:5px;
+    font-size:15px;
+    line-height:1.5;
+    color:#2c2c2c;
+  }
+  #purah-advertorial .resumo-wrapper li::marker {
+    color:var(--vermelho-escuro);
+  }
 
   /* Prontuário */
-  .prontuario-historico{max-width:720px;margin:auto;padding:10px;background:#fff;border-radius:12px;box-shadow:3px 10px 30px rgba(0,0,0,0.08);border-left:4px solid var(--azul-escuro);}
-  .bloco{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #ddd;} .bloco:last-child{border-bottom:none;}
-  .titulo-bloco{font-size:15px;font-weight:700;color:var(--azul-escuro);margin-bottom:10px;text-align:center;}
-  .grafico-container{display:flex;justify-content:space-around;align-items:flex-end;gap:1px;margin-top:5px;}
-  .barra-vertical{width:70px;height:120px;background:var(--cinza-claro);border-radius:8px;position:relative;overflow:hidden;}
-  .barra-preenchimento-positivo,.barra-preenchimento-negativo{position:absolute;width:105%;display:flex;justify-content:center;align-items:center;color:#fff;font-weight:bold;}
-  .barra-preenchimento-positivo{bottom:0;background:linear-gradient(to top,var(--azul-claro),var(--azul-escuro));border-radius:8px 8px 0 0;}
-  .barra-preenchimento-negativo{top:0;background:linear-gradient(to bottom,var(--vermelho-claro),var(--vermelho-escuro));border-radius:0 0 8px 8px;}
-  .barra-label{text-align:center;font-size:13px;margin-top:8px;color:#555;font-weight:700;}
+  #purah-advertorial .prontuario-historico {
+    max-width:720px;
+    margin:auto;
+    padding:10px;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:3px 10px 30px rgba(0,0,0,0.08);
+    border-left:4px solid var(--azul-escuro);
+  }
+  #purah-advertorial .bloco {
+    margin-bottom:10px;
+    padding-bottom:10px;
+    border-bottom:1px dashed #ddd;
+  }
+  #purah-advertorial .bloco:last-child {
+    border-bottom:none;
+  }
+  #purah-advertorial .titulo-bloco {
+    font-size:15px;
+    font-weight:700;
+    color:var(--azul-escuro);
+    margin-bottom:10px;
+    text-align:center;
+  }
+  #purah-advertorial .grafico-container {
+    display:flex;
+    justify-content:space-around;
+    align-items:flex-end;
+    gap:1px;
+    margin-top:5px;
+  }
+  #purah-advertorial .barra-vertical {
+    width:70px;
+    height:120px;
+    background:var(--cinza-claro);
+    border-radius:8px;
+    position:relative;
+    overflow:hidden;
+  }
+  #purah-advertorial .barra-preenchimento-positivo,
+  #purah-advertorial .barra-preenchimento-negativo {
+    position:absolute;
+    width:105%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-weight:bold;
+  }
+  #purah-advertorial .barra-preenchimento-positivo {
+    bottom:0;
+    background:linear-gradient(to top,var(--azul-claro),var(--azul-escuro));
+    border-radius:8px 8px 0 0;
+  }
+  #purah-advertorial .barra-preenchimento-negativo {
+    top:0;
+    background:linear-gradient(to bottom,var(--vermelho-claro),var(--vermelho-escuro));
+    border-radius:0 0 8px 8px;
+  }
+  #purah-advertorial .barra-label {
+    text-align:center;
+    font-size:13px;
+    margin-top:8px;
+    color:#555;
+    font-weight:700;
+  }
 
   /* Vídeo */
-  .video-loop{width:100%;max-width:600px;margin:25px auto 10px;border-radius:10px;overflow:hidden;box-shadow:0 8px 16px rgba(0,0,0,0.05);}
-  .legenda-video{font-size:10px;color:#666;text-align:center;margin-top:0;}
+  #purah-advertorial .video-loop {
+    width:100%;
+    max-width:600px;
+    margin:25px auto 10px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 8px 16px rgba(0,0,0,0.05);
+  }
+  #purah-advertorial .legenda-video {
+    font-size:10px;
+    color:#666;
+    text-align:center;
+    margin-top:0;
+  }
 
   /* Mapa de calor */
-  #mapa-calor{position:relative;margin:0 auto;font-family:'Roboto',sans-serif;}
-  #mapa-calor h2{font-size:22px;text-align:center;margin:0 0 12px;}
-  #mapa-calor p.subtitulo{font-size:12px;text-align:center;margin:0 0 30px;}
-  #mapa-calor img{display:block;width:100%;border-radius:12px;margin:0 auto 30px;}
-  details.marker{position:absolute;transform:translate(-50%,-50%);z-index:10;}
+  #purah-advertorial #mapa-calor {
+    position:relative;
+    margin:0 auto;
+    font-family:'Roboto',sans-serif;
+  }
+  #purah-advertorial #mapa-calor h2 {
+    font-size:22px;
+    text-align:center;
+    margin:0 0 12px;
+  }
+  #purah-advertorial #mapa-calor p.subtitulo {
+    font-size:12px;
+    text-align:center;
+    margin:0 0 30px;
+  }
+  #purah-advertorial #mapa-calor img {
+    display:block;
+    width:100%;
+    border-radius:12px;
+    margin:0 auto 30px;
+  }
+  #purah-advertorial details.marker {
+    position:absolute;
+    transform:translate(-50%,-50%);
+    z-index:10;
+  }
   /* Posicionamento via variáveis */
-  details.marker{top:var(--marker-top-desktop);left:var(--marker-left-desktop);}
-  @media(max-width:767px){details.marker{top:var(--marker-top-mobile);left:var(--marker-left-mobile);}}
-  /* Botão */
-  details.marker summary{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:radial-gradient(#A3C8FF,var(--azul-escuro));color:#fff;box-shadow:0 3px 8px rgba(0,0,0,0.3);border:2px solid #0c4d11;font-size:30px;cursor:pointer;transition:background .3s;list-style:none;}
-  details.marker[open] summary{background:radial-gradient(#FF5252,#D32F2F);border-color:#a00;}
-  details.marker summary::before{content:"+";} details.marker[open] summary::before{content:"–";}
+  #purah-advertorial details.marker {
+    top:var(--marker-top-desktop);
+    left:var(--marker-left-desktop);
+  }
+  @media (max-width:767px) {
+    #purah-advertorial details.marker {
+      top:var(--marker-top-mobile);
+      left:var(--marker-left-mobile);
+    }
+  }
+  /* Botão do marcador */
+  #purah-advertorial details.marker summary {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:radial-gradient(#A3C8FF,var(--azul-escuro));
+    color:#fff;
+    box-shadow:0 3px 8px rgba(0,0,0,0.3);
+    border:2px solid #0c4d11;
+    font-size:30px;
+    cursor:pointer;
+    transition:background .3s;
+    list-style:none;
+  }
+  #purah-advertorial details.marker[open] summary {
+    background:radial-gradient(#FF5252,#D32F2F);
+    border-color:#a00;
+  }
+  #purah-advertorial details.marker summary::before {
+    content:"+";
+  }
+  #purah-advertorial details.marker[open] summary::before {
+    content:"–";
+  }
   /* Balões */
-  details.marker .balao{position:absolute;top:var(--balao-top-desktop,110%);left:var(--balao-left-desktop,50%);transform:translate(-50%,0);width:180px;background:#fff;border-radius:9px;box-shadow:10px 10px 20px rgba(0,0,0,0.15);font-size:13px;padding:10px;text-align:center;}
-  @media(max-width:767px){details.marker .balao{top:var(--balao-top-mobile,110%);left:var(--balao-left-mobile,50%);width:120px;padding:10px;}}
-  .titulo-balao{font-weight:700;color:#212121;margin-bottom:1px;}
-  .subtitulo-balao{color:#555;margin-bottom:1px;}
-  .conteudo-extra{color:#444;line-height:1.4;max-height:0;overflow:hidden;transition:max-height .4s ease;}
-  details.marker[open] .conteudo-extra{max-height:90px;}
+  #purah-advertorial details.marker .balao {
+    position:absolute;
+    top:var(--balao-top-desktop,110%);
+    left:var(--balao-left-desktop,50%);
+    transform:translate(-50%,0);
+    width:180px;
+    background:#fff;
+    border-radius:9px;
+    box-shadow:10px 10px 20px rgba(0,0,0,0.15);
+    font-size:13px;
+    padding:10px;
+    text-align:center;
+  }
+  @media (max-width:767px) {
+    #purah-advertorial details.marker .balao {
+      top:var(--balao-top-mobile,110%);
+      left:var(--balao-left-mobile,50%);
+      width:120px;
+      padding:10px;
+    }
+  }
+  #purah-advertorial .titulo-balao {
+    font-weight:700;
+    color:#212121;
+    margin-bottom:1px;
+  }
+  #purah-advertorial .subtitulo-balao {
+    color:#555;
+    margin-bottom:1px;
+  }
+  #purah-advertorial .conteudo-extra {
+    color:#444;
+    line-height:1.4;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s ease;
+  }
+  #purah-advertorial details.marker[open] .conteudo-extra {
+    max-height:90px;
+  }
 
   /* Timeline */
-  .atomic-timeline-section{font-family:Arial,sans-serif;background:#FFF;border-radius:14px;max-width:700px;margin:auto;}
-  .timeline-track{position:relative;padding-left:20px;margin-top:2px;}
-  .timeline-track::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:4px;background:var(--azul-claro);}
-  .timeline-header{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px;}
-  .atomic-title{font-size:19px;color:#000;margin:20px;} .atomic-subtitle{font-size:17px;color:#555;}
-  .timeline-card{background:#FFF;border-radius:12px;padding:30px;margin-bottom:30px;position:relative;box-shadow:10px 20px 20px rgba(0,0,0,0.08);}
-  .timeline-lottie-date{position:absolute;left:-40px;top:30px;}
-  .timeline-day{font-weight:bold;color:var(--azul-escuro);font-size:14px;margin-bottom:6px;}
-  .timeline-title{font-size:16px;font-weight:bold;margin:0;color:#111;}
-  .timeline-text{font-size:14px;color:#444;margin-top:4px;}
+  #purah-advertorial .atomic-timeline-section {
+    font-family:Arial,sans-serif;
+    background:#FFF;
+    border-radius:14px;
+    max-width:700px;
+    margin:auto;
+  }
+  #purah-advertorial .timeline-track {
+    position:relative;
+    padding-left:20px;
+    margin-top:2px;
+  }
+  #purah-advertorial .timeline-track::before {
+    content:'';
+    position:absolute;
+    left:15px;
+    top:0;
+    bottom:0;
+    width:4px;
+    background:var(--azul-claro);
+  }
+  #purah-advertorial .timeline-header {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-bottom:20px;
+  }
+  #purah-advertorial .atomic-title {
+    font-size:19px;
+    color:#000;
+    margin:20px;
+  }
+  #purah-advertorial .atomic-subtitle {
+    font-size:17px;
+    color:#555;
+  }
+  #purah-advertorial .timeline-card {
+    background:#FFF;
+    border-radius:12px;
+    padding:30px;
+    margin-bottom:30px;
+    position:relative;
+    box-shadow:10px 20px 20px rgba(0,0,0,0.08);
+  }
+  #purah-advertorial .timeline-lottie-date {
+    position:absolute;
+    left:-40px;
+    top:30px;
+  }
+  #purah-advertorial .timeline-day {
+    font-weight:bold;
+    color:var(--azul-escuro);
+    font-size:14px;
+    margin-bottom:6px;
+  }
+  #purah-advertorial .timeline-title {
+    font-size:16px;
+    font-weight:bold;
+    margin:0;
+    color:#111;
+  }
+  #purah-advertorial .timeline-text {
+    font-size:14px;
+    color:#444;
+    margin-top:4px;
+  }
 
   /* Barras de resultados */
-  .barra{background:#fff;border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
-  .label{font-weight:bold;font-size:15px;color:#000;margin-bottom:8px;}
-  .explicacao{font-size:13px;color:#444;font-style:italic;margin-top:6px;}
-  .externa{width:100%;height:16px;background:#A3C8FF;border-radius:8px;position:relative;overflow:hidden;}
-  .interna{height:100%;background:var(--azul-escuro);position:absolute;top:0;left:0;}
+  #purah-advertorial .barra {
+    background:#fff;
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:14px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+  }
+  #purah-advertorial .label {
+    font-weight:bold;
+    font-size:15px;
+    color:#000;
+    margin-bottom:8px;
+  }
+  #purah-advertorial .explicacao {
+    font-size:13px;
+    color:#444;
+    font-style:italic;
+    margin-top:6px;
+  }
+  #purah-advertorial .externa {
+    width:100%;
+    height:16px;
+    background:#A3C8FF;
+    border-radius:8px;
+    position:relative;
+    overflow:hidden;
+  }
+  #purah-advertorial .interna {
+    height:100%;
+    background:var(--azul-escuro);
+    position:absolute;
+    top:0;
+    left:0;
+  }
 
   /* Cards de tecnologia */
-  .purah-tecnologia__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;}
-  .purah-tecnologia__card{padding:16px;background:#fcfcfc;border-radius:10px;text-align:center;box-shadow:0 4px 8px rgba(0,0,0,0.03);}
-  .purah-tecnologia__pizza{width:80px;height:80px;margin:0 auto 12px;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-  .purah-tecnologia__nome{font-weight:700;margin-bottom:8px;color:#212121;font-size:15px;}
-  .purah-tecnologia__descricao-componente{font-size:13px;color:#666;line-height:1.4;}
+  #purah-advertorial .purah-tecnologia__grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:20px;
+  }
+  #purah-advertorial .purah-tecnologia__card {
+    padding:16px;
+    background:#fcfcfc;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 4px 8px rgba(0,0,0,0.03);
+  }
+  #purah-advertorial .purah-tecnologia__pizza {
+    width:80px;
+    height:80px;
+    margin:0 auto 12px;
+    border-radius:50%;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  }
+  #purah-advertorial .purah-tecnologia__nome {
+    font-weight:700;
+    margin-bottom:8px;
+    color:#212121;
+    font-size:15px;
+  }
+  #purah-advertorial .purah-tecnologia__descricao-componente {
+    font-size:13px;
+    color:#666;
+    line-height:1.4;
+  }
 
   /* Comparativo */
-  .purah-grid{max-width:900px;margin:20px auto;padding:20px;background:#fff;border-radius:14px;display:grid;grid-template-columns:1fr;gap:20px;box-shadow:0 8px 16px rgba(0,0,0,0.05);}
-  .purah-grid__card{background:#fff;border-radius:12px;padding:16px;box-shadow:10px 10px 30px rgba(0,0,0,0.05);text-align:center;}
-  @media(min-width:768px){.purah-grid{grid-template-columns:repeat(3,1fr);} }
+  #purah-advertorial .purah-grid {
+    max-width:900px;
+    margin:20px auto;
+    padding:20px;
+    background:#fff;
+    border-radius:14px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+    box-shadow:0 8px 16px rgba(0,0,0,0.05);
+  }
+  #purah-advertorial .purah-grid__card {
+    background:#fff;
+    border-radius:12px;
+    padding:16px;
+    box-shadow:10px 10px 30px rgba(0,0,0,0.05);
+    text-align:center;
+  }
+  @media(min-width:768px) {
+    #purah-advertorial .purah-grid {
+      grid-template-columns:repeat(3,1fr);
+    }
+  }
 
   /* CTA e final */
-  .cta-button{display:inline-flex;align-items:center;justify-content:center;padding:22px 22px;background:#F76C6C	;border-radius:14px;text-decoration:none;font-weight:700;font-size:14px;color:#FFFFFF;box-shadow:0 6px 12px rgba(0,0,0,0.12);position:relative;overflow:visible;transition:transform .3s ease,box-shadow .3s ease;}
-  .final-box{text-align:center;max-width:780px;margin:50px auto;padding:20px;border:2px solid #F76C6C;border-radius:16px;background:#fff;box-shadow:0 0px 0px rgba(0,0,0,0.08);}
+  #purah-advertorial .cta-button {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:22px 22px;
+    background:#F76C6C;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    color:#FFFFFF;
+    box-shadow:0 6px 12px rgba(0,0,0,0.12);
+    position:relative;
+    overflow:visible;
+    transition:transform .3s ease,box-shadow .3s ease;
+  }
+  #purah-advertorial .final-box {
+    text-align:center;
+    max-width:780px;
+    margin:50px auto;
+    padding:20px;
+    border:2px solid #F76C6C;
+    border-radius:16px;
+    background:#fff;
+    box-shadow:0 0px 0px rgba(0,0,0,0.08);
+  }
 
   /* Citações purah */
-  .purah-citacao{margin:30px auto;padding:30px 20px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;text-align:center;max-width:700px;background:#fff;border-radius:6px;box-shadow:0 8px 16px rgba(0,0,0,0.03);}
-  .purah-citacao .barra-top,.purah-citacao .barra-bottom{height:4px;width:120px;background:#b71c1c;margin:0 auto;}
+  #purah-advertorial .purah-citacao {
+    margin:30px auto;
+    padding:30px 20px;
+    border-top:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+    max-width:700px;
+    background:#fff;
+    border-radius:6px;
+    box-shadow:0 8px 16px rgba(0,0,0,0.03);
+  }
+  #purah-advertorial .purah-citacao .barra-top,
+  #purah-advertorial .purah-citacao .barra-bottom {
+    height:4px;
+    width:120px;
+    background:#b71c1c;
+    margin:0 auto;
+  }
 
-  /* Ajustes para textos de garantia (corrigindo erros de aspas duplas no original) */
-  .garantia-section p { padding:10px; }
-
+  /* Ajustes para textos de garantia */
+  #purah-advertorial .garantia-section p {
+    padding:10px;
+  }
 </style>
 
+<!-- Script para reiniciar vídeos em loop ao retornar à aba -->
 <script>
-  // Reinicia vídeos em loop quando a aba volta a ser visível
   document.addEventListener('visibilitychange',function(){
     if(!document.hidden){
-      document.querySelectorAll('video[loop]').forEach(function(v){
+      document.querySelectorAll('#purah-advertorial video[loop]').forEach(function(v){
         try{v.currentTime=0;v.play();}catch(e){}
       });
     }
@@ -280,7 +654,7 @@
     <details class="marker" ontoggle="this.parentNode.querySelectorAll('details').forEach(d=>{if(d!==this)d.removeAttribute('open')})" style="--marker-top-desktop:35%;--marker-left-desktop:50%;--marker-top-mobile:50%;--marker-left-mobile:50%;--balao-top-desktop:-130%;--balao-left-desktop:450%;--balao-top-mobile:-150%;--balao-left-mobile:200%;">
       <summary>
         <div class="balao">
-          <div class="titulo-balao">Colo/Toráx</div>
+          <div class="titulo-balao">Colo/Tórax</div>
           <div class="subtitulo-balao"></div>
           <div class="conteudo-extra">
             Oxigenação dérmica +83%<br>
@@ -302,17 +676,18 @@
       </summary>
     </details>
     <details class="marker" ontoggle="this.parentNode.querySelectorAll('details').forEach(d=>{if(d!==this)d.removeAttribute('open')})" style="--marker-top-desktop:60%;--marker-left-desktop:72%;--marker-top-mobile:72%;--marker-left-mobile:74%;--balao-top-desktop:150%;--balao-left-desktop:150%;--balao-top-mobile:100%;--balao-left-mobile:50%;">
-      <summary>
-        <div class="balao">
-          <div class="titulo-balao">Braço Direito</div>
-          <div class="subtitulo-balao"></div>
-          <div class="conteudo-extra">
-            +48% Niacina<br>+42% Retinol<br>
-            <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
-          </div>
-        </div>
-      </summary>
-    </details>
+  <summary>
+    <div class="balao">
+      <div class="titulo-balao">Braço Direito</div>
+      <div class="subtitulo-balao"></div>
+      <div class="conteudo-extra">
+        +48% Niacina<br>+42% Retinol<br>
+        <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
+      </div>
+    </div>
+  </summary>
+</details>
+
   </div>
 
   <!-- vídeo do paciente 077 e legenda -->
@@ -393,7 +768,6 @@
 
   <!-- Tecnologia PURAH -->
   <div class="purah-tecnologia" style="max-width:720px;margin:0 auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 8px 16px rgba(0,0,0,0.05);">
-
     <div class="purah-tecnologia__imagem">
       <img src="https://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-34.jpg" alt="Sede oficial da PURAH" loading="lazy" decoding="async" style="width:100%;border-radius:8px;display:block;margin:0 auto 16px;">
     </div>
@@ -504,15 +878,14 @@
   </div>
 
   <!-- CTA com imagem e botão -->
-  <div style="max-width:720px;margin:40px auto;text-align:center;font-family:'Roboto',Arial,sans-serif;">
+  <div style="max-width:720px;margin:40px auto;text-align:center;">
     <a href="https://purah.com.br/?utm_source=advertorial&utm_medium=cta-image&utm_campaign=garantia90" target="_blank" rel="noopener">
       <img src="https://purah.com.br/wp-content/uploads/2025/07/Red-White-Mysterious-Crime-Story-YouTube-Thumbnail-2.jpg" alt="PURAH Garantia 90 Dias" loading="lazy" decoding="async" style="width:100%;max-width:990px;border-radius:8px;box-shadow:0 0 0 rgba(0,0,0,0.12);transition:transform .3s ease,box-shadow .3s ease;" onmouseover="this.style.transform='scale(1)';this.style.boxShadow='0 0 0 rgba(0,0,0,0.18)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 0 rgba(0,0,0,0.12)'">
     </a>
-    </div>
   </div>
 
   <!-- Validade dinâmica -->
-  <div id="validade-dinamica" style="max-width:700px;margin:3px auto;text-align:center;font-family:'Roboto',Arial,sans-serif;">
+  <div id="validade-dinamica" style="max-width:700px;margin:3px auto;text-align:center;">
     <span style="color:#b71c1c;font-weight:900;font-size:20px;text-decoration:underline;">VÁLIDO ATÉ: <span id="data-hoje">22/07/2025</span></span>
   </div>
   <script>
@@ -526,7 +899,7 @@
   </script>
 
   <!-- Bloco informativo final -->
-  <div style="max-width:700px;margin:22px auto;font-family:'Roboto',Arial,sans-serif;font-size:17px;color:#2c2c2c;padding:0 15px;">
+  <div style="max-width:700px;margin:22px auto;font-size:17px;color:#2c2c2c;padding:0 15px;">
     <p>Assim que a equipe da <a href="http://purah.com.br/?utm_source=organic&utm_medium=documentario&utm_campaign=lote_exclusivo" style="color:#ff0000;font-weight:700;text-decoration:none;">PURAH</a> soube que o produto havia sido mencionado neste documentário, eles insistiram em liberar aos nossos leitores <strong>um lote exclusivo com desconto especial</strong> para experimentar.</p>
     <p><span style="color:#ff0000;font-weight:700;">A marca decidiu</span> oferecer uma garantia exclusiva de <strong>reembolso total de 90 dias</strong> para leitoras e leitores do portal que testarem hoje sua fórmula patenteada.</p>
     <p>Você pode garantir seu acesso ao desconto no botão abaixo:</p>
@@ -538,7 +911,7 @@
   <!-- Caixa final -->
   <div class="final-box">
     <div style="text-align:center;margin-bottom:20px;">
-      <img src="https://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-28.jpg" alt="PURAH Produto" loading="lazy" decoding="async" style="width:100%;max-width:340px;border-radius:12px;box-shadow:0 0 0 rgba(0,0,0,0.08);">
+      <img src="https://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-28.jpg" alt="PURAH Produto" loading="lazy" decoding="async" style="width:100%;max-width:340px;border-radius:12px;">
     </div>
     <div style="text-align:center;padding:0 12px;">
       <h2 style="font-size:18px;color:#F76C6C;margin-bottom:10px;font-weight:900;">OFERTA EXCLUSIVA PARA NOSSAS LEITORAS.</h2>
@@ -555,10 +928,10 @@
   </div>
 </div>
 
-<!-- Script para ocultar Lotties não carregados -->
+<!-- Script para ocultar Lotties que não carregam -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('lottie-player').forEach(function(player) {
+    document.querySelectorAll('#purah-advertorial lottie-player').forEach(function(player) {
       let loaded = false;
       player.addEventListener('load', () => { loaded = true; });
       player.addEventListener('rendered', () => { loaded = true; });
