@@ -14,7 +14,6 @@
     --cinza-texto: #5f6368;
     --azul-claro: #A3C8FF;
     --azul-escuro: #305C8A;
-
     font-family:'Roboto',sans-serif;
     color:#333;
     margin:0;
@@ -185,7 +184,6 @@
     transform:translate(-50%,-50%);
     z-index:10;
   }
-  /* Posicionamento via variáveis */
   #purah-advertorial details.marker {
     top:var(--marker-top-desktop);
     left:var(--marker-left-desktop);
@@ -530,6 +528,70 @@
   </div>
   <p class="legenda-video">Érica Lopillato 'Paciente 033.' — Foto: Reprodução/Prontuário.</p>
 
+<!-- Texto acima do player -->
+<div style="font-family:'Roboto', sans-serif; margin-bottom:1px;padding: 10px; font-size:11px; color:#000;">Aperte o 'Play' e ouça a narração oficial. 
+</div>
+
+<!-- Container completo do player -->
+<div id="audio-noticia" style="display:flex; align-items:center; gap:10px;">
+  <button id="play-btn" style="border:none;background:none;color:#D32F2F;font-size:24px;cursor:pointer;">▶︎</button>
+  <div id="waveform" style="flex-grow:1; max-width:600px;"></div>
+  <span id="audio-time" style="font-size:14px;color:#D32F2F;">0:00</span>
+  <button id="playback-rate" style="background:#D32F2F;color:#fff;padding:4px 8px;border-radius:6px;cursor:pointer;font-size:12px;">1.0x</button>
+</div>
+
+<!-- Áudio oculto -->
+<audio id="audio-element" src="https://purah.com.br/wp-content/uploads/2025/07/audio_final.mp3" preload="auto" style="display:none;"></audio>
+
+<!-- Wavesurfer CDN -->
+<script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
+
+<!-- Inicialização correta e única do Wavesurfer -->
+<script>
+setTimeout(() => {
+  const wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: '#F9B7B7',
+    progressColor: '#D32F2F',
+    height: 50,
+    cursorWidth: 0,
+    barWidth: 2,
+    barGap: 2,
+    media: document.getElementById('audio-element'), // ✅ Mantenha apenas este método
+  });
+
+  const playBtn = document.getElementById('play-btn');
+  const audioTime = document.getElementById('audio-time');
+  const playbackRateBtn = document.getElementById('playback-rate');
+  const speeds = [1, 1.25, 1.5, 2];
+  let speedIdx = 0;
+
+  wavesurfer.on('audioprocess', () => {
+    const curr = wavesurfer.getCurrentTime();
+    audioTime.textContent = `${Math.floor(curr / 60)}:${String(Math.floor(curr % 60)).padStart(2,'0')}`;
+  });
+
+  wavesurfer.on('ready', () => {
+    const duration = wavesurfer.getDuration();
+    audioTime.textContent = `${Math.floor(duration / 60)}:${String(Math.floor(duration % 60)).padStart(2,'0')}`;
+  });
+
+  playBtn.onclick = () => {
+    wavesurfer.playPause();
+    playBtn.textContent = wavesurfer.isPlaying() ? '❚❚' : '▶︎';
+  };
+
+  playbackRateBtn.onclick = () => {
+    speedIdx = (speedIdx + 1) % speeds.length;
+    wavesurfer.setPlaybackRate(speeds[speedIdx]);
+    playbackRateBtn.textContent = speeds[speedIdx].toFixed(2) + 'x';
+  };
+
+  document.getElementById('waveform').onclick = () => wavesurfer.playPause();
+
+},); // 👈 Garantido para funcionar corretamente com Elementor
+</script>
+
   <!-- Texto inicial -->
   <div style="font-size:17px;line-height:1.6;padding:5px 10px;margin-top:20px;">
     <p>Dados oficiais do ClinicalTrials.gov revelam: <strong>mais de 70% dos tratamentos altamente eficazes são descartados por “falta de interesse comercial”.</strong></p>
@@ -629,8 +691,7 @@
 
   <!-- Texto pós-citação Neuza -->
   <div style="max-width:700px;margin:30px auto 0;font-size:17px;color:#2c2c2c;padding:5px 10px;">
-    <p>Não era exceção, nem coincidência, <strong>era o padrão de resultados da nossa tecnologia.</strong></p>
-    <p><span style="background:#f4d1ce;padding:2px 4px;border-radius:4px;">Foi quando deixamos de estudar o rosto. E passamos a mapear o corpo inteiro.</span></p>
+    <p>Não era exceção, nem coincidência, <strong>era o padrão de resultados da nossa tecnologia.</strong><span style="background:#f4d1ce;padding:2px 4px;border-radius:4px;">Foi quando paralhos de olhar o rosto e começamos a mapear o corpo inteiro.</span></p>
   </div>
 
   <!-- Mapa de Calor -->
@@ -676,18 +737,17 @@
       </summary>
     </details>
     <details class="marker" ontoggle="this.parentNode.querySelectorAll('details').forEach(d=>{if(d!==this)d.removeAttribute('open')})" style="--marker-top-desktop:60%;--marker-left-desktop:72%;--marker-top-mobile:72%;--marker-left-mobile:74%;--balao-top-desktop:150%;--balao-left-desktop:150%;--balao-top-mobile:100%;--balao-left-mobile:50%;">
-  <summary>
-    <div class="balao">
-      <div class="titulo-balao">Braço Direito</div>
-      <div class="subtitulo-balao"></div>
-      <div class="conteudo-extra">
-        +48% Niacina<br>+42% Retinol<br>
-        <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
-      </div>
-    </div>
-  </summary>
-</details>
-
+      <summary>
+        <div class="balao">
+          <div class="titulo-balao">Braço Direito</div>
+          <div class="subtitulo-balao"></div>
+          <div class="conteudo-extra">
+            +48% Niacina<br>+42% Retinol<br>
+            <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
+          </div>
+        </div>
+      </summary>
+    </details>
   </div>
 
   <!-- vídeo do paciente 077 e legenda -->
@@ -700,8 +760,8 @@
 
   <!-- Linha do Tempo explicativa -->
   <div style="max-width:700px;margin:10px auto 30px auto;font-size:17px;color:#2c2c2c;padding:10px 10px;">
-    <p>Os resultados clínicos das 250 <strong>voluntárias</strong> foram tão impressionantes que decidimos criar uma <strong>linha do tempo detalhada</strong>.</p>
-    <p>Documentada rigorosamente <strong>por cientistas de Harvard e USP</strong>, revelando exatamente como a nanotecnologia sublingual atua passo a passo no organismo, transformando a pele feminina em tempo recorde.</p>
+    <p>Os resultados clínicos das 250 <strong>voluntárias</strong> foram tão impressionantes que decidimos criar uma <strong>linha do tempo detalhando quando e como a metamorfose estética aconteceu</strong>.</p>
+
   </div>
 
   <!-- Linha do tempo -->
@@ -742,7 +802,6 @@
 
   <!-- Barras de resultados -->
   <div style="max-width:700px;margin:10px auto 10px auto;font-size:17px;color:#2c2c2c;padding:3px 18px;">
-    <p>Após anos de pesquisa e desenvolvimento nosso trabalho estava completo.</p>
     <p>Esses foram os <b>resultados</b> conjuntos de 250 participantes da nossa pesquisa com <strong>nanotecnologia recém-descoberta aplicada em cápsulas sublinguais.</strong></p>
     <div class="barra">
       <div class="label">Clareamento no rosto:</div>
@@ -790,7 +849,7 @@
       </div>
       <div class="purah-tecnologia__card">
         <div class="purah-tecnologia__pizza" style="background:conic-gradient(var(--azul-escuro) 270deg 360deg,#e0e0e0 360deg 360deg);"></div>
-        <div class="purah-tecnologia__nome">Coenzima Q10 Nano</div>
+                <div class="purah-tecnologia__nome">Coenzima Q10 Nano</div>
         <div class="purah-tecnologia__descricao-componente">Repara danos celulares e acelera regeneração.</div>
       </div>
     </div>
@@ -799,35 +858,43 @@
   <!-- A Censura -->
   <div class="purah-censura">
     <h2 style="font-size:24px;padding:10px;font-weight:700;margin-bottom:16px;text-align:left;">A Censura</h2>
-    <p style="font-size:17px;padding:10px;margin-bottom:16px;">A Dra. Daphyne Ribas, co-responsável técnica na pesquisa da fórmula de <a href="http://purah.com.br/?utm_source=organic" style="color:#ff0000;font-weight:700;text-decoration:none;">PURAH</a>, enviou nosso material ao FDA para autorização de comercialização.</p>
-    <p style="font-size:17px;padding:10px;margin-bottom:16px;">Durante a análise, enfrentamos censura imediata. Pedi à Dra. Ribas que comentasse sobre esse silenciamento forçado.</p>
+    <p style="font-size:17px;padding:10px;margin-bottom:16px;">
+      A Dra. Daphyne Ribas, co-responsável técnica na pesquisa da fórmula de
+      <a href="https://purah.com.br" style="color:#ff0000;font-weight:700;text-decoration:none;">PURAH</a>, enviou nosso material ao FDA para autorização de comercialização.
+    </p>
+    <p style="font-size:17px;padding:10px;margin-bottom:16px;">
+      Durante a análise, enfrentamos censura imediata. Pedi à Dra. Ribas que comentasse sobre esse silenciamento forçado.
+    </p>
   </div>
   <!-- Citações da Censura -->
-  <div style="margin:20px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:22px 15px;text-align:center;position:relative;">
+<div style="margin:20px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:22px 15px;text-align:center;position:relative;">
     <div class="barra-top" style="height:4px;width:120px;background:#b71c1c;margin:-22px auto 20px;"></div>
-    <p style="font-size:18px;font-weight:700;margin:0;">“A fórmula que desenvolvemos é a mais eficaz que já testemunhei em toda minha carreira. Na hora de enviar os dados ao FDA, nosso biomédico sussurrou: ‘Doutora, a senhora sabe que eles não vão liberar, né? Não é falta de eficácia, é o medo.’ E foi aí que eu entendi: a indústria não quer que você descubra o que está por trás desse tratamento” – afirmou a Dra. Daphyne Ribas.</p>
+    <p style="font-size:18px;font-weight:700;margin:0;">
+      “Nosso tratamento foi rejeitado pela FDA não por questões de segurança ou eficácia, mas porque ele era eficiente demais para gerar lucros expressivos.
+      Decidimos imediatamente buscar aprovação no segundo maior mercado de beleza do mundo: O Brasil” – complementou a Dra. Daphyne Ribas.
+    </p>
     <div class="barra-bottom" style="height:4px;width:120px;background:#b71c1c;margin:20px auto -22px;"></div>
   </div>
 
   <div class="purah-censura">
-    <p style="font-size:17px;padding:10px;margin-bottom:16px;">Segundo ela, o principal problema é que a fórmula era eficiente demais para ser liberada.</p>
-    <p style="font-size:17px;padding:10px;margin-bottom:16px;">Por isso, apenas 4.000 frascos de <a href="http://purah.com.br/?utm_source=organic" style="color:#ff0000;font-weight:700;text-decoration:none;">PURAH</a> foram produzidos, e a censura chegou:</p>
+    <p style="font-size:17px;padding:10px;margin-bottom:16px;">
+      Por isso, apenas 4.000 frascos de
+      <a href="https://purah.com.br" style="color:#ff0000;font-weight:700;text-decoration:none;">PURAH</a> foram produzidos.
+    </p>
   </div>
   <div style="margin:20px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:22px 15px;text-align:center;position:relative;">
     <div class="barra-top" style="height:4px;width:120px;background:#b71c1c;margin:-22px auto 20px;"></div>
-    <p style="font-size:18px;font-weight:700;margin:0;">“Nosso tratamento foi rejeitado pela FDA não por questões de segurança ou eficácia, mas porque ele era eficiente demais para gerar lucros expressivos. Decidimos imediatamente buscar aprovação no segundo maior mercado de beleza do mundo: O Brasil” – complementou a Dra. Daphyne Ribas.</p>
-    <div class="barra-bottom" style="height:4px;width:120px;background:#b71c1c;margin:20px auto -22px;"></div>
-  </div>
-  <div style="margin:20px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:22px 15px;text-align:center;position:relative;">
-    <div class="barra-top" style="height:4px;width:120px;background:#b71c1c;margin:-22px auto 20px;"></div>
-    <p style="font-size:18px;font-weight:700;margin:0;">“Após rigorosas análises e 140 dias de espera, PURAH foi aprovada. Chegando ao Brasil sem aumento de preço, garantindo acesso exclusivo à fórmula mais eficaz do mundo atualmente.” – afirmou a médica.</p>
+    <p style="font-size:18px;font-weight:700;margin:0;">
+      “Após rigorosas análises e 140 dias de espera, PURAH foi aprovada. Chegando ao Brasil sem aumento de preço,
+      garantindo acesso exclusivo à fórmula mais eficaz do mundo atualmente.” – afirmou a médica.
+    </p>
     <div class="barra-bottom" style="height:4px;width:120px;background:#b71c1c;margin:20px auto -22px;"></div>
   </div>
 
   <!-- O Comparativo -->
   <div class="purah-comparativo">
     <p style="font-size:17px;padding:10px;margin-bottom:16px;">A <strong>ANVISA</strong> testou 252 mulheres de 50 a 82 anos com rigor metodológico.</p>
-    <p style="font-size:17px;padding:10px;margin-bottom:16px;">Os resultados surpreenderam especialistas e ameaçaram mercados bilionários.</p>
+  
   </div>
   <div class="purah-grid">
     <!-- Cards do comparativo -->
@@ -837,11 +904,17 @@
       </div>
       <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Botox Injetável</div>
       Rugas
-      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;"><div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:70%;"></div></div>
+      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;">
+        <div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:70%;"></div>
+      </div>
       Flacidez
-      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;"><div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:30%;"></div></div>
+      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;">
+        <div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:30%;"></div>
+      </div>
       Preço
-      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;"><div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:70%;"></div></div>
+      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;">
+        <div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:70%;"></div>
+      </div>
     </div>
     <div class="purah-grid__card">
       <div style="width:90px;height:90px;margin:0 auto 8px;">
@@ -849,11 +922,17 @@
       </div>
       <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Peeling de Fenol</div>
       Rugas
-      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;"><div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:70%;"></div></div>
+      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;">
+        <div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:70%;"></div>
+      </div>
       Flacidez
-      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;"><div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:20%;"></div></div>
+      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;">
+        <div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:20%;"></div>
+      </div>
       Preço
-      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;"><div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:80%;"></div></div>
+      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;">
+        <div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:80%;"></div>
+      </div>
     </div>
     <div class="purah-grid__card">
       <div style="width:90px;height:90px;margin:0 auto 8px;">
@@ -861,26 +940,38 @@
       </div>
       <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Cápsulas Sublinguais PURAH</div>
       Rugas
-      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;"><div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:89%;"></div></div>
+      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;">
+        <div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:89%;"></div>
+      </div>
       Flacidez
-      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;"><div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:93%;"></div></div>
+      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;">
+        <div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:93%;"></div>
+      </div>
       Preço
-      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;"><div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:20%;"></div></div>
+      <div class="purah-grid__barra" style="background:#A3C8FF;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px;">
+        <div class="purah-grid__barra-interna" style="height:100%;background:#305C8A;width:20%;"></div>
+      </div>
     </div>
   </div>
 
   <!-- Garantia -->
   <div class="garantia-section">
     <h6><span style="padding:10px;color:#ff0000;">PURAH OFERECE GARANTIA!</span></h6>
-    <p>Dificilmente recomendamos algum produto no nosso site, mas com as evidências da eficácia de <a href="http://purah.com.br/?utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=">PURAH</a>, sentimos que nossas leitoras iriam gostar da dica.</p>
-    <p>Além disso, a empresa responsável pela venda da <a href="http://purah.com.br/?utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=">PURAH</a> no Brasil confia tanto no seu produto, que oferece uma garantia de 100% de satisfação.</p>
-    <p>Basta entrar em contato com a empresa caso não veja resultados com o produto e eles devolvem 100% do seu dinheiro.</p>
+    <p>Basta entrar em contato com a empresa no email <strong>clientes@purah.com.br</strong> ou diretamente no número oficial do site <a href="https://purah.com.br">purah.com.br</a> caso não veja resultados com o produto e eles devolvem 100% do seu dinheiro.</p>
   </div>
 
   <!-- CTA com imagem e botão -->
   <div style="max-width:720px;margin:40px auto;text-align:center;">
-    <a href="https://purah.com.br/?utm_source=advertorial&utm_medium=cta-image&utm_campaign=garantia90" target="_blank" rel="noopener">
-      <img src="https://purah.com.br/wp-content/uploads/2025/07/Red-White-Mysterious-Crime-Story-YouTube-Thumbnail-2.jpg" alt="PURAH Garantia 90 Dias" loading="lazy" decoding="async" style="width:100%;max-width:990px;border-radius:8px;box-shadow:0 0 0 rgba(0,0,0,0.12);transition:transform .3s ease,box-shadow .3s ease;" onmouseover="this.style.transform='scale(1)';this.style.boxShadow='0 0 0 rgba(0,0,0,0.18)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 0 rgba(0,0,0,0.12)'">
+    <a href="https://purah.com.br" target="_blank" rel="noopener">
+      <img
+        src="https://purah.com.br/wp-content/uploads/2025/07/Red-White-Mysterious-Crime-Story-YouTube-Thumbnail-2.jpg"
+        alt="PURAH Garantia 90 Dias"
+        loading="lazy"
+        decoding="async"
+        style="width:100%;max-width:990px;border-radius:8px;box-shadow:0 0 0 rgba(0,0,0,0.12);transition:transform .3s ease,box-shadow .3s ease;"
+        onmouseover="this.style.transform='scale(1)';this.style.boxShadow='0 0 0 rgba(0,0,0,0.18)'"
+        onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 0 rgba(0,0,0,0.12)'"
+      >
     </a>
   </div>
 
@@ -890,22 +981,30 @@
   </div>
   <script>
     (function(){
-      const hoje=new Date();
-      const dia=String(hoje.getDate()).padStart(2,'0');
-      const mes=String(hoje.getMonth()+1).padStart(2,'0');
-      const ano=hoje.getFullYear();
-      document.getElementById('data-hoje').innerText=`${dia}/${mes}/${ano}`;
+      const hoje = new Date();
+      const dia  = String(hoje.getDate()).padStart(2,'0');
+      const mes  = String(hoje.getMonth()+1).padStart(2,'0');
+      const ano  = hoje.getFullYear();
+      document.getElementById('data-hoje').innerText = `${dia}/${mes}/${ano}`;
     })();
   </script>
 
   <!-- Bloco informativo final -->
   <div style="max-width:700px;margin:22px auto;font-size:17px;color:#2c2c2c;padding:0 15px;">
-    <p>Assim que a equipe da <a href="http://purah.com.br/?utm_source=organic&utm_medium=documentario&utm_campaign=lote_exclusivo" style="color:#ff0000;font-weight:700;text-decoration:none;">PURAH</a> soube que o produto havia sido mencionado neste documentário, eles insistiram em liberar aos nossos leitores <strong>um lote exclusivo com desconto especial</strong> para experimentar.</p>
+
     <p><span style="color:#ff0000;font-weight:700;">A marca decidiu</span> oferecer uma garantia exclusiva de <strong>reembolso total de 90 dias</strong> para leitoras e leitores do portal que testarem hoje sua fórmula patenteada.</p>
-    <p>Você pode garantir seu acesso ao desconto no botão abaixo:</p>
-    <div style="margin:24px 0;"><h6 style="background-color:#f4d1ce;padding:10px 14px;border-radius:8px;color:#111;font-size:15px;line-height:1.4;"><strong><i>INFORMAÇÃO IMPORTANTE:</i></strong> <i> Devido à repercussão do estudo censurado, os estoques da <span style="color:#ff0000;font-weight:700;">PURAH</span> no Brasil estão praticamente esgotados.</i></h6></div>
-    <p>Se quiser aproveitar o valor promocional de <strong style="color:#2e7d32;">R$89,38 por unidade (com 40% de desconto)</strong> + <strong style="color:#d32f2f;">garantia de 90 dias</strong>, é melhor agir rápido.</p>
-    <p style="margin-top:20px;"><a href="http://purah.com.br/?utm_source=organic&utm_medium=documentario&utm_campaign=garantia90&utm_term=cta-final" style="text-decoration:underline;color:#d32f2f;font-weight:700;font-size:18px;">Clique abaixo para garantir a sua PURAH enquanto ainda restam unidades disponíveis.</a></p>
+    <div style="margin:24px 0;">
+      <h6 style="background-color:#f4d1ce;padding:10px 14px;border-radius:8px;color:#111;font-size:15px;line-height:1.4;">
+        <strong><i>INFORMAÇÃO IMPORTANTE:</i></strong>
+        <i> Devido à repercussão do estudo censurado, os estoques da <span style="color:#ff0000;font-weight:700;">PURAH</span> no Brasil estão praticamente esgotados.</i>
+      </h6>
+    </div>
+    <p>Apenas hoje o valor promocional será: <strong style="color:#2e7d32;">R$89,38 por unidade (com 40% de desconto)</strong> + <strong style="color:#d32f2f;">garantia de 90 dias</strong>.</p>
+    <p style="margin-top:20px;">
+      <a href="https://purah.com.br" style="text-decoration:underline;color:#d32f2f;font-weight:700;font-size:18px;">
+        Clique abaixo para garantir a sua PURAH enquanto ainda restam unidades disponíveis.
+      </a>
+    </p>
   </div>
 
   <!-- Caixa final -->
@@ -915,31 +1014,58 @@
     </div>
     <div style="text-align:center;padding:0 12px;">
       <h2 style="font-size:18px;color:#F76C6C;margin-bottom:10px;font-weight:900;">OFERTA EXCLUSIVA PARA NOSSAS LEITORAS.</h2>
-      <p style="font-size:14px;color:#F76C6C;margin-bottom:10px;"> <strong style="color:#F76C6C;">-40%OFF</strong> & <strong style="color:#F76C6C;">94 DIAS DE GARANTIA</strong>.</p>
+      <p style="font-size:14px;color:#F76C6C;margin-bottom:10px;"><strong style="color:#F76C6C;">-40%OFF</strong> &amp; <strong style="color:#F76C6C;">94 DIAS DE GARANTIA</strong>.</p>
       <p style="font-size:9px;color:#444;margin-bottom:13px;text-align:center;">* Estoque limitado a <u>apenas este lote</u>.</p>
     </div>
     <div style="text-align:center;margin:10px 10px;">
-      <a href="https://purah.com.br/?utm_source=advertorial&utm_medium=bloco-final&utm_campaign=cta-v3" target="_blank" rel="noopener" class="cta-button">
+      <a href="https://purah.com.br" target="_blank" rel="noopener" class="cta-button">
         <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Click-2.json" background="transparent" speed="1" loop autoplay style="width:50px;height:50px;transform:scale(2);transform-origin:center;position:absolute;left:50px;"></lottie-player>
         <span>QUERO MEU PURAH!</span>
       </a>
-      <p style="font-size:12px;color:#555;margin-top:5px;">🔒 Clique seguro </p>
+      <p style="font-size:12px;color:#555;margin-top:5px;">🔒 Clique seguro</p>
     </div>
   </div>
 </div>
-
-<!-- Script para ocultar Lotties que não carregam -->
 <script>
+(function() {
+  const targetDomain = "https://purah.com.br";
+
+  function limparUTM(link) {
+    try {
+      const url = new URL(link.href);
+      if (url.search && url.href.startsWith(targetDomain)) {
+        url.search = '';
+        link.setAttribute('href', url.toString());
+      }
+    } catch (e) {}
+  }
+
+  function processarTodosLinks() {
+    document.querySelectorAll(`a[href^="${targetDomain}"]`).forEach(link => limparUTM(link));
+  }
+
+  // 1. Executa imediatamente após DOM carregado
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('#purah-advertorial lottie-player').forEach(function(player) {
-      let loaded = false;
-      player.addEventListener('load', () => { loaded = true; });
-      player.addEventListener('rendered', () => { loaded = true; });
-      setTimeout(() => {
-        if (!loaded) {
-          player.style.display = 'none';
+    processarTodosLinks();
+
+    // 2. Observa qualquer alteração futura no DOM
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList' || mutation.type === 'attributes') {
+          processarTodosLinks();
         }
-      }, 7000);
+      }
     });
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['href'],
+      subtree: true,
+      childList: true
+    });
+
+    // 3. Protege os links contra scripts que insistem em reescrever (correção reativa)
+    setInterval(processarTodosLinks, 2000);
   });
+})();
 </script>
