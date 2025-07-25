@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -46,12 +47,14 @@
       font-size:25px;
       font-weight:700;
       line-height:1.3;
-      margin:0 0 12px;
+      margin:1px;
+      padding:5px;
       color:#000;
     }
     #purah-advertorial p {
-      margin:0 0 10px;
+      margin:1px;
       line-height:1.6;
+      padding:5px
     }
 
     /* Autor/assinatura */
@@ -59,7 +62,8 @@
       display:flex;
       align-items:center;
       gap:12px;
-      margin-bottom:8px;
+      padding:5px;
+      margin-bottom:1px;
     }
     #purah-advertorial #autor-info img {
       width:56px;
@@ -72,6 +76,7 @@
     #purah-advertorial .resumo-wrapper ul {
       padding-left:20px;
       margin:5px;
+      padding:10px;
     }
     #purah-advertorial .resumo-wrapper li {
       margin-bottom:5px;
@@ -283,13 +288,13 @@
     }
     #purah-advertorial .timeline-track {
       position:relative;
-      padding-left:20px;
+      padding-left:27px;
       margin-top:2px;
     }
     #purah-advertorial .timeline-track::before {
       content:'';
       position:absolute;
-      left:15px;
+      left:20px;
       top:0;
       bottom:0;
       width:4px;
@@ -305,7 +310,7 @@
     #purah-advertorial .atomic-title {
       font-size:19px;
       color:#000;
-      margin:20px;
+      margin:10px;
     }
     #purah-advertorial .atomic-subtitle {
       font-size:17px;
@@ -315,29 +320,32 @@
       background:#FFF;
       border-radius:12px;
       padding:30px;
-      margin-bottom:30px;
+      margin-bottom:20px;
       position:relative;
       box-shadow:10px 20px 20px rgba(0,0,0,0.08);
     }
     #purah-advertorial .timeline-lottie-date {
       position:absolute;
-      left:-40px;
+      left:-42px;
       top:30px;
     }
     #purah-advertorial .timeline-day {
       font-weight:bold;
       color:var(--azul-escuro);
-      font-size:14px;
+      font-size:15px;
+      text-align:center;
       margin-bottom:6px;
     }
     #purah-advertorial .timeline-title {
-      font-size:16px;
+      font-size:17px;
+      text-align:center;
       font-weight:bold;
       margin:0;
       color:#111;
     }
     #purah-advertorial .timeline-text {
-      font-size:14px;
+      font-size:15px;
+      text-align:center;
       color:#444;
       margin-top:4px;
     }
@@ -621,7 +629,7 @@
     <!-- Autor e cabeçalho -->
     <div id="autor-info">
       <div style="flex-shrink:0;">
-        <img src="http://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-13.svg" alt="Dra. Heloísa Barreto" loading="lazy" decoding="async">
+        <img src="http://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-13.svg" alt="Dra. Heloísa Barreto" loading="lazy" decoding="async" width="56" height="56">
       </div>
       <div class="autor-dados">
         <p style="font-weight:700;font-size:15px;">Por Dra. Heloísa Barreto</p>
@@ -648,7 +656,7 @@
 
     <!-- Vídeo principal (lazy loaded) -->
     <div class="video-loop">
-      <video data-src="https://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4" autoplay loop muted playsinline preload="none" width="100%"></video>
+      <video data-src="https://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4" autoplay loop muted playsinline preload="none" width="720" ></video>
     </div>
     <p class="legenda-video">Érica Lopillato 'Paciente 033.' — Foto: Reprodução/Prontuário.</p>
 
@@ -743,7 +751,7 @@
           </div>
         </div>
         <div class="video-loop">
-          <video data-src="http://purah.com.br/wp-content/uploads/2025/07/DIA-39.mp4" autoplay loop muted playsinline preload="none" width="100%"></video>
+        <video data-src="http://purah.com.br/wp-content/uploads/2025/07/DIA-39.mp4" autoplay loop muted playsinline preload="none" width="720" ></video>
         </div>
         <p class="legenda-video">Christie Anne 'Paciente 244.' — Foto: Reprodução/Prontuário.</p>
       </div>
@@ -773,7 +781,7 @@
     <div id="mapa-calor">
       <h2>Como a nanotecnologia transformou Neuza?</h2>
       <p class="subtitulo">Clique nos ícones abaixo para descobrir</p>
-      <img src="http://purah.com.br/wp-content/uploads/2025/07/Maior-impacto.jpg" alt="Mapa de Calor Corporal" loading="lazy" decoding="async">
+      <img src="http://purah.com.br/wp-content/uploads/2025/07/Maior-impacto.jpg" alt="Mapa de Calor Corporal" loading="lazy" decoding="async" width="720" height="405">
       <!-- Marcadores com variáveis de posição -->
       <details class="marker" ontoggle="this.parentNode.querySelectorAll('details').forEach(d=>{if(d!==this)d.removeAttribute('open')})" style="--marker-top-desktop:20%;--marker-left-desktop:50%;--marker-top-mobile:30%;--marker-left-mobile:50%;--balao-top-desktop:15%;--balao-left-desktop:-350%;--balao-top-mobile:-60%;--balao-left-mobile:-200%;">
         <summary>
@@ -782,7 +790,7 @@
             <div class="subtitulo-balao"></div>
             <div class="conteudo-extra">
               Firmeza:+85,6%<br>
-              <lottie-player class="lazy-lottie" data-src="https://purah.com.br/wp-content/uploads/2025/07/Skin-Lifting-3.json" background="transparent" speed="1" loop autoplay style="height:50px;"></lottie-player>
+              <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Skin-Lifting-3.json" background="transparent" speed="1" loop autoplay style="height:50px;"></lottie-player>
             </div>
           </div>
         </summary>
@@ -794,7 +802,7 @@
             <div class="subtitulo-balao"></div>
             <div class="conteudo-extra">
               Oxigenação dérmica +83%<br>
-              <lottie-player class="lazy-lottie" data-src="https://purah.com.br/wp-content/uploads/2025/07/Youthful-Skin-Elasticity-1.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
+              <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Youthful-Skin-Elasticity-1.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
             </div>
           </div>
         </summary>
@@ -806,7 +814,7 @@
             <div class="subtitulo-balao"></div>
             <div class="conteudo-extra">
               -82% fotodano<br>-60% oxidação<br>
-            <lottie-player class="lazy-lottie" data-src="https://purah.com.br/wp-content/uploads/2025/07/Elastic-Skin.json" background="transparent" speed="1" loop autoplay style="height:60px;"></lottie-player>
+            <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Elastic-Skin.json" background="transparent" speed="1" loop autoplay style="height:60px;"></lottie-player>
             </div>
           </div>
         </summary>
@@ -818,7 +826,7 @@
             <div class="subtitulo-balao"></div>
             <div class="conteudo-extra">
               +48% Niacina<br>+42% Retinol<br>
-            <lottie-player class="lazy-lottie" data-src="https://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
+            <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
             </div>
           </div>
         </summary>
@@ -827,7 +835,7 @@
 
     <!-- vídeo do paciente 077 e legenda -->
     <div style="margin:10px 1px 1px;border-radius:15px;overflow:hidden;max-width:100%;box-shadow:1px 1px 1px rgba(0,0,0,0.08);">
-      <video data-src="https://purah.com.br/wp-content/uploads/2025/07/DIA-40.mp4" autoplay loop muted playsinline preload="none" width="100%"></video>
+      <video data-src="https://purah.com.br/wp-content/uploads/2025/07/DIA-40.mp4" autoplay loop muted playsinline preload="none" width="720" ></video>
     </div>
     <p class="legenda-video">Neuza Rodrigues 'Paciente 077.' — Foto: Reprodução/Prontuário.</p>
 
@@ -847,7 +855,7 @@
       <div class="timeline-track">
         <div class="timeline-card">
           <div class="timeline-lottie-date">
-            <lottie-player class="lazy-lottie" data-src="https://purah.com.br/wp-content/uploads/2025/07/Peptides-1.json" background="transparent" speed="1" loop autoplay style="width:64px;height:64px;"></lottie-player>
+            <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Peptides-1.json" background="transparent" speed="1" loop autoplay style="width:64px;height:64px;"></lottie-player>
           </div>
           <div class="timeline-day">Primeira Semana</div>
           <h3 class="timeline-title">Ativação Sublingual Imediata</h3>
@@ -855,7 +863,7 @@
         </div>
         <div class="timeline-card">
           <div class="timeline-lottie-date">
-            <lottie-player class="lazy-lottie" data-src="https://purah.com.br/wp-content/uploads/2025/07/Skin-chemistry.json" background="transparent" speed="1" loop autoplay style="width:64px;height:54px;"></lottie-player>
+            <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Skin-chemistry.json" background="transparent" speed="1" loop autoplay style="width:64px;height:54px;"></lottie-player>
           </div>
           <div class="timeline-day">Décima Semana</div>
           <h3 class="timeline-title">Pele Firme e Hidratada</h3>
@@ -863,11 +871,11 @@
         </div>
         <div class="timeline-card">
           <div class="timeline-lottie-date">
-            <lottie-player class="lazy-lottie" data-src="https://purah.com.br/wp-content/uploads/2025/07/Wrinkles.json" background="transparent" speed="1" loop autoplay style="width:84px;height:84px;"></lottie-player>
+            <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Wrinkles.json" background="transparent" speed="1" loop autoplay style="width:84px;height:84px;"></lottie-player>
           </div>
           <div class="timeline-day">Vigésima Semana</div>
-          <h3 class="timeline-title">20 anos de rejuvenescimento</h3>
-          <p class="timeline-text">Sua pele completou a metamorfose e seu renascimento estético aconteceu. Veja abaixo resultados das voluntárias da nossa pesquisa</p>
+          <h3 class="timeline-title">10 anos de rejuvenescimento</h3>
+          <p class="timeline-text">A pele completou a metamorfose e seu renascimento estético aconteceu. </p>
         </div>
       </div>
     </div>
@@ -900,7 +908,7 @@
     <!-- Tecnologia PURAH -->
     <div class="purah-tecnologia" style="max-width:720px;margin:0 auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 8px 16px rgba(0,0,0,0.05);">
       <div class="purah-tecnologia__imagem">
-        <img src="https://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-34.jpg" alt="Sede oficial da PURAH" loading="lazy" decoding="async" style="width:100%;border-radius:8px;display:block;margin:0 auto 16px;">
+      <img src="https://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-34.jpg" alt="Sede oficial da PURAH" loading="lazy" decoding="async" width="720" height="405" style="width:100%;border-radius:8px;display:block;margin:0 auto 16px;">
       </div>
       <p class="purah-tecnologia__descricao" style="color:#444;font-size:17px;line-height:1.5;margin-bottom:10px;">Foram exatos 4 anos, unindo os maiores <strong>especialistas em nanotecnologia e dermatologia</strong> do mundo, com um único objetivo: <strong>desenvolver a fórmula mais avançada.</strong></p>
       <div class="purah-tecnologia__grid">
@@ -957,7 +965,7 @@
       <!-- Cards do comparativo -->
       <div class="purah-grid__card">
         <div style="width:90px;height:90px;margin:0 auto 8px;">
-          <lottie-player class="lazy-lottie" data-src="https://purah.com.br/wp-content/uploads/2025/07/Injection.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
+          <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Injection.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
         </div>
         <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Botox Injetável</div>
         Rugas
@@ -975,7 +983,7 @@
       </div>
       <div class="purah-grid__card">
         <div style="width:90px;height:90px;margin:0 auto 8px;">
-          <lottie-player class="lazy-lottie" data-src="https://purah.com.br/wp-content/uploads/2025/07/Led-Light-Therapy.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
+          <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Led-Light-Therapy.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
         </div>
         <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Peeling de Fenol</div>
         Rugas
@@ -993,7 +1001,7 @@
       </div>
       <div class="purah-grid__card">
         <div style="width:90px;height:90px;margin:0 auto 8px;">
-          <lottie-player class="lazy-lottie" data-src="https://purah.com.br/wp-content/uploads/2025/07/Medcine.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
+          <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Medcine.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
         </div>
         <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Cápsulas Sublinguais PURAH</div>
         Rugas
@@ -1025,6 +1033,7 @@
           alt="PURAH Garantia 90 Dias"
           loading="lazy"
           decoding="async"
+          width="990" height="557"
           style="width:100%;max-width:990px;border-radius:8px;box-shadow:0 0 0 rgba(0,0,0,0.12);transition:transform .3s ease,box-shadow .3s ease;"
           onmouseover="this.style.transform='scale(1)';this.style.boxShadow='0 0 0 rgba(0,0,0,0.18)'"
           onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 0 rgba(0,0,0,0.12)'"
@@ -1066,7 +1075,7 @@
     <!-- Caixa final -->
     <div class="final-box">
       <div style="text-align:center;margin-bottom:20px;">
-        <img src="https://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-28.jpg" alt="PURAH Produto" loading="lazy" decoding="async" style="width:100%;max-width:340px;border-radius:12px;">
+        <img src="https://purah.com.br/wp-content/uploads/2025/07/Design-sem-nome-28.jpg" alt="PURAH Produto" loading="lazy" decoding="async" width="340" height="340" style="width:100%;max-width:340px;border-radius:12px;">
       </div>
       <div style="text-align:center;padding:0 12px;">
         <h2 style="font-size:18px;color:#F76C6C;margin-bottom:10px;font-weight:900;">OFERTA EXCLUSIVA PARA NOSSAS LEITORAS.</h2>
@@ -1075,7 +1084,7 @@
       </div>
       <div style="text-align:center;margin:10px 10px;">
         <a href="https://purah.com.br" target="_blank" rel="noopener" class="cta-button">
-          <lottie-player class="lazy-lottie" data-src="https://purah.com.br/wp-content/uploads/2025/07/Click-2.json" background="transparent" speed="1" loop autoplay style="width:50px;height:50px;transform:scale(2);transform-origin:center;position:absolute;left:50px;"></lottie-player>
+          <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Click-2.json" background="transparent" speed="1" loop autoplay style="width:50px;height:50px;transform:scale(2);transform-origin:center;position:absolute;left:50px;"></lottie-player>
           <span>QUERO MEU PURAH!</span>
         </a>
         <p style="font-size:12px;color:#555;margin-top:5px;">🔒 Clique seguro</p>
@@ -1083,47 +1092,41 @@
     </div>
   </div>
 
-  <!-- Script de lottie-player e wavesurfer são carregados de forma deferida -->
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
-  <script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js" defer></script>
+  <!-- Scripts para lottie-player e wavesurfer serão carregados dinamicamente quando necessários. -->
 
-  <!-- Script auxiliar para limpar parâmetros UTM de links internos -->
+  <!-- Limpeza de parâmetros UTM via delegação de eventos, sem MutationObserver pesado -->
   <script>
-    (function() {
-      const targetDomain = "https://purah.com.br";
-
-      function limparUTM(link) {
-        try {
-          const url = new URL(link.href);
-          if (url.search && url.href.startsWith(targetDomain)) {
-            url.search = '';
-            link.setAttribute('href', url.toString());
-          }
-        } catch (e) {}
+    document.body.addEventListener('click', function(e) {
+      const link = e.target.closest('a[href^="https://purah.com.br"]');
+      if (link) {
+        link.href = link.href.split('?')[0];
       }
+    });
+  </script>
 
-      function processarTodosLinks() {
-        document.querySelectorAll(`a[href^="${targetDomain}"]`).forEach(link => limparUTM(link));
-      }
-
-      document.addEventListener('DOMContentLoaded', function() {
-        processarTodosLinks();
-        const observer = new MutationObserver((mutations) => {
-          for (const mutation of mutations) {
-            if (mutation.type === 'childList' || mutation.type === 'attributes') {
-              processarTodosLinks();
+  <!-- Carregamento assíncrono para animações Lottie: utiliza um único IntersectionObserver para observar todos os players -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if ('IntersectionObserver' in window) {
+        const lottieObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const player = entry.target;
+              if (!player.hasAttribute('src-loaded')) {
+                player.setAttribute('src-loaded', '');
+                if (typeof player.load === 'function') {
+                  player.load(player.getAttribute('src'));
+                }
+              }
+              lottieObserver.unobserve(player);
             }
-          }
+          });
+        }, { rootMargin: '200px 0px', threshold: 0.1 });
+        document.querySelectorAll('lottie-player').forEach(player => {
+          lottieObserver.observe(player);
         });
-        observer.observe(document.body, {
-          attributes: true,
-          attributeFilter: ['href'],
-          subtree: true,
-          childList: true
-        });
-        setInterval(processarTodosLinks, 2000);
-      });
-    })();
+      }
+    });
   </script>
 
   <!-- Lazy‑loading de vídeos e inicialização preguiçosa do áudio com Wavesurfer -->
@@ -1166,178 +1169,183 @@
       const speeds = [1, 1.25, 1.5, 2];
       let speedIdx = 0;
 
+      // Carrega Wavesurfer dinamicamente quando necessário
+      function loadWaveSurfer(callback) {
+        if (window.WaveSurfer) {
+          callback();
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js';
+        script.onload = callback;
+        document.head.appendChild(script);
+      }
+
       function initialiseWaveSurfer() {
         if (wavesurferInstance) return;
-        // se o src do áudio ainda não foi definido e há um data-src, define-o
+        // Garantir que o src esteja definido
         if (!audioElement.src && audioElement.dataset && audioElement.dataset.src) {
           audioElement.src = audioElement.dataset.src;
           try { audioElement.load(); } catch(e) {}
         }
-        wavesurferInstance = WaveSurfer.create({
-          container: '#waveform',
-          waveColor: '#F9B7B7',
-          progressColor: '#D32F2F',
-          height: 50,
-          cursorWidth: 0,
-          barWidth: 2,
-          barGap: 2,
-          media: audioElement
+        loadWaveSurfer(() => {
+          wavesurferInstance = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: '#F9B7B7',
+            progressColor: '#D32F2F',
+            height: 50,
+            cursorWidth: 0,
+            barWidth: 2,
+            barGap: 2,
+            media: audioElement
+          });
+          wavesurferInstance.on('audioprocess', () => {
+            const curr = wavesurferInstance.getCurrentTime();
+            audioTime.textContent = `${Math.floor(curr / 60)}:${String(Math.floor(curr % 60)).padStart(2,'0')}`;
+          });
+          wavesurferInstance.on('ready', () => {
+            const duration = wavesurferInstance.getDuration();
+            audioTime.textContent = `${Math.floor(duration / 60)}:${String(Math.floor(duration % 60)).padStart(2,'0')}`;
+          });
+          document.getElementById('waveform').onclick = () => {
+            wavesurferInstance.playPause();
+            playBtn.textContent = wavesurferInstance.isPlaying() ? '❚❚' : '▶︎';
+          };
         });
-        wavesurferInstance.on('audioprocess', () => {
-          const curr = wavesurferInstance.getCurrentTime();
-          audioTime.textContent = `${Math.floor(curr / 60)}:${String(Math.floor(curr % 60)).padStart(2,'0')}`;
-        });
-        wavesurferInstance.on('ready', () => {
-          const duration = wavesurferInstance.getDuration();
-          audioTime.textContent = `${Math.floor(duration / 60)}:${String(Math.floor(duration % 60)).padStart(2,'0')}`;
-        });
-        document.getElementById('waveform').onclick = () => {
-          wavesurferInstance.playPause();
-          playBtn.textContent = wavesurferInstance.isPlaying() ? '❚❚' : '▶︎';
-        };
       }
 
       playBtn.addEventListener('click', () => {
         initialiseWaveSurfer();
-        wavesurferInstance.playPause();
-        playBtn.textContent = wavesurferInstance.isPlaying() ? '❚❚' : '▶︎';
+        if (wavesurferInstance) {
+          wavesurferInstance.playPause();
+          playBtn.textContent = wavesurferInstance.isPlaying() ? '❚❚' : '▶︎';
+        }
       });
       playbackRateBtn.addEventListener('click', () => {
         initialiseWaveSurfer();
-        speedIdx = (speedIdx + 1) % speeds.length;
-        wavesurferInstance.setPlaybackRate(speeds[speedIdx]);
-        playbackRateBtn.textContent = speeds[speedIdx].toFixed(2) + 'x';
+        if (wavesurferInstance) {
+          speedIdx = (speedIdx + 1) % speeds.length;
+          wavesurferInstance.setPlaybackRate(speeds[speedIdx]);
+          playbackRateBtn.textContent = speeds[speedIdx].toFixed(2) + 'x';
+        }
       });
 
-      // Lazy load Lottie animations
-      const lazyLotties = document.querySelectorAll('lottie-player.lazy-lottie[data-src]');
-      if ('IntersectionObserver' in window) {
-        const lottieObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const player = entry.target;
-              if (!player.hasAttribute('src')) {
-                player.setAttribute('src', player.getAttribute('data-src'));
-              }
-              observer.unobserve(player);
-            }
-          });
-        }, {
-          rootMargin: '200px 0px',
-          threshold: 0.1
-        });
-        lazyLotties.forEach(player => {
-          // Skip those inside <details>, they will load on toggle
-          if (!player.closest('details')) {
-            lottieObserver.observe(player);
-          }
-        });
-      } else {
-        // Fallback: load all lotties immediately
-        lazyLotties.forEach(player => {
-          if (!player.hasAttribute('src')) {
-            player.setAttribute('src', player.getAttribute('data-src'));
-          }
-        });
-      }
-      // Load Lottie inside details markers when opened
-      document.querySelectorAll('details.marker').forEach(detail => {
-        detail.addEventListener('toggle', () => {
-          if (detail.open) {
-            const player = detail.querySelector('lottie-player.lazy-lottie[data-src]');
-            if (player && !player.hasAttribute('src')) {
-              player.setAttribute('src', player.getAttribute('data-src'));
-            }
-          }
-        });
-      });
     });
   </script>
 
-  <!-- Comentários fictícios: replicados fielmente com lazy loading em avatares -->
-  <div class="comments-container">
-    <!-- Cabeçalho -->
+  <!-- Placeholder para os comentários. Eles serão carregados sob demanda quando o usuário chegar nesta parte da página. -->
+  <div id="comments-placeholder" class="comments-container">
     <div class="comments-header">
       <div class="count">5 COMENTÁRIOS</div>
-      <div class="subtext">Os comentários são de responsabilidade exclusiva de seus autores e não representam a opinião deste site. Se achar algo que viole os termos de uso, denuncie. Leia as perguntas mais frequentes para saber o que é impróprio ou ilegal.</div>
+      <div class="subtext">Role para carregar comentários…</div>
     </div>
     <div class="divider"></div>
-    <!-- Comentário 1 -->
-    <div class="comment">
-      <img class="avatar" src="https://purah.com.br/wp-content/uploads/2025/05/images-4-1.jpg.webp" alt="Foto Simone de Oliveira" loading="lazy">
-      <div class="content">
-        <div class="name">Simone de Oliveira</div>
-        <div class="text">
-          Pra falar a verdade eu comprei só por causa dessa matéria, nunca tinha visto nada tão bem explicado e documentado, faz 7 dias que comecei a usar, mais disposição de acordar cedo eu tô tendo kkkk depois vou postar nos stories do meu face meus resultados
-        </div>
-        <div class="meta"><span>Curtir</span>·<span>Responder</span>·<span>1min</span></div>
-      </div>
-      <div class="reaction">
-        <div class="icons"><span class="like">👍</span></div>
-        <span>4</span>
-      </div>
-    </div>
-    <!-- Comentário 2 -->
-    <div class="comment">
-      <img class="avatar" src="https://purah.com.br/wp-content/uploads/2025/05/depoimento2.jpg.webp" alt="Foto Nicolle Almeida" loading="lazy">
-      <div class="content">
-        <div class="name">Nicolle Almeida</div>
-        <div class="text">
-          Nooossa nunca vi um artigo tão bem escrito assim, fiquei impressionada, já comprei tanta coisa que não funcionou, mas se a Doutora Barreto escreve e documenta tão bem eu preciso testar o produto que ela trouxe pro Brasil.
-        </div>
-        <div class="meta"><span>Curtir</span>·<span>Responder</span>·<span>4min</span></div>
-      </div>
-      <div class="reaction">
-        <div class="icons"><span class="like">👍</span><span class="heart">❤️</span></div>
-        <span>11</span>
-      </div>
-    </div>
-    <!-- Comentário 3 -->
-    <div class="comment">
-      <img class="avatar" src="https://purah.com.br/wp-content/uploads/2025/05/images-1-1-1.jpg.webp" alt="Foto Maria Aparecida Vasconcelos" loading="lazy">
-      <div class="content">
-        <div class="name">Maria Aparecida Vasconcelos</div>
-        <div class="text">
-          Comprei só pra ver se chegava mesmo, depois de 3 dias tava na minha casa, primeira vez que recebo uma entrega tão rápido e olha que eu moro na Bahia
-        </div>
-        <div class="meta"><span>Curtir</span>·<span>Responder</span>·<span>12min</span></div>
-      </div>
-      <div class="reaction">
-        <div class="icons"><span class="like">👍</span><span class="heart">❤️</span></div>
-        <span>126</span>
-      </div>
-    </div>
-    <!-- Comentário 4 -->
-    <div class="comment">
-      <img class="avatar" src="https://purah.com.br/wp-content/uploads/2025/05/depoimento3.jpg.webp" alt="Foto Izalete Pereira" loading="lazy">
-      <div class="content">
-        <div class="name">Izalete Pereira</div>
-        <div class="text">
-          Faz 1 mês que tô usando, minha filha já perguntou se fiz pelling, eu disse que não, ansiosa pra me olhar no espelho no dia 94.
-        </div>
-        <div class="meta"><span>Curtir</span>·<span>Responder</span>·<span>16min</span></div>
-      </div>
-      <div class="reaction">
-        <div class="icons"><span class="like">👍</span></div>
-        <span>3</span>
-      </div>
-    </div>
-    <div class="no-more-comments">Este conteúdo não recebe mais comentários.</div>
+    <p style="font-size:14px;color:#777;text-align:center;">Carregando comentários…</p>
   </div>
 
-  <!-- Script para reações locais -->
+  <!-- Template com o conteúdo completo dos comentários. O conteúdo dentro de <template> não é renderizado nem executado até ser inserido dinamicamente. -->
+  <template id="comments-template">
+    <div class="comments-container">
+      <div class="comments-header">
+        <div class="count">5 COMENTÁRIOS</div>
+        <div class="subtext">Os comentários são de responsabilidade exclusiva de seus autores e não representam a opinião deste site. Se achar algo que viole os termos de uso, denuncie. Leia as perguntas mais frequentes para saber o que é impróprio ou ilegal.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="comment">
+        <img class="avatar" src="https://purah.com.br/wp-content/uploads/2025/05/images-4-1.jpg.webp" alt="Foto Simone de Oliveira" loading="lazy" width="40" height="40">
+        <div class="content">
+          <div class="name">Simone de Oliveira</div>
+          <div class="text">
+            Pra falar a verdade eu comprei só por causa dessa matéria, nunca tinha visto nada tão bem explicado e documentado, faz 7 dias que comecei a usar, mais disposição de acordar cedo eu tô tendo kkkk depois vou postar nos stories do meu face meus resultados
+          </div>
+          <div class="meta"><span>Curtir</span>·<span>Responder</span>·<span>1min</span></div>
+        </div>
+        <div class="reaction">
+          <div class="icons"><span class="like">👍</span></div>
+          <span>4</span>
+        </div>
+      </div>
+      <div class="comment">
+        <img class="avatar" src="https://purah.com.br/wp-content/uploads/2025/05/depoimento2.jpg.webp" alt="Foto Nicolle Almeida" loading="lazy" width="40" height="40">
+        <div class="content">
+          <div class="name">Nicolle Almeida</div>
+          <div class="text">
+            Nooossa nunca vi um artigo tão bem escrito assim, fiquei impressionada, já comprei tanta coisa que não funcionou, mas se a Doutora Barreto escreve e documenta tão bem eu preciso testar o produto que ela trouxe pro Brasil.
+          </div>
+          <div class="meta"><span>Curtir</span>·<span>Responder</span>·<span>4min</span></div>
+        </div>
+        <div class="reaction">
+          <div class="icons"><span class="like">👍</span><span class="heart">❤️</span></div>
+          <span>11</span>
+        </div>
+      </div>
+      <div class="comment">
+        <img class="avatar" src="https://purah.com.br/wp-content/uploads/2025/05/images-1-1-1.jpg.webp" alt="Foto Maria Aparecida Vasconcelos" loading="lazy" width="40" height="40">
+        <div class="content">
+          <div class="name">Maria Aparecida Vasconcelos</div>
+          <div class="text">
+            Comprei só pra ver se chegava mesmo, depois de 3 dias tava na minha casa, primeira vez que recebo uma entrega tão rápido e olha que eu moro na Bahia
+          </div>
+          <div class="meta"><span>Curtir</span>·<span>Responder</span>·<span>12min</span></div>
+        </div>
+        <div class="reaction">
+          <div class="icons"><span class="like">👍</span><span class="heart">❤️</span></div>
+          <span>126</span>
+        </div>
+      </div>
+      <div class="comment">
+        <img class="avatar" src="https://purah.com.br/wp-content/uploads/2025/05/depoimento3.jpg.webp" alt="Foto Izalete Pereira" loading="lazy" width="40" height="40">
+        <div class="content">
+          <div class="name">Izalete Pereira</div>
+          <div class="text">
+            Faz 1 mês que tô usando, minha filha já perguntou se fiz pelling, eu disse que não, ansiosa pra me olhar no espelho no dia 94.
+          </div>
+          <div class="meta"><span>Curtir</span>·<span>Responder</span>·<span>16min</span></div>
+        </div>
+        <div class="reaction">
+          <div class="icons"><span class="like">👍</span></div>
+          <span>3</span>
+        </div>
+      </div>
+      <div class="no-more-comments">Este conteúdo não recebe mais comentários.</div>
+    </div>
+  </template>
+
+  <!-- Script para carregar comentários sob demanda e inicializar as reações -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.reaction').forEach(function (el) {
-        el.addEventListener('click', function () {
-          // impede mais de uma contagem por página
-          if (el.dataset.clicked === 'true') return;
-          el.dataset.clicked = 'true';
-          const countSpan = el.querySelector('span:last-child');
-          const count = parseInt(countSpan.textContent.trim(), 10);
-          countSpan.textContent = count + 1;
+      const placeholder = document.getElementById('comments-placeholder');
+      const template = document.getElementById('comments-template');
+      if (!placeholder || !template) return;
+      const loadComments = () => {
+        const clone = template.content.cloneNode(true);
+        placeholder.replaceWith(clone);
+        // configurar cliques nas reações
+        document.querySelectorAll('.reaction').forEach(function (el) {
+          el.addEventListener('click', function () {
+            if (el.dataset.clicked === 'true') return;
+            el.dataset.clicked = 'true';
+            const countSpan = el.querySelector('span:last-child');
+            const count = parseInt(countSpan.textContent.trim(), 10);
+            countSpan.textContent = count + 1;
+          });
         });
-      });
+      };
+      // usar IntersectionObserver para carregar quando visível
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              loadComments();
+              obs.disconnect();
+            }
+          });
+        }, { rootMargin: '200px 0px', threshold: 0.1 });
+        observer.observe(placeholder);
+      } else {
+        // fallback para navegadores antigos
+        loadComments();
+      }
     });
   </script>
 
