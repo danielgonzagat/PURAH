@@ -1,6 +1,10 @@
-<!-- Carregamento de fontes e pré-conexões -->
+<!-- Pré‑conexões -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://purah.com.br" crossorigin>
+<link rel="preconnect" href="https://cdn-ilpdfhj.nitrocdn.com" crossorigin>
+
+<!-- Carregamento de fontes com font-display swap -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -145,7 +149,7 @@
   #purah-advertorial .video-loop {
     width:100%;
     max-width:700px;
-    margin: 1px
+    margin: 1px;
     border-radius:10px;
     overflow:hidden;
     box-shadow:0 8px 16px rgba(0,0,0,0.05);
@@ -479,18 +483,11 @@
   }
 </style>
 
-<!-- Script para reiniciar vídeos em loop ao retornar à aba -->
-<script>
-  document.addEventListener('visibilitychange',function(){
-    if(!document.hidden){
-      document.querySelectorAll('#purah-advertorial video[loop]').forEach(function(v){
-        try{v.currentTime=0;v.play();}catch(e){}
-      });
-    }
-  });
-</script>
+<!-- Script de wavesurfer e lottie-player deferidos -->
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
+<script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js" defer></script>
 
+<!-- Início do conteúdo -->
 <div id="purah-advertorial">
   <!-- Autor e cabeçalho -->
   <div id="autor-info">
@@ -528,69 +525,70 @@
   </div>
   <p class="legenda-video">Érica Lopillato 'Paciente 033.' — Foto: Reprodução/Prontuário.</p>
 
-<!-- Texto acima do player -->
-<div style="font-family:'Roboto', sans-serif; margin-bottom:1px;padding: 10px; font-size:11px; color:#000;">Aperte o 'Play' e ouça a narração oficial. 
-</div>
+  <!-- Texto acima do player -->
+  <div style="font-family:'Roboto', sans-serif; margin-bottom:1px;padding: 10px; font-size:11px; color:#000;">Aperte o 'Play' e ouça a narração oficial. 
+  </div>
 
-<!-- Container completo do player -->
-<div id="audio-noticia" style="display:flex; align-items:center; gap:10px;">
-  <button id="play-btn" style="border:none;background:none;color:#D32F2F;font-size:24px;cursor:pointer;">▶︎</button>
-  <div id="waveform" style="flex-grow:1; max-width:600px;"></div>
-  <span id="audio-time" style="font-size:14px;color:#D32F2F;">0:00</span>
-  <button id="playback-rate" style="background:#D32F2F;color:#fff;padding:4px 8px;border-radius:6px;cursor:pointer;font-size:12px;">1.0x</button>
-</div>
+  <!-- Container completo do player -->
+  <div id="audio-noticia" style="display:flex; align-items:center; gap:10px;">
+    <button id="play-btn" style="border:none;background:none;color:#D32F2F;font-size:24px;cursor:pointer;">▶︎</button>
+    <div id="waveform" style="flex-grow:1; max-width:600px;"></div>
+    <span id="audio-time" style="font-size:14px;color:#D32F2F;">0:00</span>
+    <button id="playback-rate" style="background:#D32F2F;color:#fff;padding:4px 8px;border-radius:6px;cursor:pointer;font-size:12px;">1.0x</button>
+  </div>
 
-<!-- Áudio oculto -->
-<audio id="audio-element" src="https://purah.com.br/wp-content/uploads/2025/07/audio_final.mp3" preload="auto" style="display:none;"></audio>
+  <!-- Áudio oculto -->
+  <audio id="audio-element" src="https://purah.com.br/wp-content/uploads/2025/07/audio_final.mp3" preload="metadata" style="display:none;"></audio>
 
-<!-- Wavesurfer CDN -->
-<script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
+  <!-- Wavesurfer CDN -->
+  <!-- (será carregado pelo script defer no topo) -->
 
-<!-- Inicialização correta e única do Wavesurfer -->
-<script>
-setTimeout(() => {
-  const wavesurfer = WaveSurfer.create({
-    container: '#waveform',
-    waveColor: '#F9B7B7',
-    progressColor: '#D32F2F',
-    height: 50,
-    cursorWidth: 0,
-    barWidth: 2,
-    barGap: 2,
-    media: document.getElementById('audio-element'), // ✅ Mantenha apenas este método
-  });
+  <!-- Inicialização correta e única do Wavesurfer -->
+  <script>
+  setTimeout(() => {
+    const wavesurfer = WaveSurfer.create({
+      container: '#waveform',
+      waveColor: '#F9B7B7',
+      progressColor: '#D32F2F',
+      height: 50,
+      cursorWidth: 0,
+      barWidth: 2,
+      barGap: 2,
+      media: document.getElementById('audio-element'), // ✅ Mantenha apenas este método
+    });
 
-  const playBtn = document.getElementById('play-btn');
-  const audioTime = document.getElementById('audio-time');
-  const playbackRateBtn = document.getElementById('playback-rate');
-  const speeds = [1, 1.25, 1.5, 2];
-  let speedIdx = 0;
+    const playBtn = document.getElementById('play-btn');
+    const audioTime = document.getElementById('audio-time');
+    const playbackRateBtn = document.getElementById('playback-rate');
+    const speeds = [1, 1.25, 1.5, 2];
+    let speedIdx = 0;
 
-  wavesurfer.on('audioprocess', () => {
-    const curr = wavesurfer.getCurrentTime();
-    audioTime.textContent = `${Math.floor(curr / 60)}:${String(Math.floor(curr % 60)).padStart(2,'0')}`;
-  });
+    wavesurfer.on('audioprocess', () => {
+      const curr = wavesurfer.getCurrentTime();
+      audioTime.textContent = `${Math.floor(curr / 60)}:${String(Math.floor(curr % 60)).padStart(2,'0')}`;
+    });
 
-  wavesurfer.on('ready', () => {
-    const duration = wavesurfer.getDuration();
-    audioTime.textContent = `${Math.floor(duration / 60)}:${String(Math.floor(duration % 60)).padStart(2,'0')}`;
-  });
+    wavesurfer.on('ready', () => {
+      const duration = wavesurfer.getDuration();
+      audioTime.textContent = `${Math.floor(duration / 60)}:${String(Math.floor(duration % 60)).padStart(2,'0')}`;
+    });
 
-  playBtn.onclick = () => {
-    wavesurfer.playPause();
-    playBtn.textContent = wavesurfer.isPlaying() ? '❚❚' : '▶︎';
-  };
+    playBtn.onclick = () => {
+      wavesurfer.playPause();
+      playBtn.textContent = wavesurfer.isPlaying() ? '❚❚' : '▶︎';
+    };
 
-  playbackRateBtn.onclick = () => {
-    speedIdx = (speedIdx + 1) % speeds.length;
-    wavesurfer.setPlaybackRate(speeds[speedIdx]);
-    playbackRateBtn.textContent = speeds[speedIdx].toFixed(2) + 'x';
-  };
+    playbackRateBtn.onclick = () => {
+      speedIdx = (speedIdx + 1) % speeds.length;
+      wavesurfer.setPlaybackRate(speeds[speedIdx]);
+      playbackRateBtn.textContent = speeds[speedIdx].toFixed(2) + 'x';
+    };
 
-  document.getElementById('waveform').onclick = () => wavesurfer.playPause();
+    document.getElementById('waveform').onclick = () => wavesurfer.playPause();
 
-},); // 👈 Garantido para funcionar corretamente com Elementor
-</script>
+  },); // 👈 Garantido para funcionar corretamente com Elementor
+  </script>
+
 
   <!-- Texto inicial -->
   <div style="font-size:17px;line-height:1.6;padding:5px 10px;margin-top:20px;">
