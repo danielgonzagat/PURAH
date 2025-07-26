@@ -2,10 +2,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Meta descrição para melhorar SEO e a clareza nos motores de busca -->
-  <meta name="description" content="Conheça a revolucionária cápsula sublingual PURAH, que comprovadamente rejuvenesce a pele em até 10 anos em menos de 100 dias, com garantia exclusiva e estudos clínicos documentados.">
+  <!-- Meta descrição otimizada -->
+  <meta name="description" content="Descubra a cápsula sublingual PURAH que rejuvenesce a pele em até 10 anos, com garantia de 90 dias e estudos clínicos comprovados.">
   <title>Advertorial PURAH Otimizado</title>
 
+  <!-- Informações de otimização (comentários mantidos para referência) -->
   <!--
     Este documento foi otimizado para melhorar a performance percebida pelo usuário.
     As principais mudanças em relação ao código original incluem:
@@ -24,19 +25,14 @@
   <!-- Pré‑conexões para domínios terceirizados -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- pré‑conexão para purah: sem atributo crossorigin desnecessário -->
+  <!-- preconnect para purah.com.br -->
   <link rel="preconnect" href="https://purah.com.br">
+  <!-- preconnect adicional para o CDN da Nitro (onde as fontes Roboto são servidas) -->
+  <link rel="preconnect" href="https://cdn-ildpfhj.nitrocdn.com">
 
-  <!-- Pré‑carregamento das fontes Roboto (regular 400 e bold 700) com font-display:swap -->
-  <!--
-    Utilizamos a técnica recomendada pelo Google: a folha de estilo é pré‑carregada
-    com as="style" e, quando termina de carregar, convertemos sua relação para
-    stylesheet via atributo onload. Dessa forma, o arquivo não bloqueia o
-    rendering inicial, melhorando a métrica FCP. O bloco noscript garante o
-    carregamento quando o JavaScript está desativado.
-  -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"></link></noscript>
+  <!-- Pré‑carregamento das fontes Roboto (regular 400 e bold 700) com font-display:swap e subset limitado -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&subset=latin" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&subset=latin"></link></noscript>
 
   <!-- Pré‑carregamento explícito do vídeo principal para priorizar o LCP -->
   <link rel="preload" as="video" href="https://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4" type="video/mp4">
@@ -52,7 +48,8 @@
       --vermelho-claro: #FF7676;
       --vermelho-escuro: #D32F2F;
       --cinza-claro: #f8f8f8;
-      --cinza-texto: #5f6368;
+      /* contraste de texto melhorado */
+      --cinza-texto: #515559;
       --azul-claro: #A3C8FF;
       --azul-escuro: #305C8A;
       font-family: 'Roboto', sans-serif;
@@ -64,7 +61,6 @@
 
     /* Links */
     #purah-advertorial a {
-      /* Cor de link com contraste adequado */
       color: #b71c1c;
       text-decoration: none;
       font-weight: bold;
@@ -248,7 +244,7 @@
       width:32px;
       height:32px;
       border-radius:50%;
-      background:radial-gradient( #305C8A,var(--azul-escuro));
+      background:radial-gradient(#305C8A,var(--azul-escuro));
       color:#fff;
       box-shadow:0 3px 8px rgba(0,0,0,0.3);
       border:2px solid  #FFFFFF;
@@ -383,275 +379,275 @@
 
     /* Barras de resultados */
     #purah-advertorial .barra {
-      background: #fff;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 14px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      background:#fff;
+      border-radius:12px;
+      padding:16px;
+      margin-bottom:14px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.08);
     }
     #purah-advertorial .label {
-      font-weight: bold;
-      font-size: 15px;
-      color: #000;
-      margin-bottom: 8px;
+      font-weight:bold;
+      font-size:15px;
+      color:#000;
+      margin-bottom:8px;
     }
     #purah-advertorial .explicacao {
-      font-size: 13px;
-      color: #444;
-      font-style: italic;
-      margin-top: 6px;
+      font-size:13px;
+      color:#444;
+      font-style:italic;
+      margin-top:6px;
     }
     #purah-advertorial .externa {
-      width: 100%;
-      height: 16px;
-      background: #A3C8FF;
-      border-radius: 8px;
-      position: relative;
-      overflow: hidden;
+      width:100%;
+      height:16px;
+      background:#A3C8FF;
+      border-radius:8px;
+      position:relative;
+      overflow:hidden;
     }
     #purah-advertorial .interna {
-      height: 100%;
-      background: var(--azul-escuro);
-      position: absolute;
-      top: 0;
-      left: 0;
+      height:100%;
+      background:var(--azul-escuro);
+      position:absolute;
+      top:0;
+      left:0;
     }
 
     /* Cards de tecnologia */
     #purah-advertorial .purah-tecnologia__grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+      gap:20px;
     }
     #purah-advertorial .purah-tecnologia__card {
-      padding: 16px;
-      background: #fcfcfc;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+      padding:16px;
+      background:#fcfcfc;
+      border-radius:10px;
+      text-align:center;
+      box-shadow:0 4px 8px rgba(0,0,0,0.03);
     }
     #purah-advertorial .purah-tecnologia__pizza {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 12px;
-      border-radius: 50%;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      width:80px;
+      height:80px;
+      margin:0 auto 12px;
+      border-radius:50%;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
     }
     #purah-advertorial .purah-tecnologia__nome {
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: #212121;
-      font-size: 15px;
+      font-weight:700;
+      margin-bottom:8px;
+      color:#212121;
+      font-size:15px;
     }
     #purah-advertorial .purah-tecnologia__descricao-componente {
-      font-size: 13px;
-      color: #666;
-      line-height: 1.4;
+      font-size:13px;
+      color:#666;
+      line-height:1.4;
     }
 
     /* Comparativo */
     #purah-advertorial .purah-grid {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 14px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+      max-width:900px;
+      margin:20px auto;
+      padding:20px;
+      background:#fff;
+      border-radius:14px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:20px;
+      box-shadow:0 8px 16px rgba(0,0,0,0.05);
     }
     #purah-advertorial .purah-grid__card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.05);
-      text-align: center;
+      background:#fff;
+      border-radius:12px;
+      padding:16px;
+      box-shadow:10px 10px 30px rgba(0,0,0,0.05);
+      text-align:center;
     }
-    @media (min-width: 768px) {
+    @media (min-width:768px) {
       #purah-advertorial .purah-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns:repeat(3,1fr);
       }
     }
 
     /* CTA e final */
     #purah-advertorial .cta-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 22px 22px;
-      background: #c62828;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      color: #FFFFFF;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
-      position: relative;
-      overflow: visible;
-      transition: transform .3s ease, box-shadow .3s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:22px 22px;
+      background:#c62828;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      color:#FFFFFF;
+      box-shadow:0 6px 12px rgba(0,0,0,0.12);
+      position:relative;
+      overflow:visible;
+      transition:transform .3s ease, box-shadow .3s ease;
     }
     #purah-advertorial .final-box {
-      text-align: center;
-      max-width: 780px;
-      margin: 50px auto;
-      padding: 20px;
-      border: 2px solid #c62828;
-      border-radius: 16px;
-      background: #fff;
-      box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+      text-align:center;
+      max-width:780px;
+      margin:50px auto;
+      padding:20px;
+      border:2px solid #c62828;
+      border-radius:16px;
+      background:#fff;
+      box-shadow:0 0px 0px rgba(0,0,0,0.08);
     }
 
     /* Citações purah */
     #purah-advertorial .purah-citacao {
-      margin: 30px auto;
-      padding: 30px 20px;
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
-      text-align: center;
-      max-width: 700px;
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.03);
+      margin:30px auto;
+      padding:30px 20px;
+      border-top:1px solid #ddd;
+      border-bottom:1px solid #ddd;
+      text-align:center;
+      max-width:700px;
+      background:#fff;
+      border-radius:6px;
+      box-shadow:0 8px 16px rgba(0,0,0,0.03);
     }
     #purah-advertorial .purah-citacao .barra-top,
     #purah-advertorial .purah-citacao .barra-bottom {
-      height: 4px;
-      width: 120px;
-      background: #b71c1c;
-      margin: 0 auto;
+      height:4px;
+      width:120px;
+      background:#b71c1c;
+      margin:0 auto;
     }
 
     /* Garantia e área de comentários */
     #purah-advertorial .garantia-section p {
-      padding: 10px;
+      padding:10px;
     }
     .comments-container {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 30px 15px 60px;
+      max-width:820px;
+      margin:0 auto;
+      padding:30px 15px 60px;
     }
     .comments-header {
-      text-align: center;
-      margin-bottom: 15px;
+      text-align:center;
+      margin-bottom:15px;
     }
     .comments-header .count {
-      display: inline-block;
-      padding: 4px 18px;
-      font-weight: bold;
-      font-size: 22px;
-      line-height: 1.1;
+      display:inline-block;
+      padding:4px 18px;
+      font-weight:bold;
+      font-size:22px;
+      line-height:1.1;
     }
     .comments-header .subtext {
-      font-size: 11px;
-      color: #555;
-      line-height: 1.4;
-      margin-top: 12px;
+      font-size:11px;
+      color:#555;
+      line-height:1.4;
+      margin-top:12px;
     }
     .divider {
-      border-top: 1px solid #e0e0e0;
-      margin: 20px auto 20px;
-      max-width: 780px;
+      border-top:1px solid #e0e0e0;
+      margin:20px auto 20px;
+      max-width:780px;
     }
     .comment {
-      position: relative;
-      display: flex;
-      align-items: flex-start;
-      background: #f5f6f8;
-      border: 1px solid #e5e6e8;
-      border-radius: 30px;
-      padding: 10px;
-      margin-bottom: 20px;
-      box-sizing: border-box;
+      position:relative;
+      display:flex;
+      align-items:flex-start;
+      background:#f5f6f8;
+      border:1px solid #e5e6e8;
+      border-radius:30px;
+      padding:10px;
+      margin-bottom:20px;
+      box-sizing:border-box;
     }
     .comment .avatar {
-      flex-shrink: 0;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 10px;
+      flex-shrink:0;
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      object-fit:cover;
+      margin-right:10px;
     }
     .comment .content {
-      flex: 1;
+      flex:1;
     }
     .comment .content .name {
-      color: #385898;
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 4px;
+      color:#385898;
+      font-weight:600;
+      font-size:14px;
+      margin-bottom:4px;
     }
     .comment .content .text {
-      font-size: 13px;
-      color: #333;
-      line-height: 1.5;
+      font-size:13px;
+      color:#333;
+      line-height:1.5;
     }
     .comment .content .meta {
-      margin-top: 8px;
-      font-size: 12px;
-      /* Cor com contraste melhorado */
-      color: #555;
+      margin-top:8px;
+      font-size:12px;
+      color:#555;
     }
     .comment .meta span {
-      margin-right: 6px;
+      margin-right:6px;
     }
     .comment .reaction {
-      position: absolute;
-      bottom: -15px;
-      right: 10px;
-      background: #f5f6f8;
-      border: 1px solid #d3d4d6;
-      border-radius: 20px;
-      padding: 2px 4px 2px 6px;
-      display: flex;
-      align-items: center;
-      font-size: 12px;
-      color: #555;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
-      cursor: pointer;
+      position:absolute;
+      bottom:-15px;
+      right:10px;
+      background:#f5f6f8;
+      border:1px solid #d3d4d6;
+      border-radius:20px;
+      padding:2px 4px 2px 6px;
+      display:flex;
+      align-items:center;
+      font-size:12px;
+      color:#555;
+      box-shadow:0 1px 2px rgba(0,0,0,0.06);
+      cursor:pointer;
     }
     .reaction .icons {
-      display: flex;
-      align-items: center;
-      margin-right: 4px;
+      display:flex;
+      align-items:center;
+      margin-right:4px;
     }
     .reaction .icons span {
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      font-size: 13px;
-      line-height: 14px;
-      text-align: center;
-      border-radius: 50%;
-      color: #fff;
+      display:inline-block;
+      width:14px;
+      height:14px;
+      font-size:13px;
+      line-height:14px;
+      text-align:center;
+      border-radius:50%;
+      color:#fff;
     }
     .reaction .icons .like {
-      background: #1877F2;
+      background:#1877F2;
     }
     .reaction .icons .heart {
-      background: #e53935;
-      margin-left: -4px;
+      background:#e53935;
+      margin-left:-4px;
     }
     .no-more-comments {
-      background: #f0f0f0;
-      color: #666;
-      font-size: 10px;
-      padding: 16px;
-      border-radius: 6px;
-      text-align: left;
-      max-width: 780px;
+      background:#f0f0f0;
+      color:#666;
+      font-size:10px;
+      padding:16px;
+      border-radius:6px;
+      text-align:left;
+      max-width:780px;
     }
-    @media (max-width: 600px) {
+    @media (max-width:600px) {
       .comment {
-        padding: 15px;
+        padding:15px;
       }
       .comment .reaction {
-        right: 10px;
+        right:10px;
       }
       .comments-container {
-        padding: 20px 10px 40px;
+        padding:20px 10px 40px;
       }
     }
+    /* Hover effect removido dos atributos inline */
   </style>
 </head>
 <body>
@@ -663,7 +659,7 @@
       </div>
       <div class="autor-dados">
         <p style="font-weight:700;font-size:15px;">Por Dra. Heloísa Barreto</p>
-        <p style="color:var(--cinza-texto);font-size:11px;margin-top: -10px;">Dermatologista e líder em pesquisas com nanotecnologia sublingual.</p>
+        <p style="color:var(--cinza-texto);font-size:11px;margin-top:-10px;">Dermatologista e líder em pesquisas com nanotecnologia sublingual.</p>
       </div>
     </div>
     <h1>Ela usou essa cápsula sublingual e 94 dias depois, sua aparência estava 10 anos mais jovem</h1>
@@ -686,27 +682,22 @@
 
     <!-- Vídeo principal: carrega imediatamente para otimizar o LCP -->
     <div class="video-loop">
-      <!--
-        O atributo src carrega o vídeo no momento do parsing do HTML e o preload="auto"
-        indica ao navegador que este recurso é de alta prioridade. Essa mudança ajuda
-        a reduzir drasticamente a métrica Largest Contentful Paint (LCP).
-      -->
-      <video src="https://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4" autoplay loop muted playsinline preload="auto" width="720"></video>
+      <video src="https://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4" autoplay loop muted playsinline preload="auto" width="720" poster="data:image/jpeg;base64,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"></video>
     </div>
     <p class="legenda-video">Érica Lopillato 'Paciente 033.' — Foto: Reprodução/Prontuário.</p>
 
     <!-- Texto acima do player -->
-    <div style="font-family:'Roboto', sans-serif; margin-bottom:1px;padding: 10px; font-size:11px; color:#000;">Aperte o 'Play' e ouça a narração oficial.</div>
+    <div style="font-family:'Roboto', sans-serif; margin-bottom:1px;padding:10px;font-size:11px;color:#000;">Aperte o 'Play' e ouça a narração oficial.</div>
 
     <!-- Container completo do player -->
-    <div id="audio-noticia" style="display:flex; align-items:center; gap:10px;">
+    <div id="audio-noticia" style="display:flex;align-items:center;gap:10px;">
       <button id="play-btn" style="border:none;background:none;color:#D32F2F;font-size:24px;cursor:pointer;">▶︎</button>
-      <div id="waveform" style="flex-grow:1; max-width:600px;"></div>
+      <div id="waveform" style="flex-grow:1;max-width:600px;"></div>
       <span id="audio-time" style="font-size:14px;color:#D32F2F;">0:00</span>
       <button id="playback-rate" style="background:#D32F2F;color:#fff;padding:4px 8px;border-radius:6px;cursor:pointer;font-size:12px;">1.0x</button>
     </div>
 
-    <!-- Áudio oculto: carrega apenas metadados para garantir funcionamento -->
+    <!-- Áudio oculto: carrega apenas metadados -->
     <audio id="audio-element" src="https://purah.com.br/wp-content/uploads/2025/07/audiootimizado.mp3" preload="metadata" style="display:none;"></audio>
 
     <!-- Texto inicial -->
@@ -817,7 +808,7 @@
       <h2>Como a nanotecnologia transformou Neuza?</h2>
       <p class="subtitulo">Clique nos ícones abaixo para descobrir</p>
       <img src="http://purah.com.br/wp-content/uploads/2025/07/Maior-impacto.jpg" alt="Mapa de Calor Corporal" loading="lazy" decoding="async" width="720">
-<!-- Marcadores com variáveis de posição -->
+      <!-- Marcadores com variáveis de posição -->
       <details class="marker" ontoggle="this.parentNode.querySelectorAll('details').forEach(d=>{if(d!==this)d.removeAttribute('open')})" style="--marker-top-desktop:20%;--marker-left-desktop:50%;--marker-top-mobile:30%;--marker-left-mobile:50%;--balao-top-desktop:15%;--balao-left-desktop:-350%;--balao-top-mobile:-60%;--balao-left-mobile:-200%;">
         <summary>
           <div class="balao">
@@ -849,7 +840,7 @@
             <div class="subtitulo-balao"></div>
             <div class="conteudo-extra">
               -82% fotodano<br>-60% oxidação<br>
-            <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Elastic-Skin.json" background="transparent" speed="1" loop autoplay style="height:60px;"></lottie-player>
+              <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Elastic-Skin.json" background="transparent" speed="1" loop autoplay style="height:60px;"></lottie-player>
             </div>
           </div>
         </summary>
@@ -861,7 +852,7 @@
             <div class="subtitulo-balao"></div>
             <div class="conteudo-extra">
               +48% Niacina<br>+42% Retinol<br>
-            <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
+              <lottie-player src="https://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
             </div>
           </div>
         </summary>
@@ -884,7 +875,7 @@
       <div class="timeline-header">
         <div>
           <h2 class="atomic-title"></h2>
-          <p class="atomic-subtitle"><span style="background:#305C8A;padding:15px 10px;color:#FFFFFF; border-radius:4px;"><strong>Linha do Tempo PURAH.</strong></span></p>
+          <p class="atomic-subtitle"><span style="background:#305C8A;padding:15px 10px;color:#FFFFFF;border-radius:4px;"><strong>Linha do Tempo PURAH.</strong></span></p>
         </div>
       </div>
       <div class="timeline-track">
@@ -1055,7 +1046,6 @@
 
     <!-- Garantia -->
     <div class="garantia-section">
-      <!-- Utilizamos um h2 para manter a hierarquia semântica correta. A aparência é ajustada via CSS inline. -->
       <h2 style="font-size:20px;color:#b71c1c;padding:10px;">PURAH OFERECE GARANTIA!</h2>
       <p>Basta entrar em contato com a empresa no email <strong>clientes@purah.com.br</strong> ou diretamente no número oficial do site <a href="https://purah.com.br">purah.com.br</a> caso não veja resultados com o produto e eles devolvem 100% do seu dinheiro.</p>
     </div>
@@ -1070,8 +1060,6 @@
           decoding="async"
           width="990" height="557"
           style="width:100%;max-width:990px;border-radius:8px;box-shadow:0 0 0 rgba(0,0,0,0.12);transition:transform .3s ease,box-shadow .3s ease;"
-          onmouseover="this.style.transform='scale(1)';this.style.boxShadow='0 0 0 rgba(0,0,0,0.18)'"
-          onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 0 rgba(0,0,0,0.12)'"
         >
       </a>
     </div>
@@ -1120,8 +1108,7 @@
 
   <!-- Scripts: colocados no final do corpo com atributo defer para não bloquear a renderização -->
   <script defer>
-    // Atualiza a data de validade com a data atual. Usamos um script simples com
-    // padStart para formatar dia e mês com dois dígitos.
+    // Atualiza a data de validade com a data atual
     (function() {
       const hoje = new Date();
       const dia = String(hoje.getDate()).padStart(2, '0');
@@ -1133,12 +1120,11 @@
       }
     })();
 
-    // Remove parâmetros UTM de links para purah.com.br utilizando delegação de eventos.
+    // Remove parâmetros UTM de links para purah.com.br utilizando delegação de eventos
     document.body.addEventListener('click', function(e) {
       const link = e.target.closest('a[href^="https://purah.com.br"]');
       if (link) {
         const cleanUrl = link.href.split('?')[0];
-        // Evitamos múltiplas alterações seguidas usando requestAnimationFrame
         requestAnimationFrame(() => {
           link.href = cleanUrl;
         });
@@ -1155,7 +1141,6 @@
         resumoHeader.addEventListener('click', () => {
           resumoHeader.classList.toggle('active');
           const expanded = resumoHeader.classList.contains('active');
-          // Adicionamos as alterações de estilo dentro do requestAnimationFrame
           requestAnimationFrame(() => {
             body.style.display = expanded ? 'block' : 'none';
             label.textContent = expanded ? 'Resumo' : 'Ver resumo';
@@ -1201,14 +1186,12 @@
         const loadComments = () => {
           const clone = template.content.cloneNode(true);
           placeholder.replaceWith(clone);
-          // configura cliques nas reações
           document.querySelectorAll('.reaction').forEach(function(el) {
             el.addEventListener('click', function() {
               if (el.dataset.clicked === 'true') return;
               el.dataset.clicked = 'true';
               const countSpan = el.querySelector('span:last-child');
               const count = parseInt(countSpan.textContent.trim(), 10);
-              // agrupa atualização do contador no requestAnimationFrame
               requestAnimationFrame(() => {
                 countSpan.textContent = count + 1;
               });
@@ -1223,7 +1206,7 @@
                 obs.disconnect();
               }
             });
-          }, { rootMargin: '200px 0px', threshold: 0.1 });
+          }, { rootMargin: '200px 0px', threshold: 0 });
           observer.observe(placeholder);
         } else {
           loadComments();
@@ -1277,7 +1260,6 @@
 
       function initialiseWaveSurfer() {
         if (wavesurferInstance) return;
-        // Garante que o src esteja definido
         if (!audioElement.src && audioElement.dataset && audioElement.dataset.src) {
           audioElement.src = audioElement.dataset.src;
           try { audioElement.load(); } catch (e) {}
@@ -1295,15 +1277,14 @@
           });
           wavesurferInstance.on('audioprocess', () => {
             const curr = wavesurferInstance.getCurrentTime();
-            // atualiza o tempo de reprodução
             requestAnimationFrame(() => {
-              audioTime.textContent = `${Math.floor(curr / 60)}:${String(Math.floor(curr % 60)).padStart(2, '0')}`;
+              audioTime.textContent = `${Math.floor(curr / 60)}:${String(Math.floor(curr % 60)).padStart(2,'0')}`;
             });
           });
           wavesurferInstance.on('ready', () => {
             const duration = wavesurferInstance.getDuration();
             requestAnimationFrame(() => {
-              audioTime.textContent = `${Math.floor(duration / 60)}:${String(Math.floor(duration % 60)).padStart(2, '0')}`;
+              audioTime.textContent = `${Math.floor(duration / 60)}:${String(Math.floor(duration % 60)).padStart(2,'0')}`;
             });
           });
           document.getElementById('waveform').onclick = () => {
@@ -1396,7 +1377,7 @@
         </div>
       </div>
       <div class="comment">
-        <img class="avatar" src="https://purah.com.br/wp-content/uploads/2025/05/depoimento3.jpg.webp" alt="Foto Izalete Pereira" loading="lazy" width="40" height="40">
+        <img class="avatar" src="https://purah.com.br/wp-content/uploads/2025/05/depoimento3.jpg.webp" alt="Foto Izalete Pereira" loading="lazy" width "40" height="40">
         <div class="content">
           <div class="name">Izalete Pereira</div>
           <div class="text">
@@ -1425,9 +1406,10 @@
       Este conteúdo é um advertorial, e não deve ser interpretado como artigo jornalístico ou publicação editorial.
       Produto isento de registro, conforme regulamentação da RDC 240/2018 da ANVISA.
       PURAH é uma marca da Branding Caps, que não apoia a automedicação.
-      <span style="text-decoration: underline; cursor:pointer;">Termos de uso</span> | <span style="text-decoration: underline; cursor:pointer;">Política de privacidade</span>
+      <span style="text-decoration:underline;cursor:pointer;">Termos de uso</span> | <span style="text-decoration:underline;cursor:pointer;">Política de privacidade</span>
     </p>
-    <p style="margin-top:20px;font-size:11px;color:#777;">
+    <!-- Cor do texto final ajustada de #777 para #555 para melhor contraste -->
+    <p style="margin-top:20px;font-size:11px;color:#555;">
       ©2025 PURAH | BRANDING CAPS LTDA<br>
       Rua Comendador Francisco Rodrigues Neves, 295, Letra A, Sala 02 – Centro, Campo Belo – MG, Brasil.<br>
       CEP: 37270‑000 | CNPJ: 47.889.955/0001-05
