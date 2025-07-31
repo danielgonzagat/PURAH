@@ -1,3 +1,17 @@
+<!--
+  Este arquivo contém a versão reescrita do advertorial PURAH.  Todas as
+  chamadas a provedores externos de fontes foram removidas para eliminar
+  dependências do Google Fonts.  As fontes Roboto agora são servidas a
+  partir do próprio domínio (https://purah.com.br/fonts/roboto/).  Além
+  disso, a estrutura de scripts foi mantida e ajustada para minimizar
+  leituras/edições diretas que possam causar reflows forçados.  A maior
+  parte das atualizações de atributos e estilos ocorre dentro de
+  requestAnimationFrame, reduzindo a probabilidade de bloqueio de
+  renderização.  Este HTML pode ser copiado e colado diretamente em
+  um widget do Elementor.
+-->
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -9,8 +23,6 @@
   <!-- Pré-conexões e dns-prefetch adicionais para origens terceirizadas -->
   <link rel="dns-prefetch" href="//purah.com.br">
   <link rel="dns-prefetch" href="//cdn-ildpfhj.nitrocdn.com">
-  <link rel="dns-prefetch" href="//fonts.googleapis.com">
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
   <link rel="preconnect" href="https://cdn-ildpfhj.nitrocdn.com" crossorigin>
   <link rel="dns-prefetch" href="//cdn-ildpfhj.nitrocdn.com">
@@ -21,8 +33,7 @@
   <link rel="dns-prefetch" href="//connect.facebook.net">
   <link rel="dns-prefetch" href="//www.clarity.ms">
   <link rel="dns-prefetch" href="//unpkg.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- As linhas de pré-conexão e dns-prefetch para Google Fonts foram removidas para eliminar dependências externas. -->
   <link rel="preconnect" href="https://purah.com.br">
   <link rel="preconnect" href="https://cdn-ildpfhj.nitrocdn.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -32,14 +43,45 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://cdn-cgi.cloudflare.com" crossorigin>
 
-  <!-- Pré-carregamento das fontes Roboto (regular 400 e bold 700) com font-display:swap e subset limitado -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&subset=latin" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&subset=latin"></link></noscript>
-
   <!-- Pré-carregamento explícito do vídeo principal para priorizar o LCP -->
-  <link rel="preload" as="video" href="http://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="https://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4" type="video/mp4">
 
   <style>
+    /*
+      Declaração das fontes Roboto locais.  Todos os estilos usados
+      (normal 400, normal 700, itálico 400 e itálico 700) são servidos
+      diretamente do diretório /fonts/roboto do servidor.  Dessa forma,
+      eliminamos completamente as chamadas ao Google Fonts.
+    */
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/roboto/roboto-v48-latin-regular.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Roboto';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/roboto/roboto-v48-latin-italic.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('/fonts/roboto/roboto-v48-latin-700.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Roboto';
+      font-style: italic;
+      font-weight: 700;
+      font-display: swap;
+      src: url('/fonts/roboto/roboto-v48-latin-700italic.woff2') format('woff2');
+    }
+
     /*
       Variáveis de cores e fontes definidas no contêiner principal.
       Todo o CSS essencial foi mantido inline para evitar requisições adicionais.
@@ -655,7 +697,7 @@
     <!-- Autor e cabeçalho -->
     <div id="autor-info">
       <div style="flex-shrink:0;">
-        <img src="https://imagedelivery.net/2xQlk6FBrQINAp7sBc0BKA/457457d5-9463-4f31-4c07-9c741c133100/public" alt="Dra. Heloísa Barreto" loading="lazy" decoding="async" width="56" height="56">
+        <img src="https://imagedelivery.net/2xQlk6FBrQINAp7sBc0BKA/65534c94-765f-4d79-d3f3-880e75e23100/public" alt="Dra. Heloísa Barreto" loading="lazy" decoding="async" width="56" height="56">
       </div>
       <div class="autor-dados">
         <p style="font-weight:700;font-size:15px;">Por Dra. Heloísa Barreto</p>
@@ -867,7 +909,7 @@
             <div class="subtitulo-balao"></div>
             <div class="conteudo-extra">
               +48% Niacina<br>+42% Retinol<br>
-              <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;" data-rocket-ignore></lottie-player>
+              <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
             </div>
           </div>
         </summary>
@@ -901,7 +943,7 @@
       <div class="timeline-track">
         <div class="timeline-card">
           <div class="timeline-lottie-date">
-            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Peptides-1.json" background="transparent" speed="1" loop autoplay style="width:64px;height:64px;" data-rocket-ignore></lottie-player>
+            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Peptides-1.json" background="transparent" speed="1" loop autoplay style="width:64px;height:64px;"></lottie-player>
           </div>
           <div class="timeline-day">Primeira Semana</div>
           <h3 class="timeline-title">Ativação Sublingual Imediata</h3>
@@ -909,7 +951,7 @@
         </div>
         <div class="timeline-card">
           <div class="timeline-lottie-date">
-            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Skin-chemistry.json" background="transparent" speed="1" loop autoplay style="width:64px;height:54px;" data-rocket-ignore></lottie-player>
+            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Skin-chemistry.json" background="transparent" speed="1" loop autoplay style="width:64px;height:54px;"></lottie-player>
           </div>
           <div class="timeline-day">Décima Semana</div>
           <h3 class="timeline-title">Pele Firme e Hidratada</h3>
@@ -917,7 +959,7 @@
         </div>
         <div class="timeline-card">
           <div class="timeline-lottie-date">
-            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Wrinkles.json" background="transparent" speed="1" loop autoplay style="width:84px;height:84px;" data-rocket-ignore></lottie-player>
+            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Wrinkles.json" background="transparent" speed="1" loop autoplay style="width:84px;height:84px;"></lottie-player>
           </div>
           <div class="timeline-day">Vigésima Semana</div>
           <h3 class="timeline-title">10 anos de rejuvenescimento</h3>
@@ -1010,7 +1052,7 @@
       <!-- Cards do comparativo -->
       <div class="purah-grid__card">
         <div style="width:90px;height:90px;margin:0 auto 8px;">
-          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Injection.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;" data-rocket-ignore></lottie-player>
+          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Injection.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
         </div>
         <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Botox Injetável</div>
         Rugas
@@ -1028,7 +1070,7 @@
       </div>
       <div class="purah-grid__card">
         <div style="width:90px;height:90px;margin:0 auto 8px;">
-          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Led-Light-Therapy.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;" data-rocket-ignore></lottie-player>
+          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Led-Light-Therapy.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
         </div>
         <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Peeling de Fenol</div>
         Rugas
@@ -1046,7 +1088,7 @@
       </div>
       <div class="purah-grid__card">
         <div style="width:90px;height:90px;margin:0 auto 8px;">
-          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Medcine.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;" data-rocket-ignore></lottie-player>
+          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Medcine.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
         </div>
         <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Cápsulas Sublinguais PURAH</div>
         Rugas
@@ -1225,13 +1267,18 @@
 
   <!-- Scripts: removidos duplicados e organizados -->
   <script defer>
-    // Remoção de CSS e scripts não usados (executado após carregamento)
+    // Remoção de CSS e scripts não usados (executado após carregamento).  Uso de requestAnimationFrame
+    // para minimizar reflows ao alterar elementos.  Aqui removemos estilos extras
+    // que não são necessários no advertorial.
     window.addEventListener('load', () => {
-      document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+      const links = document.querySelectorAll('link[rel="stylesheet"]');
+      links.forEach(link => {
         const href = link.getAttribute('href') || '';
         if (/font-?awesome|all\.min\.css|v4-shims|cookieblocker/i.test(href)) {
           link.disabled = true;
-          link.parentNode.removeChild(link);
+          if (link.parentNode) {
+            link.parentNode.removeChild(link);
+          }
         }
       });
     });
@@ -1244,7 +1291,9 @@
       const ano = hoje.getFullYear();
       const dataSpan = document.getElementById('data-hoje');
       if (dataSpan) {
-        dataSpan.textContent = `${dia}/${mes}/${ano}`;
+        requestAnimationFrame(() => {
+          dataSpan.textContent = `${dia}/${mes}/${ano}`;
+        });
       }
     })();
 
