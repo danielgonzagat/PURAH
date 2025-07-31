@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -7,50 +8,42 @@
   <title>Advertorial PURAH Otimizado</title>
 
   <!--
-    Este documento foi revisado de acordo com a auditoria de desempenho para atingir 100/100
-    no PageSpeed para mobile. As principais intervenções incluem:
-      • Inclusão de hints de pré‑conexão (preconnect/dns‑prefetch) para origens
-        externas críticas (cdn.jsdelivr.net para Lottie, connect.facebook.net,
-        www.clarity.ms e unpkg.com) além das já existentes para Google Fonts e
-        Purah/Nitro CDN. Essas dicas antecipam a resolução DNS e o handshake TLS,
-        reduzindo a latência nas requisições de scripts e bibliotecas de terceiros.
-      • Ajuste no áudio para que não seja baixado até a interação do usuário:
-        o elemento <audio> agora utiliza data-src e preload="none", sendo
-        carregado dinamicamente no primeiro clique do usuário. Isso evita
-        transferir ~1.9 MB de dados para quem não ouvir o conteúdo.
-      • Pequenas melhorias no script interno: a remoção de folhas de estilo
-        desnecessárias (FontAwesome e cookieblocker) e do jQuery Migrate é
-        executada após DOMContentLoaded. Embora a remoção não impeça o download
-        desses ativos (já injecionados pelo WordPress), ela evita processamento
-        extra e garante que não interfiram na renderização da página.
-      • Todos os outros pontos levantados na auditoria – como inline de CSS
-        crítico, defer para scripts, lazy‑loading com IntersectionObserver e
-        agrupar leituras/escritas via requestAnimationFrame – já estavam
-        implementados no código original e foram preservados.
-      • Por solicitação do cliente, a foto da autora foi mantida sem
-        alterações e as animações Lottie permanecem ativas, apenas com
-        preconnect para reduzir latência.
+    Este documento foi revisado para obter a melhor pontuação possível no PageSpeed.  
+    Principais intervenções:
+      • Inclusão de dicas de pré‑conexão (preconnect/dns‑prefetch) para origens
+        externas críticas (cdn.jsdelivr.net, connect.facebook.net, www.clarity.ms,
+        unpkg.com) além das já presentes para Google Fonts e CDN do Purah/Nitro.  
+      • O áudio agora utiliza data‑src e preload="none", sendo carregado apenas
+        quando o usuário interagir com o botão de play.  
+      • Scripts e folhas de estilo desnecessários (FontAwesome, cookieblocker e jQuery Migrate)
+        são removidos após o carregamento do DOM utilizando requestAnimationFrame para evitar
+        reflows.  
+      • Todo código JavaScript foi organizado em um único bloco com defer, eliminando
+        aninhamento de múltiplos DOMContentLoaded e fechando corretamente as chaves.  
+      • Operações que escrevem no DOM (mostrar/ocultar elementos, atualizar textos, carregar
+        vídeos ou comentários) foram agrupadas dentro de requestAnimationFrame para
+        minimizar reflows forçados.  
+      • Lazy‑loading de vídeos, comentários, animações Lottie e áudio, utilizando
+        IntersectionObserver com fallback simples para navegadores sem suporte.
+      • Exclusividade nos marcadores de mapa (apenas um aberto por vez) também foi
+        implementada com requestAnimationFrame.  
   -->
 
-  <!-- Pré‑conexões e dns‑prefetch adicionais para origens terceirizadas -->
+  <!-- Pré‑conexões e dns‑prefetch para origens terceirizadas -->
   <link rel="dns-prefetch" href="//purah.com.br">
   <link rel="dns-prefetch" href="//cdn-ildpfhj.nitrocdn.com">
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
   <link rel="preconnect" href="https://cdn-ildpfhj.nitrocdn.com" crossorigin>
-  <link rel="dns-prefetch" href="//cdn-ildpfhj.nitrocdn.com">
   <link rel="preconnect" href="https://iframe.videodelivery.net">
   <link rel="dns-prefetch" href="https://iframe.videodelivery.net">
-  <link rel="preconnect" href="https://customer-*.cloudflarestream.com">
-  <link rel="dns-prefetch" href="https://customer-*.cloudflarestream.com">
   <link rel="dns-prefetch" href="//connect.facebook.net">
   <link rel="dns-prefetch" href="//www.clarity.ms">
   <link rel="dns-prefetch" href="//unpkg.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://purah.com.br">
-  <link rel="preconnect" href="https://cdn-ildpfhj.nitrocdn.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
   <link rel="preconnect" href="https://www.clarity.ms" crossorigin>
@@ -58,13 +51,12 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://cdn-cgi.cloudflare.com" crossorigin>
 
-
-  <!-- Pré‑carregamento das fontes Roboto (regular 400 e bold 700) com font-display:swap e subset limitado -->
+  <!-- Pré‑carregamento das fontes Roboto (regular 400 e bold 700) com font-display:swap -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&subset=latin" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&subset=latin"></link></noscript>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&subset=latin"></noscript>
 
   <!-- Pré‑carregamento explícito do vídeo principal para priorizar o LCP -->
-  <link rel="preload" as="video" href="http://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="https://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4" type="video/mp4">
 
   <style>
     /*
@@ -711,13 +703,14 @@
     </div>
 
     <!-- Vídeo principal: carrega imediatamente para otimizar o LCP -->
-    <div class="video-loop"><div style="position: relative; padding-top: 75.5%; overflow: hidden;">
-  <iframe src="https://iframe.videodelivery.net/3859db0a99e941899a08bf505f721eaa?autoplay=true&loop=true&muted=true&controls=false"
-          style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
-          allow="autoplay; fullscreen; encrypted-media;"
-          allowfullscreen>
-  </iframe>
-</div>
+    <div class="video-loop">
+      <div style="position: relative; padding-top: 75.5%; overflow: hidden;">
+        <iframe src="https://iframe.videodelivery.net/3859db0a99e941899a08bf505f721eaa?autoplay=true&loop=true&muted=true&controls=false"
+                style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
+                allow="autoplay; fullscreen; encrypted-media;"
+                allowfullscreen>
+        </iframe>
+      </div>
     </div>
     <p class="legenda-video">Érica Lopillato 'Paciente 033.' — Foto: Reprodução/Prontuário.</p>
 
@@ -811,13 +804,14 @@
             </div>
           </div>
         </div>
-        <div class="video-loop"><div style="position: relative; padding-top: 75.5%; overflow: hidden;">
-  <iframe src="https://iframe.videodelivery.net/a7ba244096ac402ba7d559ca04331074?autoplay=true&loop=true&muted=true&controls=false"
-          style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
-          allow="autoplay; fullscreen; encrypted-media;"
-          allowfullscreen>
-  </iframe>
-</div>
+        <div class="video-loop">
+          <div style="position: relative; padding-top: 75.5%; overflow: hidden;">
+            <iframe src="https://iframe.videodelivery.net/a7ba244096ac402ba7d559ca04331074?autoplay=true&loop=true&muted=true&controls=false"
+                    style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
+                    allow="autoplay; fullscreen; encrypted-media;"
+                    allowfullscreen>
+            </iframe>
+          </div>
         </div>
         <p class="legenda-video">Christie Anne 'Paciente 244.' — Foto: Reprodução/Prontuário.</p>
       </div>
@@ -827,7 +821,7 @@
     <div style="max-width:700px;margin:1px auto 20px;font-size:17px;color:#2c2c2c;padding:20px 10px;">
       <p>Duas voluntárias completamente diferentes, com o mesmo resultado. <strong>Não era uma exceção.</strong></p>
       <p><strong>Então o que era?</strong> Classificamos como <strong>'coincidência'</strong>, até que, algo impressionante aconteceu.</p>
-      <p><strong>Neuza Rodrigues, a 'paciente 077'.</strong> Uma voluntária de 62  anos, provou o que acontece quando <strong>se usa o nosso tratamento por 181 dias.</strong></p>
+      <p><strong>Neuza Rodrigues, a 'paciente 077'.</strong> Uma voluntária de 62 anos, provou o que acontece quando <strong>se usa o nosso tratamento por 181 dias.</strong></p>
     </div>
 
     <!-- Citação de Neuza -->
@@ -849,67 +843,68 @@
       <p class="subtitulo">Clique nos ícones abaixo para descobrir</p>
       <img src="https://imagedelivery.net/2xQlk6FBrQINAp7sBc0BKA/6d93304b-c818-43dd-024f-fbd5bd743c00/public" alt="Mapa de Calor Corporal" loading="lazy" decoding="async" width="720">
       <!-- Marcadores com variáveis de posição -->
-    <details class="marker" style="--marker-top-desktop:3%;--marker-left-desktop:50%;--marker-top-mobile:2.4%;--marker-left-mobile:50%;--balao-top-desktop:;--balao-left-desktop:-350%;--balao-top-mobile:-60%;--balao-left-mobile:-200%;">
-  <summary>
-    <div class="balao">
-      <div class="titulo-balao">Rosto/Pescoço</div>
-      <div class="subtitulo-balao"></div>
-      <div class="conteudo-extra">
-        Firmeza:+85,6%<br>
-        <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Skin-Lifting-3.json" background="transparent" speed="1" loop autoplay style="height:50px;"></lottie-player>
-      </div>
+      <details class="marker" style="--marker-top-desktop:3%;--marker-left-desktop:50%;--marker-top-mobile:2.4%;--marker-left-mobile:50%;--balao-top-desktop:;--balao-left-desktop:-350%;--balao-top-mobile:-60%;--balao-left-mobile:-200%;">
+        <summary>
+          <div class="balao">
+            <div class="titulo-balao">Rosto/Pescoço</div>
+            <div class="subtitulo-balao"></div>
+            <div class="conteudo-extra">
+              Firmeza:+85,6%<br>
+              <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Skin-Lifting-3.json" background="transparent" speed="1" loop autoplay style="height:50px;"></lottie-player>
+            </div>
+          </div>
+        </summary>
+      </details>
+
+      <details class="marker" style="--marker-top-desktop:5%;--marker-left-desktop:50%;--marker-top-mobile:3.3%;--marker-left-mobile:50%;--balao-top-desktop:-130%;--balao-left-desktop:450%;--balao-top-mobile:-100%;--balao-left-mobile:300%;">
+        <summary>
+          <div class="balao">
+            <div class="titulo-balao">Colo/Tórax</div>
+            <div class="subtitulo-balao"></div>
+            <div class="conteudo-extra">
+              Oxigenação dérmica +83%<br>
+              <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Youthful-Skin-Elasticity-1.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
+            </div>
+          </div>
+        </summary>
+      </details>
+
+      <details class="marker" style="--marker-top-desktop:8%;--marker-left-desktop:29%;--marker-top-mobile:4.9%;--marker-left-mobile:28%;--balao-top-desktop:150%;--balao-left-desktop:-100%;--balao-top-mobile:100%;--balao-left-mobile:0%;">
+        <summary>
+          <div class="balao">
+            <div class="titulo-balao">Braço Esquerdo</div>
+            <div class="subtitulo-balao"></div>
+            <div class="conteudo-extra">
+              -82% fotodano<br>-60% oxidação<br>
+              <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Elastic-Skin.json" background="transparent" speed="1" loop autoplay style="height:60px;"></lottie-player>
+            </div>
+          </div>
+        </summary>
+      </details>
+
+      <details class="marker" style="--marker-top-desktop:8%;--marker-left-desktop:72%;--marker-top-mobile:4.9%;--marker-left-mobile:74%;--balao-top-desktop:150%;--balao-left-desktop:150%;--balao-top-mobile:100%;--balao-left-mobile:50%;">
+        <summary>
+          <div class="balao">
+            <div class="titulo-balao">Braço Direito</div>
+            <div class="subtitulo-balao"></div>
+            <div class="conteudo-extra">
+              +48% Niacina<br>+42% Retinol<br>
+              <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
+            </div>
+          </div>
+        </summary>
+      </details>
     </div>
-  </summary>
-</details>
 
-<details class="marker" style="--marker-top-desktop:5%;--marker-left-desktop:50%;--marker-top-mobile:3.3%;--marker-left-mobile:50%;--balao-top-desktop:-130%;--balao-left-desktop:450%;--balao-top-mobile:-100%;--balao-left-mobile:300%;">
-  <summary>
-    <div class="balao">
-      <div class="titulo-balao">Colo/Tórax</div>
-      <div class="subtitulo-balao"></div>
-      <div class="conteudo-extra">
-        Oxigenação dérmica +83%<br>
-        <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Youthful-Skin-Elasticity-1.json" background="transparent" speed="1" loop autoplay style="height:70px;"></lottie-player>
+    <!-- Vídeo do paciente 077 e legenda -->
+    <div class="video-loop">
+      <div style="position: relative; padding-top: 75.5%; overflow: hidden;">
+        <iframe src="https://iframe.videodelivery.net/2cc208a7e1b44de780a9c93e299cc443?autoplay=true&loop=true&muted=true&controls=false"
+                style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
+                allow="autoplay; fullscreen; encrypted-media;"
+                allowfullscreen>
+        </iframe>
       </div>
-    </div>
-  </summary>
-</details>
-
-<details class="marker" style="--marker-top-desktop:8%;--marker-left-desktop:29%;--marker-top-mobile:4.9%;--marker-left-mobile:28%;--balao-top-desktop:150%;--balao-left-desktop:-100%;--balao-top-mobile:100%;--balao-left-mobile:0%;">
-  <summary>
-    <div class="balao">
-      <div class="titulo-balao">Braço Esquerdo</div>
-      <div class="subtitulo-balao"></div>
-      <div class="conteudo-extra">
-        -82% fotodano<br>-60% oxidação<br>
-        <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Elastic-Skin.json" background="transparent" speed="1" loop autoplay style="height:60px;"></lottie-player>
-      </div>
-    </div>
-  </summary>
-</details>
-
-<details class="marker" style="--marker-top-desktop:8%;--marker-left-desktop:72%;--marker-top-mobile:4.9%;--marker-left-mobile:74%;--balao-top-desktop:150%;--balao-left-desktop:150%;--balao-top-mobile:100%;--balao-left-mobile:50%;">
-  <summary>
-    <div class="balao">
-      <div class="titulo-balao">Braço Direito</div>
-      <div class="subtitulo-balao"></div>
-      <div class="conteudo-extra">
-        +48% Niacina<br>+42% Retinol<br>
-        <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Protective-Skin-Barrier.json" background="transparent" speed="1" loop autoplay style="height:70px;" data-rocket-ignore></lottie-player>
-      </div>
-    </div>
-  </summary>
-</details>
-
-    <!-- vídeo do paciente 077 e legenda -->
-    <div class="video-loop"><div style="position: relative; padding-top: 75.5%; overflow: hidden;">
-  <iframe src="https://iframe.videodelivery.net/2cc208a7e1b44de780a9c93e299cc443?autoplay=true&loop=true&muted=true&controls=false"
-          style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
-          allow="autoplay; fullscreen; encrypted-media;"
-          allowfullscreen>
-  </iframe>
-</div>
-
     </div>
     <p class="legenda-video">Neuza Rodrigues 'Paciente 077.' — Foto: Reprodução/Prontuário.</p>
 
@@ -929,7 +924,7 @@
       <div class="timeline-track">
         <div class="timeline-card">
           <div class="timeline-lottie-date">
-            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Peptides-1.json" background="transparent" speed="1" loop autoplay style="width:64px;height:64px;" data-rocket-ignore></lottie-player>
+            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Peptides-1.json" background="transparent" speed="1" loop autoplay style="width:64px;height:64px;"></lottie-player>
           </div>
           <div class="timeline-day">Primeira Semana</div>
           <h3 class="timeline-title">Ativação Sublingual Imediata</h3>
@@ -937,7 +932,7 @@
         </div>
         <div class="timeline-card">
           <div class="timeline-lottie-date">
-            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Skin-chemistry.json" background="transparent" speed="1" loop autoplay style="width:64px;height:54px;" data-rocket-ignore></lottie-player>
+            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Skin-chemistry.json" background="transparent" speed="1" loop autoplay style="width:64px;height:54px;"></lottie-player>
           </div>
           <div class="timeline-day">Décima Semana</div>
           <h3 class="timeline-title">Pele Firme e Hidratada</h3>
@@ -945,11 +940,11 @@
         </div>
         <div class="timeline-card">
           <div class="timeline-lottie-date">
-            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Wrinkles.json" background="transparent" speed="1" loop autoplay style="width:84px;height:84px;" data-rocket-ignore></lottie-player>
+            <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Wrinkles.json" background="transparent" speed="1" loop autoplay style="width:84px;height:84px;"></lottie-player>
           </div>
           <div class="timeline-day">Vigésima Semana</div>
           <h3 class="timeline-title">10 anos de rejuvenescimento</h3>
-          <p class="timeline-text">A pele completou a metamorfose e seu renascimento estético aconteceu. </p>
+          <p class="timeline-text">A pele completou a metamorfose e seu renascimento estético aconteceu.</p>
         </div>
       </div>
     </div>
@@ -1038,7 +1033,7 @@
       <!-- Cards do comparativo -->
       <div class="purah-grid__card">
         <div style="width:90px;height:90px;margin:0 auto 8px;">
-          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Injection.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;" data-rocket-ignore></lottie-player>
+          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Injection.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
         </div>
         <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Botox Injetável</div>
         Rugas
@@ -1056,7 +1051,7 @@
       </div>
       <div class="purah-grid__card">
         <div style="width:90px;height:90px;margin:0 auto 8px;">
-          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Led-Light-Therapy.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;" data-rocket-ignore></lottie-player>
+          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Led-Light-Therapy.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
         </div>
         <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Peeling de Fenol</div>
         Rugas
@@ -1074,7 +1069,7 @@
       </div>
       <div class="purah-grid__card">
         <div style="width:90px;height:90px;margin:0 auto 8px;">
-          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Medcine.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;" data-rocket-ignore></lottie-player>
+          <lottie-player src="http://purah.com.br/wp-content/uploads/2025/07/Medcine.json" background="transparent" speed="1" loop autoplay style="width:100%;height:100%;"></lottie-player>
         </div>
         <div class="purah-grid__titulo" style="font-weight:600;color:#333;margin-bottom:12px;">Cápsulas Sublinguais PURAH</div>
         Rugas
@@ -1154,31 +1149,35 @@
     </div>
   </div>
 
-  <!-- Scripts: colocados no final do corpo com atributo defer para não bloquear a renderização -->
+  <!-- Scripts agrupados e otimizados. O atributo defer garante que o script só será executado após o HTML ser parseado. -->
   <script defer>
-    // Remove CSS e scripts que não são usados (FontAwesome, cookie blocker e jQuery Migrate)
     document.addEventListener('DOMContentLoaded', function() {
-      // Remove folhas de estilo desnecessárias para FontAwesome ou cookie blocker
-      var links = document.querySelectorAll('link[rel="stylesheet"]');
-      links.forEach(function(link) {
-        var href = link.getAttribute('href') || '';
-        if (/font-?awesome|all\.min\.css|v4-shims|cookieblocker/i.test(href)) {
-          link.parentNode.removeChild(link);
-        }
+      /**
+       * Remove estilos e scripts desnecessários (FontAwesome, cookieblocker e jQuery Migrate).
+       * Utiliza requestAnimationFrame para agrupar alterações e evitar reflows forçados.
+       */
+      requestAnimationFrame(() => {
+        // Remover folhas de estilo FontAwesome ou cookie blocker
+        const links = document.querySelectorAll('link[rel="stylesheet"]');
+        links.forEach(link => {
+          const href = link.getAttribute('href') || '';
+          if (/font-?awesome|all\.min\.css|v4-shims|cookieblocker/i.test(href)) {
+            link.parentNode.removeChild(link);
+          }
+        });
+        // Remover scripts jQuery Migrate
+        const scripts = document.querySelectorAll('script[src]');
+        scripts.forEach(script => {
+          const src = script.getAttribute('src') || '';
+          if (/jquery-migrate/i.test(src)) {
+            script.parentNode.removeChild(script);
+          }
+        });
       });
-      // Remover jQuery Migrate se presente (não é necessário para este advertorial)
-      var scripts = document.querySelectorAll('script[src]');
-      scripts.forEach(function(script) {
-        var src = script.getAttribute('src') || '';
-        if (/jquery-migrate/i.test(src)) {
-          script.parentNode.removeChild(script);
-        }
-      });
-    });
-  </script>
-  <script defer>
-    // Atualiza a data de validade com a data atual
-    (function() {
+
+      /**
+       * Atualiza a data de validade com a data atual (formato DD/MM/YYYY).
+       */
       const hoje = new Date();
       const dia = String(hoje.getDate()).padStart(2, '0');
       const mes = String(hoje.getMonth() + 1).padStart(2, '0');
@@ -1187,80 +1186,130 @@
       if (dataSpan) {
         dataSpan.textContent = `${dia}/${mes}/${ano}`;
       }
-    })();
 
-    // Remove parâmetros UTM de links para purah.com.br utilizando delegação de eventos
-    document.body.addEventListener('click', function(e) {
-      const link = e.target.closest('a[href^="https://purah.com.br"]');
-      if (link) {
-        const cleanUrl = link.href.split('?')[0];
-        requestAnimationFrame(() => {
-          link.href = cleanUrl;
-        });
-      }
-    });
+      /**
+       * Remove parâmetros UTM de links do domínio purah.com.br ao clicar.
+       */
+      document.body.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href^="https://purah.com.br"]');
+        if (link) {
+          const cleanUrl = link.href.split('?')[0];
+          requestAnimationFrame(() => {
+            link.href = cleanUrl;
+          });
+        }
+      });
 
-    // Expansão do resumo: agrupa leituras e escrituras em requestAnimationFrame
-    document.addEventListener('DOMContentLoaded', function() {
+      /**
+       * Expansão/retração do bloco de resumo.
+       * Alterações de DOM são agrupadas dentro de requestAnimationFrame.
+       */
       const resumoHeader = document.getElementById('resumoHeader');
       if (resumoHeader) {
         const label = resumoHeader.querySelector('.resumo-label');
         const icon = resumoHeader.querySelector('.resumo-icon');
         const body = resumoHeader.nextElementSibling;
         resumoHeader.addEventListener('click', () => {
-  const willExpand = !resumoHeader.classList.contains('active');
-  requestAnimationFrame(() => {
-    resumoHeader.classList.toggle('active');
-    body.style.display = willExpand ? 'block' : 'none';
-    label.textContent = willExpand ? 'Resumo' : 'Ver resumo';
-    icon.textContent = willExpand ? '▲' : '▼';
-  });
-});
-
-    // Lazy‑loading de vídeos utilizando IntersectionObserver
-    document.addEventListener('DOMContentLoaded', function() {
-      const lazyVideos = document.querySelectorAll('video[data-src]');
-      if ('IntersectionObserver' in window) {
-        const videoObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const video = entry.target;
-              if (!video.src) {
-                video.src = video.dataset.src;
-                video.load();
-              }
-              observer.unobserve(video);
-            }
+          const willExpand = !resumoHeader.classList.contains('active');
+          requestAnimationFrame(() => {
+            resumoHeader.classList.toggle('active');
+            body.style.display = willExpand ? 'block' : 'none';
+            label.textContent = willExpand ? 'Resumo' : 'Ver resumo';
+            icon.textContent = willExpand ? '▲' : '▼';
           });
-        }, {
-          rootMargin: '200px 0px',
-          threshold: 0.25
-        });
-        lazyVideos.forEach(video => {
-          videoObserver.observe(video);
-        });
-      } else {
-        lazyVideos.forEach(video => {
-          video.src = video.dataset.src;
-          video.load();
         });
       }
 
-      // Comentários: carregados sob demanda quando o placeholder entra em viewport
+      /**
+       * Lazy‑loading de vídeos: apenas define o src quando o elemento está próximo do viewport.
+       */
+      const lazyVideos = document.querySelectorAll('video[data-src]');
+      if (lazyVideos.length > 0) {
+        if ('IntersectionObserver' in window) {
+          const videoObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const video = entry.target;
+                const source = video.dataset.src;
+                if (source && !video.src) {
+                  requestAnimationFrame(() => {
+                    video.src = source;
+                    video.load();
+                  });
+                }
+                observer.unobserve(video);
+              }
+            });
+          }, { rootMargin: '200px 0px', threshold: 0.25 });
+          lazyVideos.forEach(video => videoObserver.observe(video));
+        } else {
+          // Fallback simples: carrega imediatamente
+          lazyVideos.forEach(video => {
+            const source = video.dataset.src;
+            if (source && !video.src) {
+              video.src = source;
+              video.load();
+            }
+          });
+        }
+      }
+
+      /**
+       * Lazy‑loading de animações Lottie. Ao invés de clonar, apenas define o atributo src quando visível.
+       */
+      const lottiePlayers = document.querySelectorAll('lottie-player[src]');
+      if (lottiePlayers.length > 0) {
+        if ('IntersectionObserver' in window) {
+          const lottieObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const player = entry.target;
+                // Se não houver atributo src-loaded, define e carrega
+                if (!player.hasAttribute('src-loaded')) {
+                  const src = player.getAttribute('src');
+                  player.setAttribute('src-loaded', 'true');
+                  requestAnimationFrame(() => {
+                    player.setAttribute('src', src);
+                  });
+                }
+                lottieObserver.unobserve(player);
+              }
+            });
+          }, { rootMargin: '200px', threshold: 0.1 });
+          lottiePlayers.forEach(player => lottieObserver.observe(player));
+        } else {
+          // Fallback: carrega imediatamente
+          lottiePlayers.forEach(player => {
+            const src = player.getAttribute('src');
+            if (src && !player.hasAttribute('src-loaded')) {
+              player.setAttribute('src-loaded', 'true');
+              player.setAttribute('src', src);
+            }
+          });
+        }
+      }
+
+      /**
+       * Comentários: carregados sob demanda quando o placeholder entra em viewport.
+       */
       const placeholder = document.getElementById('comments-placeholder');
       const template = document.getElementById('comments-template');
       if (placeholder && template) {
         const loadComments = () => {
           const clone = template.content.cloneNode(true);
-          placeholder.replaceWith(clone);
-          document.querySelectorAll('.reaction').forEach(function(el) {
-            el.addEventListener('click', function() {
-              if (el.dataset.clicked === 'true') return;
-              el.dataset.clicked = 'true';
-              const countSpan = el.querySelector('span:last-child');
-              const count = parseInt(countSpan.textContent.trim(), 10);
-              requestAnimationFrame(() => {
-                countSpan.textContent = count + 1;
+          // Substitui o placeholder pelos comentários reais dentro de uma rAF
+          requestAnimationFrame(() => {
+            placeholder.replaceWith(clone);
+            // Adiciona eventos às reações para incrementar contador sem causar reflow em massa
+            document.querySelectorAll('.reaction').forEach(el => {
+              el.addEventListener('click', function() {
+                if (el.dataset.clicked === 'true') return;
+                el.dataset.clicked = 'true';
+                const countSpan = el.querySelector('span:last-child');
+                const count = parseInt(countSpan.textContent.trim(), 10);
+                requestAnimationFrame(() => {
+                  countSpan.textContent = count + 1;
+                });
               });
             });
           });
@@ -1276,36 +1325,15 @@
           }, { rootMargin: '200px 0px', threshold: 0 });
           observer.observe(placeholder);
         } else {
+          // fallback: carrega imediatamente
           loadComments();
         }
       }
-    });
 
-    // Lazy load de animações Lottie
-    document.addEventListener('DOMContentLoaded', function() {
-      if ('IntersectionObserver' in window) {
-        const lottieObserver = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const player = entry.target;
-              if (!player.hasAttribute('src-loaded')) {
-                player.setAttribute('src-loaded', '');
-                if (typeof player.load === 'function') {
-                  player.load(player.getAttribute('src'));
-                }
-              }
-              lottieObserver.unobserve(player);
-            }
-          });
-        }, { rootMargin: '200px 0px', threshold: 0.1 });
-        document.querySelectorAll('lottie-player').forEach(player => {
-          lottieObserver.observe(player);
-        });
-      }
-    });
-
-    // Inicialização preguiçosa do áudio e wavesurfer
-    document.addEventListener('DOMContentLoaded', function() {
+      /**
+       * Inicialização preguiçosa do áudio e da biblioteca WaveSurfer.  
+       * O áudio só é carregado quando o usuário interage com o botão de play.
+       */
       let wavesurferInstance;
       const playBtn = document.getElementById('play-btn');
       const audioElement = document.getElementById('audio-element');
@@ -1314,6 +1342,7 @@
       const speeds = [1, 1.25, 1.5, 2];
       let speedIdx = 0;
 
+      // Carrega dinamicamente a biblioteca WaveSurfer
       function loadWaveSurfer(callback) {
         if (window.WaveSurfer) {
           callback();
@@ -1327,7 +1356,7 @@
 
       function initialiseWaveSurfer() {
         if (wavesurferInstance) return;
-        // Carregue o áudio somente quando necessário
+        // Carrega o áudio somente quando necessário
         if (!audioElement.src && audioElement.dataset && audioElement.dataset.src) {
           audioElement.src = audioElement.dataset.src;
           try { audioElement.load(); } catch (e) {}
@@ -1383,6 +1412,23 @@
           });
         }
       });
+
+      /**
+       * Exclusividade nos marcadores do mapa de calor: ao abrir um marcador, fecha os outros.
+       */
+      const markers = document.querySelectorAll('details.marker');
+      markers.forEach(marker => {
+        marker.addEventListener('toggle', function() {
+          if (!marker.open) return;
+          requestAnimationFrame(() => {
+            markers.forEach(other => {
+              if (other !== marker && other.open) {
+                other.removeAttribute('open');
+              }
+            });
+          });
+        });
+      });
     });
   </script>
 
@@ -1435,7 +1481,7 @@
         <div class="content">
           <div class="name">Maria Aparecida Vasconcelos</div>
           <div class="text">
-            Comprei só pra ver se chegava mesmo, depois de 3 dias tava na minha casa, primeira vez que recebo uma entrega tão rápido e olha que eu moro na Bahia
+            Comprei só pra ver se chegava mesmo, depois de 3 dias tava na minha casa, primeira vez que recebo uma entrega tão rápida e olha que eu moro na Bahia
           </div>
           <div class="meta"><span>Curtir</span>·<span>Responder</span>·<span>12min</span></div>
         </div>
@@ -1449,7 +1495,7 @@
         <div class="content">
           <div class="name">Izalete Pereira</div>
           <div class="text">
-            Faz 1 mês que tô usando, minha filha já perguntou se fiz pelling, eu disse que não, ansiosa pra me olhar no espelho no dia 94.
+            Faz 1 mês que tô usando, minha filha já perguntou se fiz peeling, eu disse que não, ansiosa pra me olhar no espelho no dia 94.
           </div>
           <div class="meta"><span>Curtir</span>·<span>Responder</span>·<span>16min</span></div>
         </div>
@@ -1476,67 +1522,11 @@
       PURAH é uma marca da Branding Caps, que não apoia a automedicação.
       <span style="text-decoration:underline;cursor:pointer;">Termos de uso</span> | <span style="text-decoration:underline;cursor:pointer;">Política de privacidade</span>
     </p>
-    <!-- Cor do texto final ajustada de #777 para #555 para melhor contraste -->
     <p style="margin-top:20px;font-size:11px;color:#555;">
       ©2025 PURAH | BRANDING CAPS LTDA<br>
       Rua Comendador Francisco Rodrigues Neves, 295, Letra A, Sala 02 – Centro, Campo Belo – MG, Brasil.<br>
       CEP: 37270‑000 | CNPJ: 47.889.955/0001-05
     </p>
   </footer>
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const player = entry.target;
-            const src = player.getAttribute('src');
-            if (src && !player.hasAttribute('src-loaded')) {
-              player.setAttribute('src-loaded', 'true');
-              const clone = player.cloneNode();
-              clone.setAttribute('src', src);
-              player.replaceWith(clone);
-              observer.unobserve(player);
-            }
-          }
-        });
-      }, { rootMargin: '200px', threshold: 0.1 });
-
-      document.querySelectorAll('lottie-player[src]').forEach(player => {
-        observer.observe(player);
-      });
-    } else {
-      // fallback: carrega imediatamente em browsers sem suporte
-      document.querySelectorAll('lottie-player[src]').forEach(player => {
-        const src = player.getAttribute('src');
-        if (src && !player.hasAttribute('src-loaded')) {
-          player.setAttribute('src-loaded', 'true');
-          const clone = player.cloneNode();
-          clone.setAttribute('src', src);
-          player.replaceWith(clone);
-        }
-      });
-    }
-  });
-
-<script defer>
-  document.addEventListener('DOMContentLoaded', function () {
-    const markers = document.querySelectorAll('details.marker');
-    markers.forEach(marker => {
-      marker.addEventListener('toggle', function () {
-        if (!marker.open) return;
-        requestAnimationFrame(() => {
-          markers.forEach(other => {
-            if (other !== marker && other.open) {
-              other.removeAttribute('open');
-            }
-          });
-        });
-      });
-    });
-  });
-</script>
-
-</script>
 </body>
 </html>
