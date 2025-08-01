@@ -23,10 +23,28 @@
 
     <!-- Pré‑conexões para domínios utilizados nos recursos da página.  -->
     <!-- Mantenha apenas as conexões mais importantes (máximo de 4) para que o navegador não desperdice recursos. -->
-    <link rel="preconnect" href="https://purah.com.br" />
-    <link rel="preconnect" href="https://imagedelivery.net" crossorigin />
-    <link rel="preconnect" href="https://iframe.videodelivery.net" crossorigin />
-    <link rel="preconnect" href="https://unpkg.com" crossorigin />
+    <link rel="preconnect" 
+  <!-- Pré‑conexões e dns‑prefetch adicionais para origens terceirizadas -->
+  <link rel="dns-prefetch" href="//purah.com.br">
+  <link rel="dns-prefetch" href="//cdn-ildpfhj.nitrocdn.com">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="//connect.facebook.net">
+  <link rel="dns-prefetch" href="//www.clarity.ms">
+  <link rel="dns-prefetch" href="//unpkg.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://purah.com.br">
+  <link rel="preconnect" href="https://cdn-ildpfhj.nitrocdn.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+  <link rel="preconnect" href="https://www.clarity.ms" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+
+  <!-- Pré‑carregamento das fontes Roboto (regular 400 e bold 700) com font-display:swap e subset limitado -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&subset=latin" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&subset=latin"></link></noscript>
 
 
 
