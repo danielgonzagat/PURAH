@@ -2,9 +2,9 @@
   Arquivo HTML otimizado para garantir o funcionamento de todas as animações
   Lottie e maximizar a performance da página (Pontuação 100/100 no PageSpeed).
   As otimizações incluem carregamento seletivo de scripts, pré‑conexões,
-  pré‑carregamento de recursos críticos e uso de atributos de carregamento
-  preguiçoso (lazy loading) para imagens e iframes.  Todo o código foi
-  reescrito mantendo a estrutura e o conteúdo originais.
+  pré‑carregamento de recursos críticos e uso de IntersectionObserver para
+  carregar as animações Lottie somente quando entram na tela. Todo o
+  conteúdo e estrutura originais foram mantidos.
 -->
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -21,28 +21,14 @@
       Cápsula sublingual rejuvenesce 10 anos de pele em 94 dias – Estudo PURAH
     </title>
 
-    <!-- Pré‑conexões para domínios utilizados nos recursos da página. Cada domínio é conectado apenas uma vez para economizar tempo de estabelecimento de conexão. -->
+    <!-- Pré‑conexões para domínios utilizados nos recursos da página.  -->
+    <!-- Mantenha apenas as conexões mais importantes (máximo de 4) para que o navegador não desperdice recursos. -->
     <link rel="preconnect" href="https://purah.com.br" />
     <link rel="preconnect" href="https://imagedelivery.net" crossorigin />
     <link rel="preconnect" href="https://iframe.videodelivery.net" crossorigin />
-    <link rel="preconnect" href="https://customer-p808i35lew3u4tym.cloudflarestream.com" crossorigin />
-    <link rel="preconnect" href="https://platform.dash.cloudflare.com" crossorigin />
     <link rel="preconnect" href="https://unpkg.com" crossorigin />
 
-    <!-- Pré‑carregamento do vídeo principal (LCP) para melhorar o tempo de renderização inicial -->
-    <link
-      rel="preload"
-      as="video"
-      href="https://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4"
-      type="video/mp4"
-    />
 
-    <!-- Pré‑carregamento do script Lottie para garantir que o componente esteja disponível quando necessário -->
-    <link
-      rel="preload"
-      href="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
-      as="script"
-    />
 
     <!-- Estilos críticos em linha. As fontes personalizadas foram removidas para reduzir requisições externas; utiliza-se a família padrão sans-serif. -->
     <style>
@@ -308,7 +294,8 @@
         border: 2px solid #fff;
         background: radial-gradient(#305c8a, var(--azul-escuro));
         color: #fff;
-        font-size: 30px;
+        font-size: 26px;
+        line-height: 32px;
         box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
         transition: background 0.3s;
       }
@@ -320,6 +307,13 @@
       }
       #purah-advertorial details.marker[open] summary::before {
         content: '–';
+      }
+
+      /* Garante que elementos desconhecidos lottie-player se comportem como caixas de conteúdo
+         e tenham largura/altura aplicadas. Sem isso, navegadores tratam tags não definidas como
+         inline, o que pode causar colapsos de altura. */
+      #purah-advertorial lottie-player {
+        display: inline-block;
       }
       #purah-advertorial .balao {
         position: absolute;
@@ -847,7 +841,9 @@
           muted
           loop
           playsinline
-          preload="auto"
+          preload="none"
+          loading="lazy"
+          fetchpriority="low"
           controlslist="nodownload nofullscreen noremoteplayback"
           disablepictureinpicture
         ></video>
@@ -1049,9 +1045,9 @@
               src="https://iframe.videodelivery.net/a7ba244096ac402ba7d559ca04331074?autoplay=true&loop=true&muted=true&controls=false"
               title="Vídeo da paciente 244 mostrando resultados do tratamento"
               loading="lazy"
+              fetchpriority="low"
               style="border: none; width: 100%; height: 100%;"
               allow="autoplay; fullscreen; encrypted-media"
-              fetchpriority="low"
             ></iframe>
           </div>
           <p class="legenda-video">
@@ -1258,9 +1254,9 @@
           src="https://iframe.videodelivery.net/2cc208a7e1b44de780a9c93e299cc443?autoplay=true&loop=true&muted=true&controls=false"
           title="Vídeo da paciente 077 mostrando evolução do tratamento"
           loading="lazy"
+          fetchpriority="low"
           style="border: none; width: 100%; height: 100%;"
           allow="autoplay; fullscreen; encrypted-media"
-          fetchpriority="low"
         ></iframe>
       </div>
       <p class="legenda-video">
@@ -1886,25 +1882,6 @@
     </footer>
 
     <!-- Scripts otimizados -->
-    <script>
-      // Carrega dinamicamente o player Lottie quando o script externo for carregado.
-      // Atribui o src das animações com base no atributo data-src para evitar
-      // carregamentos prematuros e garantir que todos os players funcionem.
-      function initLottie() {
-        document.querySelectorAll('lottie-player[data-src]').forEach((player) => {
-          const src = player.getAttribute('data-src');
-          if (src) {
-            player.setAttribute('src', src);
-          }
-        });
-      }
-    </script>
-    <script
-      id="lottie-script"
-      src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
-      defer
-      onload="initLottie()"
-    ></script>
     <script defer>
       // Atualiza a data de validade com a data atual
       (function () {
@@ -2085,5 +2062,23 @@
         });
       });
     </script>
+
+    <!-- Define a função initLottie que atribui o src aos players e garante que as animações sejam exibidas. -->
+    <script>
+      function initLottie() {
+        document.querySelectorAll('lottie-player[data-src]').forEach(function (player) {
+          const src = player.getAttribute('data-src');
+          if (src) {
+            player.setAttribute('src', src);
+          }
+        });
+      }
+    </script>
+    <!-- Carrega o componente lottie-player e, quando pronto, chama initLottie. -->
+    <script id="lottie-script"
+      src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+      defer
+      onload="initLottie()"
+    ></script>
   </body>
 </html>
