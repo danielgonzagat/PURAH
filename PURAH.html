@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -12,54 +11,21 @@
     <link rel="preconnect" href="https://purah.com.br" />
     <link rel="preconnect" href="https://cdn-ildpfhj.nitrocdn.com" crossorigin />
     <link rel="preconnect" href="https://unpkg.com" crossorigin />
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://imagedelivery.net" crossorigin />
-    <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
-    <link rel="preconnect" href="https://www.clarity.ms" crossorigin />
 
-    <!-- Pré-carregamento de fontes Roboto locais. Esses recursos são hospedados no mesmo domínio, eliminando solicitações ao Google Fonts. -->
-    <link rel="preload" href="https://purah.com.br/fonts/roboto/roboto-v48-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="https://purah.com.br/fonts/roboto/roboto-v48-latin-italic.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="https://purah.com.br/fonts/roboto/roboto-v48-latin-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="https://purah.com.br/fonts/roboto/roboto-v48-latin-700italic.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- As fontes personalizadas foram removidas para evitar erros 404 e reduzir requisições.  Utiliza-se fontes padrão do sistema. -->
 
     <!-- Pré-carregamento do vídeo principal para melhorar o Largest Contentful Paint (LCP) -->
     <link rel="preload" as="video" href="https://purah.com.br/wp-content/uploads/2025/07/DIA-38-1.mp4" type="video/mp4" />
 
-    <!-- Script do Lottie Player carregado de forma assíncrona. Deferred para não bloquear a renderização inicial. -->
-    <script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- O script do player Lottie será carregado dinamicamente no bloco de script ao final da página
+         somente se ainda não estiver definido. Isso evita carregamentos duplicados e o erro
+         'custom element already defined' que ocorria quando a página também carregava
+         lottie-player.js via outro plugin. -->
 
     <!-- Estilos inline (CSS crítico) -->
     <style>
-      /* Fontes locais Roboto. A declaração "font-display: swap" garante que o texto permaneça visível enquanto as fontes são carregadas. */
-      @font-face {
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url('https://purah.com.br/fonts/roboto/roboto-v48-latin-regular.woff2') format('woff2');
-      }
-      @font-face {
-        font-family: 'Roboto';
-        font-style: italic;
-        font-weight: 400;
-        font-display: swap;
-        src: url('https://purah.com.br/fonts/roboto/roboto-v48-latin-italic.woff2') format('woff2');
-      }
-      @font-face {
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 700;
-        font-display: swap;
-        src: url('https://purah.com.br/fonts/roboto/roboto-v48-latin-700.woff2') format('woff2');
-      }
-      @font-face {
-        font-family: 'Roboto';
-        font-style: italic;
-        font-weight: 700;
-        font-display: swap;
-        src: url('https://purah.com.br/fonts/roboto/roboto-v48-latin-700italic.woff2') format('woff2');
-      }
+      /* Removido @font-face das fontes Roboto; a página usará a família padrão sans-serif. */
 
       /* Variáveis de cores e estilos globais */
       #purah-advertorial {
@@ -71,10 +37,10 @@
         --cinza-texto: #515559;
         --azul-claro: #A3C8FF;
         --azul-escuro: #305C8A;
-        font-family: 'Roboto', sans-serif;
+        font-family: sans-serif;
         color: #333;
-        margin: 0;
-        line-height: 1.5;
+        margin: 1px;
+        line-height: 1.6;
         background: #fff;
       }
       /* Links */
@@ -91,19 +57,19 @@
         font-size: 25px;
         font-weight: 700;
         line-height: 1.3;
-        margin: 1px 0;
+        margin: 1px;
         padding: 5px;
         color: #000;
       }
       #purah-advertorial h2 {
         font-size: 22px;
         font-weight: 700;
-        margin: 10px 0;
+        margin: 7px;
         padding: 5px;
         color: #000;
       }
       #purah-advertorial h3 {
-        font-size: 1px;
+        font-size: 17px;
         font-weight: 700;
         margin: 10px 0;
         padding: 5px;
@@ -111,8 +77,8 @@
       }
       /* Parágrafos */
       #purah-advertorial p {
-        margin: -9px -7px;
-        padding: 5px;
+        margin: 1px;
+        padding: 7px;
         line-height: 1.6;
         color: #2c2c2c;
       }
@@ -120,13 +86,13 @@
       #purah-advertorial #autor-info {
         display: flex;
         align-items: center;
-        gap: 7px;
+        gap: 1px;
         padding: 1px;
-        margin-bottom: 10px;
+        margin-bottom: 1px;
       }
       #purah-advertorial #autor-info img {
-        width: 60px;
-        height: 60px;
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
         object-fit: cover;
         flex-shrink: 0;
@@ -192,8 +158,8 @@
       }
       /* Bloco de citação */
       #purah-advertorial .citacao-bloco {
-        margin: 20px 10px;
-        padding: 20px -22px;
+        margin: 5px;
+        padding: 22px -22px;
         text-align: center;
         position: relative;
         border-top: 1px solid #ddd;
@@ -211,7 +177,7 @@
       #purah-advertorial .citacao-texto {
         font-size: 18px;
         font-weight: 700;
-        margin: 5px;
+        margin: 10px;
         color: #000;
       }
       /* Prontuário (resultados) */
@@ -298,6 +264,8 @@
       }
       #purah-advertorial details.marker {
         position: absolute;
+        top: var(--marker-top-desktop);
+        left: var(--marker-left-desktop);
         transform: translate(-50%, -50%);
         z-index: 10;
         cursor: pointer;
@@ -347,13 +315,13 @@
         #purah-advertorial .balao {
           top: var(--balao-top-mobile, 110%);
           left: var(--balao-left-mobile, 50%);
-          width: 120px;
+          width: 125px;
         }
       }
       #purah-advertorial .titulo-balao {
         font-weight: 700;
         color: #212121;
-        margin-bottom: 2px;
+        margin-bottom: 0px;
       }
       #purah-advertorial .subtitulo-balao {
         color: #555;
@@ -515,12 +483,11 @@
         font-size: 20px;
         font-weight: 700;
         margin-bottom: 12px;
-        padding: 5px;
         color: #c62828;
       }
       #purah-advertorial .purah-censura p {
         font-size: 17px;
-        margin-bottom: 16px; padding: 15px;
+        margin-bottom: 16px;
         color: #2c2c2c;
         line-height: 1.6;
       }
@@ -574,12 +541,12 @@
       #purah-advertorial .garantia-section h2 {
         font-size: 20px;
         color: #b71c1c;
-        padding: 7px;
+        padding: 10px 0;
       }
       #purah-advertorial .garantia-section p {
-        font-size: 17px;
+        font-size: 15px;
         line-height: 1.5;
-        padding: 15px;
+        padding: 0 10px 10px;
         color: #2c2c2c;
       }
       /* CTA e caixa final */
@@ -788,14 +755,14 @@
       <div id="autor-info">
         <img src="https://imagedelivery.net/2xQlk6FBrQINAp7sBc0BKA/65534c94-765f-4d79-d3f3-880e75e23100/public" alt="Dra. Heloísa Barreto" width="56" height="56" />
         <div class="autor-dados">
-          <p style="font-size:17px;"><strong>Por Dra. Heloísa Barreto</strong></p>
-          <p style="font-size:11px">Dermatologista e líder em pesquisas com nanotecnologia sublingual.</p>
+          <p><strong>Por Dra. Heloísa Barreto</strong></p>
+          <p style="font-size:11px; margin-top: -13px;">Dermatologista e líder em pesquisas com nanotecnologia sublingual.</p>
         </div>
       </div>
       <!-- Título principal -->
-      <h1>Ela usou esta cápsula sublingual e 94 dias depois, sua aparência estava 10 anos mais jovem</h1>
-      <p style="padding: 10px;font-size:16px;color:var(--cinza-texto);">Conheça a cápsula sublingual recém-desenvolvida e o estudo de nanotecnologia interrompido por 'desinteresse comercial'</p>
-      <p style="font-size:13px;color:var(--cinza-texto);margin-bottom:10px;padding: 10px;">16/07/2025 08h55 · Atualizado há 16 minutos</p>
+      <h1>Ela usou esta cápsula sublingual e 94 dias depois, seu rosto estava 10 anos mais jovem</h1>
+      <p style="font-size:15.6px;color:var(--cinza-texto);">Conheça a cápsula sublingual recém-desenvolvida e o estudo de nanotecnologia interrompido por 'desinteresse comercial'</p>
+      <p style="font-size:13px;color:var(--cinza-texto);margin-bottom:10px;">16/07/2025 08h55 · Atualizado há 16 minutos</p>
 
       <!-- Resumo expansível -->
       <div class="resumo-wrapper">
@@ -818,7 +785,7 @@
       <p class="legenda-video">Érica Lopillato 'Paciente 033.' — Foto: Reprodução/Prontuário.</p>
 
       <!-- Narração e áudio player -->
-      <div style="font-family:'Roboto', sans-serif; margin-bottom:1px;padding:10px;font-size:11px;color:#000;">Aperte o 'Play' e ouça a narração oficial.</div>
+      <div style="font-family: sans-serif; margin-bottom:1px;padding:10px;font-size:11px;color:#000;">Aperte o 'Play' e ouça a narração oficial.</div>
       <div id="audio-noticia" style="display:flex;align-items:center;gap:10px;">
         <button id="play-btn" style="border:none;background:none;color:#D32F2F;font-size:24px;cursor:pointer;">▶︎</button>
         <div id="waveform" style="flex-grow:1;max-width:600px;"></div>
@@ -829,10 +796,10 @@
       <audio id="audio-element" data-src="https://purah.com.br/wp-content/uploads/2025/07/audiootimizado.mp3" preload="none" style="display:none;"></audio>
 
       <!-- Introdução -->
-      <div style="font-size:17px;padding:15px;">
+      <div style="font-size:17px;line-height:1.6;padding:5px 10px;margin-top:20px;">
         <p>Dados oficiais do ClinicalTrials.gov revelam: <strong>mais de 70% dos tratamentos altamente eficazes são descartados por “falta de interesse comercial”.</strong></p>
-        <p><p><p><span style="background:#f4d1ce;padding:1px 4px;border-radius:4px;">Sim, você entendeu corretamente: centenas de pesquisas com potencial revolucionário foram abandonadas simplesmente por serem rápidas e eficazes demais para gerar lucro.</span></p>
-        <p><p><p>Minha pesquisa esteve à beira desse destino. <strong>O motivo?</strong> Um efeito nomeado de <span style="background:#f4d1ce;padding:2px 4px;border-radius:4px;">"Renascimento Estético".</span></p>
+        <p><span style="background:#f4d1ce;padding:2px 4px;border-radius:4px;">Sim, você entendeu corretamente: centenas de pesquisas com potencial revolucionário foram abandonadas simplesmente por serem rápidas e eficazes demais para gerar lucro.</span></p>
+        <p>Minha pesquisa esteve à beira desse destino. <strong>O motivo?</strong> Um efeito nomeado de <span style="background:#f4d1ce;padding:2px 4px;border-radius:4px;">"Renascimento Estético".</span></p>
       </div>
 
       <!-- Citação 1 -->
@@ -845,8 +812,8 @@
       <!-- Texto pós-citação -->
       <div style="font-size:17px;line-height:1.6;padding:5px 10px;color:#333;">
         <p><strong>Érica Lopillato, paciente 033</strong>, obteve 10 anos de rejuvenescimento biológico em suas células epiteliais após <strong>94 dias de tratamento</strong>.</p>
-        <p><p><p><p><p><p><p><p><p><p>Classificamos seu resultado como <strong>"exceção clínica"</strong>. Só não esperávamos que outra paciente teria o mesmo resultado, quase no mesmo tempo.</p>
-        <p><p><p><p><p><p><p><p><p><p>Seu nome? <strong>Christie Anne Gonçalves, a 'paciente 244'</strong>. O prontuário <a href="https://purah.com.br" rel="noopener">PURAH</a> dela mostrou esses resultados:</p>
+        <p>Classificamos seu resultado como <strong>"exceção clínica"</strong>. Só não esperávamos que outra paciente teria o mesmo resultado, quase no mesmo tempo.</p>
+        <p>Seu nome? <strong>Christie Anne Gonçalves, a 'paciente 244'</strong>. O prontuário <a href="https://purah.com.br" rel="noopener">PURAH</a> dela mostrou esses resultados:</p>
       </div>
 
       <!-- Prontuário -->
@@ -904,8 +871,8 @@
               </div>
             </div>
           </div>
-          <!-- Vídeo da paciente 244: carregamento preguiçoso para evitar downloads imediatos. -->
-          <div class="video-loop" style="aspect-ratio: 1.32">
+          <!-- Vídeo da paciente 244 -->
+          <div class="video-loop" style="aspect-ratio: 1.33;">
             <iframe src="https://iframe.videodelivery.net/a7ba244096ac402ba7d559ca04331074?autoplay=true&loop=true&muted=true&controls=false" title="Vídeo da paciente 244 mostrando resultados do tratamento" loading="lazy" style="border:none; width:100%; height:100%;" allow="autoplay; fullscreen; encrypted-media"></iframe>
           </div>
           <p class="legenda-video">Christie Anne 'Paciente 244.' — Foto: Reprodução/Prontuário.</p>
@@ -915,8 +882,8 @@
       <!-- Texto pós-prontuário -->
       <div style="max-width:700px;margin:1px auto 20px;font-size:17px;color:#2c2c2c;padding:20px 10px;">
         <p>Duas voluntárias completamente diferentes, com o mesmo resultado. <strong>Não era uma exceção.</strong></p>
-        <p><p><p><p><p><p><p><p><p><p><p><strong>Então o que era?</strong> Classificamos como <strong>'coincidência'</strong>, até que algo impressionante aconteceu.</p>
-        <p><p><p><p><p><p><p><p><p><p><p><strong>Neuza Rodrigues, a 'paciente 077'.</strong> Uma voluntária de 62 anos provou o que acontece quando <strong>se usa o nosso tratamento por 181 dias.</strong></p>
+        <p><strong>Então o que era?</strong> Classificamos como <strong>'coincidência'</strong>, até que algo impressionante aconteceu.</p>
+        <p><strong>Neuza Rodrigues, a 'paciente 077'.</strong> Uma voluntária de 62 anos provou o que acontece quando <strong>se usa o nosso tratamento por 181 dias.</strong></p>
       </div>
 
       <!-- Citação de Neuza -->
@@ -929,14 +896,14 @@
       <!-- Texto pós-citação Neuza -->
       <div style="max-width:700px;margin:30px auto 0;font-size:17px;color:#2c2c2c;padding:5px 10px;">
         <p>Não era exceção, nem coincidência, <strong>era o padrão da nossa tecnologia.</strong></p>
-        <p><p><p><p><p><p><p><p><p><p><p><span style="background:#f4d1ce;padding:2px 4px;border-radius:4px;">Foi quando paramos de olhar o rosto e começamos a mapear o corpo inteiro.</span></p>
+        <p><span style="background:#f4d1ce;padding:2px 4px;border-radius:4px;">Foi quando paramos de olhar o rosto e começamos a mapear o corpo inteiro.</span></p>
       </div>
 
       <!-- Mapa de calor -->
       <div id="mapa-calor">
         <h2>Como a nanotecnologia transformou Neuza?</h2>
         <p class="subtitulo">Clique nos ícones abaixo para descobrir</p>
-        <img src="https://imagedelivery.net/2xQlk6FBrQINAp7sBc0BKA/6d93304b-c818-43dd-024f-fbd5bd743c00/public" alt="Mapa de Calor Corporal" width="720" height="auto" />
+        <img src="https://imagedelivery.net/2xQlk6FBrQINAp7sBc0BKA/6d93304b-c818-43dd-024f-fbd5bd743c00/public" alt="Mapa de Calor Corporal" width="720" height="auto" loading="lazy" />
         <!-- Marcadores com variáveis de posição -->
         <details class="marker" style="--marker-top-desktop:22%;--marker-left-desktop:50%;--marker-top-mobile:32%;--marker-left-mobile:50%;--balao-top-desktop:;--balao-left-desktop:-350%;--balao-top-mobile:-60%;--balao-left-mobile:-200%;">
           <summary>
@@ -985,12 +952,12 @@
       </div>
 
       <!-- Vídeo da paciente 077 -->
-      <div class="video-loop" style="aspect-ratio: 1.325;">
+      <div class="video-loop" style="aspect-ratio: 1.33;">
         <iframe src="https://iframe.videodelivery.net/2cc208a7e1b44de780a9c93e299cc443?autoplay=true&loop=true&muted=true&controls=false" title="Vídeo da paciente 077 mostrando evolução do tratamento" loading="lazy" style="border:none; width:100%; height:100%;" allow="autoplay; fullscreen; encrypted-media"></iframe>
       </div>
       <p class="legenda-video">Neuza Rodrigues 'Paciente 077.' — Foto: Reprodução/Prontuário.</p>
 
-      <!-- Linha do tempo explicativa (seção anterior ao timeline) -->
+      <!-- Linha do tempo explicativa -->
       <div style="max-width:700px;margin:10px auto 30px auto;font-size:17px;color:#2c2c2c;padding:10px 10px;">
         <p>Os resultados clínicos das 250 <strong>voluntárias</strong> foram tão impressionantes que decidimos criar uma <strong>linha do tempo detalhando quando e como a metamorfose estética aconteceu</strong>.</p>
       </div>
@@ -1002,7 +969,8 @@
         </div>
         <div class="timeline-track">
           <div class="timeline-card">
-            <div class="timeline-lottie-date"><lottie-player data-src="https://purah.com.br/wp-content/uploads/2025/07/Peptides-1.json" background="transparent" speed="1" loop autoplay style="width:64px;height:64px;"></lottie-player>
+            <div class="timeline-lottie-date">
+              <lottie-player data-src="https://purah.com.br/wp-content/uploads/2025/07/Peptides-1.json" background="transparent" speed="1" loop autoplay style="width:64px;height:64px;"></lottie-player>
             </div>
             <div class="timeline-day">Primeira Semana</div>
             <h3 class="timeline-title">Ativação Sublingual Imediata</h3>
@@ -1022,7 +990,7 @@
             </div>
             <div class="timeline-day">Vigésima Semana</div>
             <h3 class="timeline-title">10 anos de rejuvenescimento</h3>
-            <p class="timeline-text">A pele completou a metamorfose e seu renascimento estético aconteceu. </p>
+            <p class="timeline-text">A pele completou a metamorfose e seu renascimento estético aconteceu.</p>
           </div>
         </div>
       </div>
@@ -1054,7 +1022,7 @@
       <!-- Tecnologia PURAH -->
       <div class="purah-tecnologia">
         <div class="purah-tecnologia__imagem">
-          <img src="https://imagedelivery.net/2xQlk6FBrQINAp7sBc0BKA/a8b62821-4cfc-4525-db21-f9825d3f9a00/public" alt="Sede oficial da PURAH" width="720" height="405" style="width:100%;border-radius:8px;display:block;margin:0 auto 16px;" />
+        <img src="https://imagedelivery.net/2xQlk6FBrQINAp7sBc0BKA/a8b62821-4cfc-4525-db21-f9825d3f9a00/public" alt="Sede oficial da PURAH" width="720" height="405" loading="lazy" style="width:100%;border-radius:8px;display:block;margin:0 auto 16px;" />
         </div>
         <p class="purah-tecnologia__descricao" style="color:#444;font-size:17px;line-height:1.5;margin-bottom:10px;">Foram exatos 4 anos, unindo os maiores <strong>especialistas em nanotecnologia e dermatologia</strong> do mundo, com um único objetivo: <strong>desenvolver a fórmula mais avançada.</strong></p>
         <div class="purah-tecnologia__grid">
@@ -1146,7 +1114,7 @@
       <!-- CTA com imagem -->
       <div class="cta-image">
         <a href="https://purah.com.br" target="_blank" rel="noopener">
-          <img src="https://imagedelivery.net/2xQlk6FBrQINAp7sBc0BKA/30374046-a6a5-442c-91e4-9f2ff12f2900/public" alt="PURAH Garantia 90 Dias" width="990" height="557" />
+          <img src="https://imagedelivery.net/2xQlk6FBrQINAp7sBc0BKA/30374046-a6a5-442c-91e4-9f2ff12f2900/public" alt="PURAH Garantia 90 Dias" width="990" height="557" loading="lazy" />
         </a>
       </div>
 
@@ -1254,7 +1222,7 @@
     </template>
 
     <!-- Rodapé institucional -->
-    <footer style="max-width:720px;margin:40px auto 0;padding:30px 20px;border-top:1px solid #ddd;font-family:'Roboto',Arial,sans-serif;font-size:13px;line-height:1.6;color:#555;background:transparent;text-align:center;">
+    <footer style="max-width:720px;margin:40px auto 0;padding:30px 20px;border-top:1px solid #ddd;font-family:sans-serif;font-size:13px;line-height:1.6;color:#555;background:transparent;text-align:center;">
       <p style="margin-bottom:12px;font-size:12px;">
         Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook. Após sair do Facebook, a responsabilidade é do nosso site.
         Este produto não se destina a diagnosticar, tratar, curar ou prevenir qualquer doença.
@@ -1276,7 +1244,28 @@
 
     <!-- Scripts otimizados -->
     <script defer>
-      // Função para atualizar a data de validade com a data atual (dd/mm/aaaa)
+      // Carrega dinamicamente o player Lottie apenas se ele ainda não estiver definido.
+      // Isso evita erros de "custom element already defined" quando a mesma biblioteca
+      // é carregada por plugins do WordPress ou outros scripts. O script é marcado
+      // como defer para não bloquear a renderização.  Caso o componente já exista,
+      // nada é carregado.
+      (function() {
+        try {
+          if (!(window.customElements && customElements.get('lottie-player'))) {
+            var lottieScript = document.createElement('script');
+            lottieScript.src = 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js';
+            lottieScript.defer = true;
+            document.head.appendChild(lottieScript);
+          }
+        } catch (e) {
+          // Falha segura: se o registro de custom element falhar, ainda podemos carregar o script.
+          var lottieScriptFallback = document.createElement('script');
+          lottieScriptFallback.src = 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js';
+          lottieScriptFallback.defer = true;
+          document.head.appendChild(lottieScriptFallback);
+        }
+      })();
+      // Atualizar a data de validade
       (function() {
         const hoje = new Date();
         const dia = String(hoje.getDate()).padStart(2, '0');
@@ -1290,7 +1279,7 @@
         }
       })();
 
-      // Expansão do resumo
+      // Expandir e colapsar resumo
       document.addEventListener('DOMContentLoaded', function() {
         const resumoHeader = document.getElementById('resumoHeader');
         if (resumoHeader) {
@@ -1309,36 +1298,17 @@
         }
       });
 
-      // Lazy-load de animações Lottie: carregar src apenas quando visível
+      // Carregar Lottie animations: sempre defina src com base em data-src
       document.addEventListener('DOMContentLoaded', function() {
-        if ('IntersectionObserver' in window) {
-          const lottieObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const player = entry.target;
-                const src = player.getAttribute('data-src');
-                if (src && !player.hasAttribute('src-loaded')) {
-                  player.setAttribute('src-loaded', 'true');
-                  player.setAttribute('src', src);
-                }
-                lottieObserver.unobserve(player);
-              }
-            });
-          }, { rootMargin: '200px 0px', threshold: 0.1 });
-          document.querySelectorAll('lottie-player[data-src]').forEach(player => {
-            lottieObserver.observe(player);
-          });
-        } else {
-          document.querySelectorAll('lottie-player[data-src]').forEach(player => {
-            const src = player.getAttribute('data-src');
-            if (src) {
-              player.setAttribute('src', src);
-            }
-          });
-        }
+        document.querySelectorAll('lottie-player[data-src]').forEach(player => {
+          const src = player.getAttribute('data-src');
+          if (src) {
+            player.setAttribute('src', src);
+          }
+        });
       });
 
-      // Inicialização preguiçosa do áudio e Wavesurfer
+      // Inicializar áudio e Wavesurfer de forma preguiçosa
       document.addEventListener('DOMContentLoaded', function() {
         let wavesurferInstance;
         const playBtn = document.getElementById('play-btn');
@@ -1422,7 +1392,7 @@
         }
       });
 
-      // Carregar comentários quando o placeholder entrar na viewport
+      // Carregar comentários sob demanda
       document.addEventListener('DOMContentLoaded', function() {
         const placeholder = document.getElementById('comments-placeholder');
         const template = document.getElementById('comments-template');
@@ -1458,7 +1428,7 @@
         }
       });
 
-      // Otimização do mapa de calor: garante que apenas um marcador fique aberto por vez
+      // Garantir que apenas um marcador do mapa de calor fique aberto de cada vez
       document.addEventListener('DOMContentLoaded', function() {
         let openedMarker = null;
         document.querySelectorAll('details.marker').forEach(marker => {
